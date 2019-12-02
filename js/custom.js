@@ -33,7 +33,11 @@ $(window).load(function() {
 	settingDimenstionWidth();
 
 	function ShowCharacterBox(){
-		$(".character-holder").stop().animate({"bottom":"20%"}, 1000, "swing", function(){});
+		$(".character-holder").stop().animate({"bottom":"20%"}, 1000, "swing", function(){
+			//chrAniTimer = setInterval(function() { makeChrAni() }, 200);
+			defaultCharcterFrame();
+			canScroll = true; 
+		});
 	}; 
 
 	//afterLoad
@@ -41,26 +45,89 @@ $(window).load(function() {
 		$("body").removeClass("fixed");
 		$(".horizon-dimension").animate({"top":"0%"}, 1200, "easeInCubic");
 		$(".loading-page").animate({"position":"absolute", "top":"-100%"}, 1200, "easeInCubic", function(){
-			 ShowCharacterBox();
+			chrFall();
+			ShowCharacterBox();
 		});
 	}
 	afterLoad();	
 	
 
-	chrSpreadDiv = document.getElementById("characterAni");
+	var $chrSpreadDiv = $("#characterAni");
 	function defaultCharcterFrame(){
-		chrSpreadDiv.style.left = "0px"
+		$chrSpreadDiv.css("left", "0px");
+	};
+	var canScroll = false; 
+	var chrWidth = 150;
+	var chrStart, chrEnd, counter = 0;
+	var chrAniTimer;
+
+	function chrFall(){
+	  $chrSpreadDiv.css("left", "-450px");
 	};
 
-	var shiftRobbyFrameTimer = setInterval(function() { shiftRobbyFrame() }, 200)
+	function makeChrAni() {
+		$chrSpreadDiv.css("left", (-1 * chrWidth * counter)  + "px");
+		if(counter>=2){
+			counter = 0;
+		}else{
+			counter++;
+		}					
+	};
 
+	function clearChrAniTimer() {
+	  clearInterval(chrAniTimer);
+	};
 
+	function scrollAct(){
+		
+	};
+
+	var dimensionSpeed = new Array;
+	function setLayerSpeed(){
+	 
+	  ///// 여기까지 12.02  
+
+	};
+
+	//일단 디폴트로 설정해둠
+	var layersMovement = "horizontal";
+	var dimensionHorizon = $(".horizon-dimension");
+
+	function moveLayers() {
+		if (layersMovement == "horizontal") {
+			for (var e = 0; e < dimensionHorizon.length; e++)  dimensionHorizon[e].css("left", -1 * dimensionSpeed[e] * VP + "px"; ); 
+		}else{
+		
+		}
+	}
+
+//orientRobby(), checkRobbyJumpFallSwim(), moveLayers(), shiftUpDownHorizontalLayers(), animateInformationAndEnemiesElements(), animateRobbyRunSwim(), //hideScrollOrSwipeTextContainer(), hideContactConfirmationContainer(), deviceFunctionScrollSwipe(), printScrollSwipeText()
 
 	$(window).scroll(function() {
 		var nowScroll = $(window).scrollTop();
-
+		if(canScroll==true){
+			detectPageVerticalPosition();
+			scrollAct();
+		}
 
 	});
+
+	var preVP, VP = 0; 
+	function detectPageVerticalPosition(){
+		preVP = VP;
+		if(isMobile==false){ // PC
+			VP = (ieTest==true) ? document.documentElement.scrollTop : pageYOffset // 익스플로는 scrollTop 아니면 pageYOffset
+		}else{ //모바일
+			if( VP = pageVerticalPositionOnTouch + (touchStartX - touchCurrentX) < 0){
+				VP = 0
+			}	  
+	    }
+	}
+
+	
+
+
+
 
 });
 
