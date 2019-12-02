@@ -1,0 +1,100 @@
+/********* RESET********/
+* { margin:0;  padding:0; }
+ol,ul { list-style:none; }
+a { outline:0; text-decoration:none; color:#555; }
+img { border:0; vertical-align:bottom; }
+
+/********** FONT *********/
+@font-face {
+    font-family: 'notokr-regular';
+    src: url('notokr-regular.eot');
+    src: url('notokr-regular.eot?#iefix') format('embedded-opentype'),
+         url('notokr-regular.woff') format('woff'),
+         url('notokr-regular.ttf') format('truetype'),
+         url('notokr-regular.svg#notokr-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*****IE경고창******/
+.backLayer {background-color:#000;  filter: alpha(opacity = 70); width:100%;height:100%; position: absolute; top: 0px; left: 0px; z-index: 999;}
+.warning_area { margin: 0 auto; width: 100%; height: 100%; }
+.warning {background:#444444; padding:20px;}
+.warning_area h2 { margin-bottom: 15px;}
+.warning_area p { margin-bottom: 30px;}
+.warning_area p,.warning_area h2 { color: #fff; }
+.warning_area p a { color: #fff; text-align: center; font-size: 14px; text-decoration: none; }
+.warning_area p:hover a{color: #ff9320;}
+.closeBtn2 {width: 30px;height: 30px;background-image: url("http://img.khan.co.kr/spko/storytelling/2016/anniversary/close_btn.png");background-size: 30px 30px;background-position: top;cursor: pointer;}
+.warning_area p.keepBtn , .warning_area p.updateBtn{ text-align: center; width: 150px;height: 35px;line-height: 35px;margin: 0px auto;cursor: pointer;display: block;border: 1px solid white; padding: 0px;margin-bottom: 10px;margin-top: 20px;}
+.warning_area .keepBtn:hover , .warning_area p.updateBtn:hover {color: #ff9320;border: 1px solid #ff9320;}
+.ieBox{position:fixed; z-index:1000; width: 500px; height: 250px; top:50%; left: 50%; margin-top: -125px; margin-left: -250px;}
+
+.ie9 { width: 400px; position: fixed; bottom: 30px; right: 30px; background:#333; box-shadow: 0px 0px 10px #111; box-sizing: border-box; padding:20px;
+z-index:1111; border-radius: 5px; }
+.ie9 p { font-size: 15px; color:#fff; margin-bottom: 10px;text-align: center; }
+.ie9 .goUpdate { width: 280px; margin: 0 auto;  position: relative; top: 0px; text-align: center; color:#fff; 
+cursor: pointer; border-radius: 7px; font-size: 16px;line-height: 28px; font-weight: bold; padding: 13px 0;background: #93b8eb; }
+.ie9 .goUpdate a { color:#111; }
+.ie9 .close { position: absolute; top:10px;right:15px; color:#fff; cursor: pointer; font-size:30px; line-height:20px;}
+
+
+/*-------------------------------------*/
+/******** 전체 기본 CSS - PC 기준********/
+/************* 2019.5 YJ *************/
+/*-------------------------------------*/
+
+
+body { position: relative; background: #fff;  letter-spacing: -0.02em; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothic, '돋움', Dotum, Helvetica, AppleGothic, Sans-serif;}
+.wrap {width:100%; }
+.top-area { height: 1000px; width:100%; background: linear-gradient(180deg,#ffffff 26%,#f1f5f7); }
+.top-area p { max-width: 700px; margin:0px auto; padding: 100px 0; font-size: 30px; line-height: 1.65; }
+.scroll-animate-area { width:100%; position: relative;}
+.dimension-holder { width: 100%; height:100vh;  top: 0;  left: 0; position: absolute; overflow:hidden;background:#f1f5f7; }
+.dimension-holder-fixed { } 
+.dimension-holder > div { position:absolute; }
+.dimension-holder .horizon-dimension {left:0; height:100%; }
+.dimension-holder .vertical-dimension {}
+.dimension-holder .horizon-dimension-1 { z-index:4;  }
+.dimension-holder .horizon-dimension-2 { z-index:3; }
+.dimension-holder .horizon-dimension-3 { z-index:2;}
+.dimension-holder .horizon-dimension-4 { z-index:1;}
+
+.dimension-holder .horizon-dimension-1 .road { background: linear-gradient(150deg,#535458 26%,#ffffff); width:100%; height:300px;position: absolute; bottom: 0px;left:0;}
+.dimension-holder .horizon-dimension-2 .ele {width:100%; height:300px;position: absolute; bottom: 300px;left:0; background: url("../img/tree-bright-a.png") repeat-x;     background-position: bottom;}
+.dimension-holder .horizon-dimension-3 .mount { position: absolute; width: 500px; height: 500px; background:#d9e2cc; bottom: 100px;     transform: rotate(45deg);}
+.dimension-holder .horizon-dimension-3 .mount-1 { left: 200px; }
+.dimension-holder .horizon-dimension-3 .mount-2 { left: 1500px; }
+.dimension-holder .horizon-dimension-3 .mount-3 { left: 3000px; }
+.dimension-holder .horizon-dimension-4 .cloud { width:180px; height:120px; position: absolute; top:200px; background: url("../img/cloud.png"); }
+.dimension-holder .horizon-dimension-4 .cloud-1 {left: 50px; }
+.dimension-holder .horizon-dimension-4 .cloud-2 { left: 800px;}
+.dimension-holder .horizon-dimension-4 .cloud-3 { left: 1600px;}
+.pop-item { position: absolute; opacity:0;  background: orange; border-radius:50%; transform: scale(0.6); }
+.pop-1 { width: 200px; height:200px; bottom: 150px; left: 3000px; }
+.pop-2 { width: 200px; height:200px; bottom: 450px; left: 5000px; }
+.pop-3 { width: 200px; height:200px; bottom: 300px; left: 10000px; }
+.pop-trigger {width:1px; height:1px; position: absolute; left:0px;  }
+.pop-trigger-1 { top: 2000px; }
+.pop-trigger-2 { top: 4500px; }
+.pop-trigger-3 { top: 9000px; }
+
+
+.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:50%; margin-left:-75px; margin-left:-250px;
+bottom: 250px; background: #222; }
+.character-box {}
+.character-box img { width: 100%; }
+
+.info-layer { position: absolute; z-index: 10; right: 30px; top: 30px;}
+.info-layer .info-board { background: #fff; border: 2px solid #ddd; width: 300px; height:200px; box-sizing:border-box; padding: 30px; }
+.info-layer .info-board .each-item { display:none; opacity: 0; transform: scale(0.5);}
+.info-layer .info-board .each-item p { color:#111; font-size:20px; line-height:1.6; }
+
+.actual-scroll { width:100%; height:20000px; top:0;left:0; position: relative;}
+.actual-scroll .info-trigger { width:1px; height:1px; position: absolute; left:0px;  } 
+.info-trigger-1 { top: 3000px; }
+.info-trigger-2 { top: 8000px; }
+.info-trigger-3 { top: 10000px; }
+.info-trigger-4 { top: 15000px; }
+
