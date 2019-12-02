@@ -23,24 +23,24 @@ img { border:0; vertical-align:bottom; }
 /*-------------------------------------*/
 
 
-body { position: relative; background: #fff; background: #ffefea; letter-spacing: -0.02em; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothic, '돋움', Dotum, Helvetica, AppleGothic, Sans-serif;}
+body { position: relative; background: #fff; background: #ffefea; background:#408bc7;  
+letter-spacing: -0.02em; font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothic, '돋움', Dotum, Helvetica, AppleGothic, Sans-serif;}
 .wrap {position: relative; width: 100%;}
 .wrap::after {content: ""; clear: both; display: block;  }
 .top_btn_box { display: none; }
 
 body.fixed { height:100vh; overflow-y: hidden; }
-body::-webkit-scrollbar {  width: 15px;}
-body::-webkit-scrollbar-track { background:#222; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);}
-body::-webkit-scrollbar-thumb { background:#4a4948; border-radius: 5px; }
+body::-webkit-scrollbar {  width: 12px;}
+body::-webkit-scrollbar-track { background:#fff; -webkit-box-shadow: inset 0 0 6px #e3cbc3;}
+body::-webkit-scrollbar-thumb { background:#e3cbc3; border-radius: 2px; }
 
 /* loading */
-.loading-page { width: 100%; height: 100%; height: 100vh; position: fixed; 
-z-index: 100; left: 0px; top: 0px; right:0px; bottom: 0px; overflow:hidden;}
-.loading-gif { width: 100%; position: absolute; top: 50%;margin-top: -150px; }
-p.loading-ment {  text-align: center; color: #111; margin-top: 8px; font-size: 14px;  font-family: sans-serif; font-weight: bold;}
-.loading-spinner-box { width: 400px; margin: 0 auto; box-sizing: border-box; padding: 30px; }
+.loading-page { width: 100%; height:100vh; position: fixed; z-index: 100; left: 0px; right:0px;top:0;}
+.loading-gif {   position: relative;top: 50%;margin-top: -110px;}
+p.loading-ment {  text-align: center; color: #6b1e12; margin-top: 8px; font-size: 16px; font-weight:bold; letter-spacing: 4px; }
+.loading-spinner-box { width: 400px; margin: 0 auto; box-sizing: border-box; padding: 30px;background: #ffa285;box-shadow: 4px 4px 0px #6b1e12;}
 .spinner {margin: 0px auto;width: 70px; text-align: center;}
-.spinner > div {width: 14px;height: 14px;background-color: #111;border-radius: 100%;display: inline-block;
+.spinner > div {width: 14px;height: 14px;background-color: #6b1e12;border-radius: 100%;display: inline-block;
 -webkit-animation: sk-bouncedelay 1.4s infinite ase-in-out both; animation: sk-bouncedelay 1.4s infinite ease-in-out both;}
 .spinner .bounce1 {  -webkit-animation-delay: -0.32s; animation-delay: -0.32s;}
 .spinner .bounce2 {  -webkit-animation-delay: -0.16s;animation-delay: -0.16s;}
@@ -140,9 +140,38 @@ width: 27px; height: 30px;}
 .wrap { width:100%; overflow-x:hidden;  }
 .container {  width:100%; position: relative;  }
 
- 
+.actual-scroll { width:100%; height:40000px; top:0;left:0; position: relative;}
+.scroll-animate-area { width:100%; position: relative;}
+.dimension-holder {  background: linear-gradient(180deg,#408bc7 50%,#cfc8b5); position: fixed; width: 100%; height:100vh; top: 0; left: 0; overflow:hidden; }
+.dimension-holder-fixed { } 
+.dimension-holder > div { position:absolute; }
+.dimension-holder .horizon-dimension {left:0; height:100%; top: 100%;  }
+.dimension-holder .horizon-dimension-1 { z-index:4;  }
+.dimension-holder .horizon-dimension-2 { z-index:3; }
+.dimension-holder .horizon-dimension-3 { z-index:2;}
+.dimension-holder .horizon-dimension-4 { z-index:1;}
+.dimension-holder .vertical-dimension {}
+.road { background:#fbbc16; width:100%; height:100%; top: 80%; left:0;position: absolute; }
+.dimension-holder .horizon-dimension-1 .ob {position: absolute;}
+.bank-sign { width: 470px; height: 670px; left: 2000px; top: -10%; top: -30%; }
+.bank-sign img {  width:100%; }
+
+.horizon-dimension-4 .cloud { width:180px; height:120px; position: absolute;   }
+.horizon-dimension-4 .cloud > img { width:100%; }
+.horizon-dimension-4 .cloud-1 {left: 50px; top: 10%; }
+.horizon-dimension-4 .cloud-2 { left: 650px; top: 18%;}
+.horizon-dimension-4 .cloud-3 { left: 1250px;top: 5%;}
+.horizon-dimension-4 .cloud-4 { left: 1850px; top: 25%;}
+.horizon-dimension-4 .cloud-5 {left: 2450px; top: 10%; }
+.horizon-dimension-4 .cloud-6 { left: 3050px; top: 18%;}
+.horizon-dimension-4 .cloud-7 { left: 3650px;top: 5%;}
 
 
+.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:50%; margin-left:-30%;
+bottom: 20%;bottom:100%;  }
+.character-box { width:100%; height:100%;  overflow:hidden;}
+.character-box img { }
+.character-spread { width: 600px; height: 1750px; background: url("../img/ch_s1_spread.png") no-repeat; background-position: 0 0;position: relative; }
 
 
 
