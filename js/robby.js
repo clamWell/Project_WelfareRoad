@@ -605,12 +605,37 @@ function animateRobbyRunSwim() {
 }
 
 function shiftRobbyFrame() {
-  if (1 == isRobbyFalling) return clearShiftRobbyFrameTimer(), void setRobbyJumpDownAndFallFrame();
-  if (1 == isRobbySwimming && 1 == isRobbyBelowSeaLevel ? (robbyStartFrame = robbyStartSwimFrame, robbyStopFrame = robbyStopSwimFrame) : (robbyStartFrame = robbyStartRunFrame, robbyStopFrame = robbyStopRunFrame), robbyFramesDiv.style.left = -1 * robbyOneFrameWidth * (robbyStartFrame + counter) + "px", robbyStopFrame < robbyStartFrame + counter + switcher && (switcher *= -1), robbyStartFrame + counter + switcher == robbyStartFrame && (pageVerticalPositionWhenAnimateRobby1 = pageVerticalPosition), robbyStartFrame + counter + switcher < robbyStartFrame) {
-    if (pageVerticalPositionWhenAnimateRobby1 == (pageVerticalPositionWhenAnimateRobby2 = pageVerticalPosition)) return clearShiftRobbyFrameTimer(), void("not moving 2" == layersMovement && robbyHandsUp());
-    switcher *= -1
+  if (true == isRobbyFalling){
+	return clearShiftRobbyFrameTimer(),
+	void setRobbyJumpDownAndFallFrame();
+  } 
+  if (
+	  // 수영중인지 뛰는중인지 구분해 시작 프레임 지정
+	  if(true == isRobbySwimming && true == isRobbyBelowSeaLevel){ //수영중
+		robbyStartFrame = robbyStartSwimFrame, robbyStopFrame = robbyStopSwimFrame
+	  }else{ //뛰는중
+		robbyStartFrame = robbyStartRunFrame, robbyStopFrame = robbyStopRunFrame  //robbyStartRunFrame =1, robbyStopRunFrame =2
+	  }
+
+	  //캐릭터프레임변경
+	  //robbyStartFrame 은 1 고정이므로 counter가 0 이면 뛰는 모습 1, counter가 1 이면 뛰는 모습2
+	  robbyFramesDiv.style.left = -1 * robbyOneFrameWidth * (robbyStartFrame + counter) + "px"; 
+	  
+	  if(robbyStopFrame < robbyStartFrame + counter + switcher){ //robbyStartFrame + counter + switcher = 3이면? 즉 counter =1 이면
+		switcher *= -1; // switcher를 -1로
+	  }
+	  if(robbyStartFrame + counter + switcher == robbyStartFrame){ //counter+switcher = 0 ? 즉 counter가 1 + switcher가 -1
+		pageVerticalPositionWhenAnimateRobby1 = pageVerticalPosition
+	  }
+	  robbyStartFrame + counter + switcher < robbyStartFrame	  // counter+switcher < 0 ? 즉 counter가 0, switcher가 -1이면 아래 실행
+    ){ 
+    if (pageVerticalPositionWhenAnimateRobby1 == (pageVerticalPositionWhenAnimateRobby2 = pageVerticalPosition)){ //정지상태면?
+		return clearShiftRobbyFrameTimer(),
+		void( "not moving 2" == layersMovement && robbyHandsUp() );//undefined 반환
+	}
+    switcher *= -1 // switcher 다시 1로
   }
-  counter += switcher
+  counter += switcher // 0 + 1 초기화상태
 }
 
 function clearShiftRobbyFrameTimer() {

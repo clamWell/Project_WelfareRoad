@@ -157,10 +157,35 @@ width: 27px; height: 30px;}
 .bank-sign-front { position: absolute; width: 200px; height:200px;bottom:80px;left:50%; margin-left:-100px;
 background:#333; border-radius: 50%;}
 .bank-sign-front img { width:100%; transform-origin: top; transform: none; transition:all 0.2s ease 0s;transition:all 0.5s ease 0s;}
-.bank-sign-front img.rotate { transform: rotate(-20deg); }
-.flying-money { width: 120px; height: 62px; }
-.flying-money .flying-money-wing {}
-.flying-money-slider {}
+.bank-sign-front img.rotate { transform: rotate(-40deg); }
+.flying-money { width: 150px; height: 78px; position: absolute; top: 100px; right: 30px; }
+.flying-money .flying-money-wing { width:100%; height:100%; overflow:hidden; }
+.flying-money-slider { width: 300px; height:78px; position: relative; background:url("../img/money-fly.png") no-repeat; background-size: 300px auto; }
+.university-area {  left: 3000px; bottom: 20%; width: 1000px; }
+.university-area .universe-building { position: relative; z-index:2; }
+.university-area .universe-building img {  }
+.university-area .universe-building .door-shade { position: absolute; bottom: 0; right:0; width: 400px; z-index:11; height: 200px; background:#221e1f;
+display: none;}
+.university-area .universe-building-sub { position: absolute; bottom: 0; right:-600px; z-index:1; }
+.jobcenter-area {left: 5300px; bottom: 20%; width: 930px;}
+.jobcenter-area .center-building {position: relative; width: 800px;}
+.jobcenter-area .center-building img { width:100%;}
+.academy-area { left: 6500px; bottom: 20%;}
+.academy-area .academy-building {position: relative; width: 750px;}
+.academy-area .academy-building img { width:100%;}
+.academy-area .level-up { position: absolute; right: -50px; top: 50px; width: 200px;  }
+.academy-area .level-up-icon { position: relative; }
+.academy-area .level-up-icon .up {margin: 0 auto; display: block; }
+.academy-area .level-up-icon .level-body { width: 105px; height: 30px; margin: 15px auto; background:#fff; }
+.academy-area .level-up-icon .skillup { position: absolute; top: 110px; right: -190px; }
+.workbuilding-area { left: 8400px; bottom: 20%;}
+.workbuilding-area .workbuilding {}
+.workbuilding-area .workbuilding img {}
+.husband {position: absolute; bottom: 1330px; left: 9800px; } 
+.husband .heart { position: absolute; width: 15px;  top: 40px; left: 0px; opacity:1; }
+.husband .heart-1 {}
+.husband .heart-2 {}
+.husband .husband-stand { position: relative;}
 
 .tree { position: absolute; bottom: 20%; }
 .tree-1 { left: 600px; }
@@ -170,10 +195,23 @@ background:#333; border-radius: 50%;}
 .tree-5 { left: 1650px; }
 .tree-6 { left: 2600px; }
 .tree-7 { left: 2850px; }
-.tree-8 { left: 2000px; }
-.tree-9 { left: 2500px; }
-.tree-10 { left: 2650px; }
+.tree-8 { left: 3000px; }
+.tree-9 { left: 3500px; }
+.tree-10 { left: 3650px; }
+.tree-11 { left: 4000px; }
+.tree-12 { left: 4850px; }
+.tree-13 { left: 5000px; }
+.tree-14 { left: 5500px; }
+.tree-15 { left: 5650px; }
+.tree-16 { left: 6600px; }
+.tree-17 { left: 6850px; }
+.tree-18 { left: 7000px; }
+.tree-19 { left: 7500px; }
+.tree-120 { left: 8050px; }
 .tree img { width:100%; }
+
+.background-building {  bottom: 20%; position: absolute; }
+.background-building-1 {left: 1500px;}
 
 .horizon-dimension-4 .cloud { width:180px; height:120px; position: absolute;   }
 .horizon-dimension-4 .cloud > img { width:100%; }
@@ -186,13 +224,13 @@ background:#333; border-radius: 50%;}
 .horizon-dimension-4 .cloud-7 { left: 3650px;top: 5%;}
 
 
-.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:50%; margin-left:-30%;
-bottom: 20%;bottom:100%;  }
+.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:300px;bottom: 20%;bottom:100%;  }
 .character-box { width:100%; height:100%;  overflow:hidden;}
 .character-box img { }
-.character-spread { width: 600px; height: 1750px; background: url("../img/ch_s1_spread.png") no-repeat; background-position: 0 0;position: relative; }
-
-
+.character-spread { }
+.character-spread-a {width: 600px; height: 1750px; background: url("../img/ch_s1_spread.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-b {width: 600px; height: 1750px; background: url("../img/ch_s2_spread.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-b {width: 600px; height: 1750px; background: url("../img/ch_s3_spread.png") no-repeat; background-position: 0 0; position: relative;  }
 
 
 /*****footer*****/
