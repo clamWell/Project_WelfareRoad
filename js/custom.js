@@ -22,8 +22,7 @@ $(function(){
 
 	// 스크롤, 디멘션 세팅(S)
 	var scrollDetph = $(".actual-scroll").height();
-	//var $chrSpreadDiv = $("#characterAni"),
-	var $chrSpreadDiv = $(".character-spread"), 
+	var $chrSpreadDiv = $(".character-spread"),
 		$scrContainer = $(".scroll-animate-area"),
 		$dimensionHorizon = $(".horizon-dimension");
 
@@ -31,7 +30,7 @@ $(function(){
 		$(".horizon-dimension-1").width(scrollDetph); // 근경
 		$(".horizon-dimension-2").width(scrollDetph*0.5); // 근-원경
 		$(".horizon-dimension-3").width(scrollDetph*0.25); // 원경
-		$(".horizon-dimension-4").width(scrollDetph*0.1); // 초원경
+		$(".horizon-dimension-4").width(scrollDetph*0.1);// 초원경
 		$(".horizon-dimension-5").width(scrollDetph); // 근경 중 캐릭터 위로 덮는 요소들
 	}
 	settingDimenstionWidth();
@@ -56,16 +55,33 @@ $(function(){
 	}
 
 	// 현재 스크롤 위치 감지하여 변수에 담기
-	var preVP, VP = 0;
+	var preVP, deltaVP, VP = 0;
+	var vertical_p;
+
 	function detectPageVerticalPosition(){
-		preVP = VP;
-		if (isMobile == false){ // PC
-			VP = (ieTest == true) ? document.documentElement.scrollTop : pageYOffset // ie 9 이하는 scrollTop 아니면 pageYOffset
-		} else { //모바일
-			if( VP = pageVerticalPositionOnTouch + (touchStartX - touchCurrentX) < 0){
-				VP = 0
+
+		if (layersMovement == "vertical"){
+
+			console.log(VP);
+			//window.scrollTo(vertical_p, 0);
+			VP = vertical_p;
+
+		} else if (layersMovement == "horizontal"){
+
+			preVP = VP;
+			if (deviceName == "computer"){ // PC
+				VP = (ieTest == true) ? document.documentElement.scrollTop : pageYOffset // ie 9 이하는 scrollTop 아니면 pageYOffset
+			} else { //모바일
+				if( VP = pageVerticalPositionOnTouch + (touchStartX - touchCurrentX) < 0){
+					VP = 0
+				}
+		    }
+			deltaVP = VP - preVP;
+			if (VP <= 0){
+				//  초기위치 리셋용
 			}
-	    }
+
+		}
 	}
 
 	////// 캐릭터 뛰는 동작 (S)
@@ -78,13 +94,18 @@ $(function(){
 	var switcher = 1;
 	var VP_when_moving1, VP_when_moving2;
 
+	function orientChr(){
+		if (deltaVP > 0) $chrSpreadDiv.css("top", "0px"); /// 눈 깜박임 추후 추가
+		if (deltaVP < 0) $chrSpreadDiv.css("top", "-175px");
+	}
+
 	//기본 서있는 자세로
 	function defaultCharcterFrame(){
 		$chrSpreadDiv.css("left", "0px");
 	};
 
 	function chrFall(){
-	  $chrSpreadDiv.css("left", "-450px");
+	  	$chrSpreadDiv.css("left", "-450px");
 	}
 
 	//캐릭터 움직이도록 프레임변경
@@ -122,9 +143,11 @@ $(function(){
 	////// 캐릭터 뛰는 동작 (E)
 
 	function scrollAct(){
+		checkChrBoxState();
 		makeChrRun();
 		moveLayers();
 		animateObject();
+		orientChr();
 	};
 
 	////// 화면 이동 (S)
@@ -141,19 +164,18 @@ $(function(){
 	var layersMovement = "horizontal"; //일단 디폴트를 수평이동으로 설정해둠
 
 	function moveLayers() {
-		if (layersMovement == "horizontal") {
-			for (var e = 0; e < $dimensionHorizon.length; e++){
-				$dimensionHorizon.eq(e).css("left", (-1 * dimensionSpeed[e] * VP) + "px" );
-			}
-		}else{
+		if (layersMovement == "vertical") VP = vertical_p;
 
+		for (var e = 0; e < $dimensionHorizon.length; e++){
+			$dimensionHorizon.eq(e).css("left", (-1 * dimensionSpeed[e] * VP) + "px" );
 		}
+
 	}
 	////// 화면 이동 (E)
 
 	var $aniObs = $(".aniOb");
 	var bankAniDone = false;
-	var nowSendingHeart = false; 
+	var nowSendingHeart = false;
 	var workBuildingArrive = false;
 	var nowElevator = false;
 	var weddingPlaneGoUp = false;
@@ -178,7 +200,7 @@ $(function(){
 				}else if( (VP + $(".character-holder").position().left <= aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband")){
 					$(".husband .husband-holder img").css({"left":"0px"});
 				}
-				
+
 				// 뱅기 모드 시작
 				if( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left  > aniObsEndPos) ){
 					weddingPlaneGoUp = true; 
@@ -186,27 +208,34 @@ $(function(){
 					//$(".character-box-plane").animate({"top":"-350px", "transform":"rotate(-15deg)", "-ms-transform":"rotate(-15deg)","-webkit-transform":"rotate(-15deg)","-moz-transform":"rotate(-15deg)"}, 800);  
 				}
 
+				/*
+				 if( (preVP_trigger < aniObsStartPos || preVP_trigger > aniObsEndPos ) && (VP_trigger > aniObsStartPos) && (VP_trigger < aniObsEndPos) && ( $aniObs.eq(a) == $(".bank-sign") ) && (bankAniDone == false) ){
+					  animateBank(),
+					  bankAniDone = true;
+				  } */
+
 			}
 
 			//일하는 건물 도착하면 엘리베이터 타고 올라가게
 			if( ( VP + $(".character-holder").position().left >  $(".workbuilding-area").position().left-50 ) && workBuildingArrive == false && nowElevator == false){
+				layersMovement = "vertical";
+				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
 				workBuildingArrive = true;
 				console.log("빌딩도착");
 				$("body").addClass("fixed");
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoUpBuilding() );
 			}
 			//일하는 건물에서 다시 엘리베이터 타고 내려가게
-			if(  ( VP + $(".character-holder").position().left < $(".workbuilding-area").position().left+50 ) && workBuildingArrive == true&&nowElevator == false){
+			if(  ( VP + $(".character-holder").position().left < $(".workbuilding-area").position().left+50 ) && workBuildingArrive == true && nowElevator == false){
+				layersMovement = "vertical";
+				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
 				workBuildingArrive = false;
 				console.log("빌딩다시내려가야함");
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoDownBuilding() );
 				$("body").addClass("fixed");
 			}
-
-
-
 		}
-
+		//console.log(nowElevator);
 	};
 
 	function chrGoUpBuilding(){
@@ -216,15 +245,17 @@ $(function(){
 			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left+200);
 			$("body").removeClass("fixed");
 			nowElevator = false;
+			layersMovement = "horizontal";
 		});
 	}
 	function chrGoDownBuilding(){
 		nowElevator = true;
 		console.log("빌딩내려가기");
 		$(".horizon-dimension").stop().animate({"top":"0%"}, 1200, "swing",function(){
-			//$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left-300);
+			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left-200);
 			$("body").removeClass("fixed");
 			nowElevator = false;
+			layersMovement = "horizontal";
 		});
 	};
 
@@ -269,13 +300,14 @@ $(function(){
 	function sendHeart(){
 		nowSendingHeart = true;
 		var $heart = $(".husband .heart");
-		for(h=0; h<$heart.length;h++){		
+		for(h=0; h<$heart.length;h++){
 			$heart.eq(h).delay(300 * h).animate({"width": "30px", "top":"0", "left":"-100px","opacity":"0"}, 700, "swing");
-		}			
-	};	
+		}
+	};
 	// 남편 만나는 애니메이션
 
-	// 캐릭터 스테이지 구분 체크
+
+// 캐릭터 스테이지 구분 체크
 	var $changePoint = $(".change-point");
 	var nowChrStage = 0;
 	function changeChrBox(n){
@@ -324,15 +356,14 @@ $(function(){
 	};
 	// 캐릭터 스테이지 구분 체크
 
-
 	$(window).on("load", function(){
 		afterLoad();
+
 	})
 	.on("scroll", function() {
 		if (canScroll == true){
 			detectPageVerticalPosition();
 			scrollAct();
-			checkChrBoxState();
 		} else {
 			window.scrollTo(0, 0);
 		}
