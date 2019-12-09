@@ -87,16 +87,30 @@ $(function(){
 	////// 캐릭터 뛰는 동작 (S)
 	var chrStatus = "run";
 	var canScroll,canChrAni = false;
-	var chrWidth = 150;
+	var defaultchrWidth = 150;
 	var chrRunStartFrame = 1, chrRunEndFrame = 2;
 	var chrStart, chrEnd, counter = 0;
 	var chrAniTimer;
 	var switcher = 1;
 	var VP_when_moving1, VP_when_moving2;
 
-	function orientChr(){
+	/*function orientChr(){
 		if (deltaVP > 0) $chrSpreadDiv.css("top", "0px"); /// 눈 깜박임 추후 추가
 		if (deltaVP < 0) $chrSpreadDiv.css("top", "-175px");
+	}*/
+
+	function orientChr(){
+		var $orientChr, topValue;
+		if (nowChrStage == 4){
+			$orientChr = $(".plane-holder");
+			topValue = -337;
+		} else {
+			$orientChr = $chrSpreadDiv;
+			topValue = -175;
+		}
+
+		if (deltaVP > 0) $orientChr.css("top", "0px"); /// 눈 깜박임 추후 추가
+		if (deltaVP < 0) $orientChr.css("top", topValue + "px");
 	}
 
 	//기본 서있는 자세로
@@ -109,8 +123,8 @@ $(function(){
 	}
 
 	//캐릭터 움직이도록 프레임변경
-	function chrRun() {
-
+	function chrRun() {	
+		var chrWidth = nowChrStage == 5 ? 200 : defaultchrWidth;
 		if (chrStatus == "run")	chrStart = chrRunStartFrame, chrEnd = chrRunEndFrame;
 
 		$chrSpreadDiv.css("left", (-1 * chrWidth * counter)  + "px");
@@ -179,6 +193,11 @@ $(function(){
 	var workBuildingArrive = false;
 	var nowElevator = false;
 	var weddingPlaneGoUp = false;
+	var weddingPlaneGoDown = false;
+	var honeymoonPops = false;
+	var houseHeartDone = false;
+	var drugGiven = false;
+	var babyCry = false; 
 
 	function animateObject(){
 		if (layersMovement == "horizontal"){
@@ -200,19 +219,41 @@ $(function(){
 				}else if( (VP + $(".character-holder").position().left <= aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband")){
 					$(".husband .husband-holder img").css({"left":"0px"});
 				}
-
 				// 뱅기 모드 시작
-				if( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left  > aniObsEndPos) ){
+				if( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left  > aniObsEndPos) && ( VP + $(".character-holder").position().left  < $(".wedding-photo-area").position().left ) && weddingPlaneGoUp == false ){
 					weddingPlaneGoUp = true; 
 					console.log("허니문떠남")
-					//$(".character-box-plane").animate({"top":"-350px", "transform":"rotate(-15deg)", "-ms-transform":"rotate(-15deg)","-webkit-transform":"rotate(-15deg)","-moz-transform":"rotate(-15deg)"}, 800);  
+					$(".character-box-plane").addClass("plane-rotate-up");										
 				}
+				//신혼 앨범 만나면 하트, 폭죽
+				if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsStartPos) && honeymoonPops == false ){
+					AnimateHoneymoonPops();										
+				}
+				// 신혼 앨범 떠나면 바닥으로
+				if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsEndPos) && weddingPlaneGoDown == false ){
+					weddingPlaneGoDown = true;
+					console.log("허니문끝 내려가기 시작")
+					$(".horizon-dimension").stop().animate({"top":"0%"}, 1200, "swing");								
+				}
+				// 행복주택 지나갈때 하트
+				if( $aniObs.eq(a).hasClass("honeymoon-house-area") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && houseHeartDone == false ){
+					houseHeart();
+				}
+				// 보건소 지나갈 때 약 지원
+				if( $aniObs.eq(a).hasClass("healthcenter-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-700) && drugGiven == false ){
+					drugGiven = true;
+					var $drug = $(".drug-aniOb");
+					for(d=0; d<$drug.length;d++){
+						$drug.eq(d).find("img").delay(300*d).animate({"top":"0px","opacity":"1"}, 800, "easeOutElastic"); 								
+					}	
+				}
+				//산부인과병동지나면서 아기출산
+				if( $aniObs.eq(a).hasClass("hospital-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-300) && babyCry == false ){
+					babyCry = true;
+					$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic"); 	
 
-				/*
-				 if( (preVP_trigger < aniObsStartPos || preVP_trigger > aniObsEndPos ) && (VP_trigger > aniObsStartPos) && (VP_trigger < aniObsEndPos) && ( $aniObs.eq(a) == $(".bank-sign") ) && (bankAniDone == false) ){
-					  animateBank(),
-					  bankAniDone = true;
-				  } */
+				}
+				
 
 			}
 
@@ -306,36 +347,76 @@ $(function(){
 	};
 	// 남편 만나는 애니메이션
 
+	// 신혼 폭죽, 하트
+	function AnimateHoneymoonPops(){
+		honeymoonPops = true;
+		var $honeyPopItem = $(".honeymoon-aniOb");
+		for(h=0; h<$honeyPopItem.length;h++){
+			$honeyPopItem.eq(h).delay(200*h).animate({"width":"200px","opacity":"1"}, 800, "easeOutElastic"); 								
+		}	
+	}
+	// 신혼 폭죽, 하트
 
-// 캐릭터 스테이지 구분 체크
+	// 신혼집 애니메이션
+	function houseHeart(){
+		houseHeartDone = true;
+		var $heart = $(".house-heart");
+		for(h=0; h<$heart.length;h++){
+			$heart.eq(h).delay(300 * h).animate({"width": "68px", "top":"150px", "left":"70%","opacity":"0"}, 800, "swing");
+		}
+	};
+	// 신혼집 애니메이션
+
+
+	// 캐릭터 스테이지 구분 체크
 	var $changePoint = $(".change-point");
 	var nowChrStage = 0;
+	
+	function hideChrBoxforChange(){
+		$(".character-holder .character-box").hide();
+		$(".character-holder .character-spread").hide();
+	};
+
 	function changeChrBox(n){
 		if( nowChrStage == n){ // 스테이지 같음 아무런 액션 하지 않음
 			
 		}else if( nowChrStage !== n ){ //스테이지 바뀜
 			nowChrStage = n;
 			console.log(n+"번째 스테이지");
-				
-			if(n==0 || n==2){ // 기본복장
-				$(".character-holder .character-box").hide();
+			hideChrBoxforChange();		
+			if(n==0 || n==2){ // 기본복장				
 				$(".character-holder .character-box-normal").show();
-				$(".character-holder .character-spread").hide();
 				$(".character-holder .character-spread-a").show();
 			}else if(n==1){ //학사모
-				$(".character-holder .character-box").hide();
 				$(".character-holder .character-box-normal").show();
-				$(".character-holder .character-spread").hide();
 				$(".character-holder .character-spread-b").show();			
 			}else if(n==3){ //정장
-				$(".character-holder .character-box").hide();
 				$(".character-holder .character-box-normal").show();
-				$(".character-holder .character-spread").hide();
 				$(".character-holder .character-spread-c").show();			
 			}else if(n==4){ // 비행기
-				$(".character-holder .character-box").hide();
 				$(".character-holder .character-box-plane").show();
-			}		
+			}else if(n==5){ // 신혼여행 끝
+				$(".character-holder .character-box-wedding").show();
+				$(".character-holder .character-box-wedding .character-spread").show();
+			}else if(n==6){ // 신혼집 이후 아내 임신
+				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-box-normal-husband").show();
+				$(".character-holder .character-spread-f").show();
+				$(".character-holder .character-spread-g").show();
+			}else if(n==7){ // 출산 아이 함께
+				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-box-normal-husband").show();
+				$(".character-holder .character-spread-h").show();
+				$(".character-holder .character-spread-g").show();
+			}else if(n==8){ // 출산 이후 남편 정장
+				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-box-normal-husband").show();
+				$(".character-holder .character-spread-j").show();
+				$(".character-holder .character-spread-i").show();
+			}else if(n==9){ // 출산 이후 남편 출근, 아내 혼자 남음
+				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-spread-j").show();
+			}				
 		}
 
 	};

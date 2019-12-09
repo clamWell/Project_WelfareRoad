@@ -154,6 +154,8 @@ background: linear-gradient(180deg,#43beec 40%,#cfc8b5); position: fixed; width:
 .dimension-holder .vertical-dimension {}
 .road { background:#fbbc16; width:100%; height:100%; top: 80%; left:0;position: absolute; }
 .dimension-holder .horizon-dimension-1 .ob {position: absolute;}
+
+/*** dimension 요소들: horizon-1 **/
 .bank-sign { width: 470px; height: 670px; left: 2000px; top: -10%; top: -25%; }
 .bank-sign-front { position: absolute; width: 200px; height:200px;bottom:80px;left:50%; margin-left:-100px;
 background:#333; border-radius: 50%;}
@@ -193,7 +195,7 @@ display: none;}
 .wedding-photo-area { left: 11200px; bottom: 1400px; }
 .wedding-photo-area .honeymoon-photo-frame{ position: relative; } 
 .wedding-photo-area .honeymoon-photo-frame img {} 
-.honeymoon-aniOb { position: absolute; width: 20px;}
+.honeymoon-aniOb { position: absolute; width: 10px; opacity:0;}
 .honeymoon-aniOb img { width: 100%; }
 .honeymoon-heart-1 { bottom: 50px; left: -200px;}
 .honeymoon-heart-2 {top: 0px; right: -150px;}
@@ -202,14 +204,52 @@ display: none;}
 .honeymoon-fire-3 {  bottom: -50px; left: -100px;}
 .honeymoon-fire-4 {top: -80px; left:-150px; }
 
+.honeymoon-house-area  { left: 17000px; bottom: 20%;}
+.honeymoon-house-area .honeymoon-house  { }
+.house-heart { position: absolute; width: 1px; left:60%;top: 400px; }
+.house-heart img { width: 100%; opacity:1;}
+.house-heart-1 {}
+.house-heart-2 {}
+.house-heart-3 {} 
+
+.healthcenter-area {left: 20000px; bottom: 20%;}
+.healthcenter-area .healthcenter {}
+.healthcenter-area .healthcenter img {}
+.drug-aniOb { position: absolute; top: 120px; right: 300px;  }
+.drug-aniOb img { opacity:0; position: relative; top: -100px;}
+.drug-1 { }
+.drug-2 { right: 180px; }
+
+.hospital-area { left: 22800px; bottom: 20%; }
+.hospital-area .hospital {}
+.hospital-area .hospital img {}
+.babycry { position: absolute; top:300px; right:100px; }
+.babycry img { width: 20px; opacity: 0; }
+.baby-house-area { left: 24000px; }
+
+.husband-company-area { left: 26700px; bottom: 20%; }
+.husband-company {}
+.husband-company img {}
+
+.mart-area { display:none;}
+
+/*** dimension 요소들 **/
+
+/*** 캐릭터 전환지점 **/
 .change-point { position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10; }
 .change-point-1 { left: 3550px; bottom: 20%; }
 .change-point-2 { left: 5500px; bottom: 20%;}
 .change-point-3 { left: 6800px; bottom: 20%;}
 .change-point-4 { left: 10100px; bottom: 1330px; }
+.change-point-5 { left: 14500px; bottom: 20%;}
+.change-point-6 { left: 18000px; bottom: 20%;}
+.change-point-7 { left: 23150px; bottom: 20%;}
+.change-point-8 { left: 24800px; bottom: 20%;}
+.change-point-9 { left: 26650px; bottom: 20%;}
 
+/*** 캐릭터 전환지점 **/
 
-
+/*** dimension 요소들: horizon-2 **/
 .tree { position: absolute; bottom: 20%; }
 .tree-1 { left: 600px; }
 .tree-2 { left: 850px; }
@@ -230,9 +270,19 @@ display: none;}
 .tree-17 { left: 6850px; }
 .tree-18 { left: 7000px; }
 .tree-19 { left: 7500px; }
-.tree-120 { left: 8050px; }
+.tree-20 { left: 8050px; }
+.tree-21 { left: 8700px; }
+.tree-22 { left: 8850px; }
+.tree-23 { left: 9000px; }
+.tree-24 { left: 9500px; }
+.tree-25 { left: 9650px; }
+.tree-26 { left: 10600px; }
+.tree-27 { left: 10850px; }
+.tree-28 { left: 11000px; }
+.tree-29 { left: 11500px; }
+.tree-30 { left: 12050px; }
 .tree img { width:100%; }
-.light {position: absolute; bottom: 20%; }
+.light { position: absolute; bottom: 20%; }
 .light-1 { left: 1000px; }
 .light-2 { left: 2000px; }
 .light-3 { left: 3000px; }
@@ -242,12 +292,24 @@ display: none;}
 .light-7 { left: 7000px; }
 .light-8 { left: 8000px; }
 .light-9 { left: 9000px; }
+.light-10 { left: 10000px; }
+.light-11 { left: 11000px; }
+.light-12 { left: 12000px; }
+.light-13 { left: 13000px; }
+.light-14 { left: 14000px; }
+.light-15 { left: 15000px; }
+.light-16 { left: 16000px; }
+.light-17 { left: 17000px; }
+.light-18 { left: 18000px; }
+.light-19 { left: 19000px; }
+.rainbow { position: absolute; bottom: 20%;  left: 8000px; }
+/*** dimension 요소들: horizon-2 **/
 
-
-
+/*** dimension 요소들: horizon-3 **/
 .background-building {  bottom: 20%; position: absolute; }
 .background-building-1 {left: 1500px;}
 
+/*** dimension 요소들: horizon-4 **/
 .horizon-dimension-4 .cloud { width:180px; height:120px; position: absolute;   }
 .horizon-dimension-4 .cloud > img { width:100%; }
 .horizon-dimension-4 .cloud-1 {left: 50px; top: 10%; }
@@ -261,15 +323,19 @@ display: none;}
 .horizon-dimension-4 .cloud-9 { left: 1800px;top: -60%;}
 .horizon-dimension-4 .cloud-10 { left: 2200px;top: -80%;}
 
+/*** dimension 요소들: horizon-5 **/
 .horizen-dimension-chr-over { z-index:11;  }
 .horizen-dimension-chr-over .ob {position: absolute; }
 .unversity-building-shade { bottom: 20%; left: 3549px;}
 .joc-center-building-shade { bottom: 20%; left: 5528px; }
 .academy-building-shade { bottom: 20%; left: 6822px; }
 .work-building-shade { left: 8400px;bottom: 39%; }
+.honeymoon-house-shade { bottom: 20%; left: 17572px;}
+.healthcenter-shade { bottom: 20%;  left: 20268px; }
+.hospital-shade { bottom: 20%; left: 23023px;}
+.babybirth-house-shade { bottom: 20%; left: 24572px;}
 
-
-
+/*** 캐릭터 박스 **/
 .character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:300px;bottom: 20%;bottom:100%;  }
 .character-box { width:100%; height:100%;  overflow:hidden;}
 .character-box img { }
@@ -277,9 +343,22 @@ display: none;}
 .character-spread-a {width: 600px; height: 350px; background: url("../img/ch_s1_spread.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-b {width: 600px; height: 350px; background: url("../img/ch_s2_spread.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-c {width: 600px; height: 350px; background: url("../img/ch_s3_spread.png") no-repeat; background-position: 0 0; position: relative;  }
-.character-box-plane { width: 460px; height:337px; display:none; position: relative; transform: rotate(0deg);-webkit-transform: rotate(0deg); -ms-transform: rotate(0deg);  }
-.character-box-plane .plane-holder {  width:100%; }
-.character-box-plane .plane-holder img { width:100%;  }
+.character-spread-d {width: 800px; height: 350px; background: url("../img/ch_s4_spread_woman.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-e {width: 800px; height: 350px; background: url("../img/ch_s4_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-f {width: 600px; height: 350px; background: url("../img/ch_s5_spread_woman.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-g {width: 600px; height: 350px; background: url("../img/ch_s5_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-h {width: 600px; height: 350px; background: url("../img/ch_s6_spread.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-i {width: 600px; height: 350px; background: url("../img/ch_s7_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-j {width: 600px; height: 350px; background: url("../img/ch_s7_spread_woman.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-box-normal-husband { display:none; left: 80px;position: absolute;top: 0px; z-index: -1;}
+.character-box-plane { width: 460px; height:337px; display:none; position: relative; transform: rotate(0deg);-webkit-transform: rotate(0deg); -ms-transform: rotate(0deg);  overflow: hidden; }
+.character-box-plane .plane-holder { width: 460px; height:337px; position: relative; left:0; top:0;}
+.character-box-plane .plane-holder img { width: 460px; height:674px;  }
+.plane-rotate-up { transform: rotate(-15deg); }
+.plane-rotate-down { transform: rotate(15deg); }
+.character-box-wedding { width: 200px; height: 175px;overflow:hidden;  display:none; }
+.character-box-wedding-husband { left: 100px;position: absolute;top: 0px; z-index: -1;}
+
 
 /*****footer*****/
 .footer-area { padding-top: 30px; background: linear-gradient(180deg,#070812 20%,#181923); background: linear-gradient(180deg,#111111 20%,#252524);}
