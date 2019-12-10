@@ -39,12 +39,15 @@ $(function(){
 	var workBuildingArrive = false;
 	var nowElevator = false;
 	var weddingPlaneGoUp = false;
-	var weddingPlaneGoDown = false;	
+	var weddingPlaneGoDown = false;
 	var weddingPlaneComplete = false;
 	var honeymoonPops = false;
 	var houseHeartDone = false;
 	var drugGiven = false;
-	var babyCry = false; 
+	var babyCry = false;
+	var goMartDown = goMartUp = goMartComplete = false;
+	var martItemshow = [false, false, false];
+	var babyVaccineDone = false; 
 	var upDownWidth;
 	var oStartP, oEndP, vStartP, vEndP, updownSwitcher;
 
@@ -66,8 +69,8 @@ $(function(){
 	/////  스크롤, 디멘션 세팅(S)  /////
 	function settingDimenstionWidth(){
 		$(".horizon-dimension-1").width(scrollDetph); // 근경
-		$(".horizon-dimension-2").width(scrollDetph*0.5); // 근-원경
-		$(".horizon-dimension-3").width(scrollDetph*0.25); // 원경
+		$(".horizon-dimension-2").width(scrollDetph*0.3); // 근-원경
+		$(".horizon-dimension-3").width(scrollDetph*0.2); // 원경
 		$(".horizon-dimension-4").width(scrollDetph*0.1);// 초원경
 		$(".horizon-dimension-5").width(scrollDetph); // 근경 중 캐릭터 위로 덮는 요소들
 	}
@@ -94,7 +97,6 @@ $(function(){
 			$orientChr = $chrSpreadDiv;
 			topValue = -175;
 		}
-
 		if (deltaVP > 0) $orientChr.css("top", "0px"); /// 눈 깜박임 추후 추가
 		if (deltaVP < 0) $orientChr.css("top", topValue + "px");
 	}
@@ -182,7 +184,7 @@ $(function(){
 
 		if (layersMovement == "vertical") VP = vertical_p;
 
-		if (weddingPlaneGoDown == true){
+		if (weddingPlaneGoDown == true || goMartUp == true){
 			vStartP = verticalUpdown.e;
 			vEndP = verticalUpdown.s;
 			updownSwitcher = -1;
@@ -192,8 +194,8 @@ $(function(){
 			updownSwitcher = 1;
 		}
 
-		console.log(layersMovement);
-		console.log(weddingPlaneGoDown);
+		//console.log(layersMovement);
+		//console.log(weddingPlaneGoDown);
 		if (layersMovement == "objectUpdown"){
 
 			console.log("oc : " + oc);
@@ -367,33 +369,87 @@ $(function(){
 					layersMovement = "verticalUpdown";
 				}
 
-				//// 신혼앨범에 들어가는 순간 아래 함수 호출되게 해주세요
-				/*				
-				//신혼 앨범 만나면 하트, 폭죽  
-				if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsStartPos) && honeymoonPops == false ){
-					AnimateHoneymoonPops();										
-				}*/
+
+				//신혼 앨범 만나면 하트, 폭죽
+				if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsStartPos- 1000 ) && honeymoonPops == false ){
+					AnimateHoneymoonPops();
+				}
 
 				// 행복주택 지나갈때 하트
 				if( $aniObs.eq(a).hasClass("honeymoon-house-area") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && houseHeartDone == false ){
 					houseHeart();
 				}
+
 				// 보건소 지나갈 때 약 지원
 				if( $aniObs.eq(a).hasClass("healthcenter-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-700) && drugGiven == false ){
 					drugGiven = true;
 					var $drug = $(".drug-aniOb");
 					for(d=0; d<$drug.length;d++){
-						$drug.eq(d).find("img").delay(300*d).animate({"top":"0px","opacity":"1"}, 800, "easeOutElastic"); 								
-					}	
+						$drug.eq(d).find("img").delay(300*d).animate({"top":"0px","opacity":"1"}, 800, "easeOutElastic");
+					}
 				}
-				//산부인과병동지나면서 아기출산
+				// 산부인과 병동 지나면서 아기출산
 				if( $aniObs.eq(a).hasClass("hospital-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-300) && babyCry == false ){
 					babyCry = true;
-					$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic"); 	
+					$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic");
 
+				}
+				// 마트 진입 에스컬레이터
+				if ( $aniObs.eq(a).hasClass("mart-area") && (VP + $(".character-holder").position().left  > aniObsStartPos) && goMartDown == false && goMartComplete == false){
+
+					goMartDown = true;
+
+					console.log("start");
+
+					verticalUpdown.start = "horizontal";
+					verticalUpdown.s = 0;
+					verticalUpdown.e = -(screenHeight * 0.8);
+					verticalUpdown.p = -1 * ((screenHeight * 0.8) / $(".mart-escalator-shade").width());
+					verticalUpdown.call = "horizontal";
+
+					layersMovement = "verticalUpdown";
+
+				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left <= aniObsStartPos + $(".mart-escalator-shade").width() && goMartDown == true && goMartComplete == true && goMartUp == false ){
+
+					goMartUp = true;
+					console.log("back");
+
+					verticalUpdown.start = "horizontal";
+					verticalUpdown.s = -(screenHeight * 0.8);
+					verticalUpdown.e = 0;
+					verticalUpdown.m = -(screenHeight * 0.8);
+					verticalUpdown.p = (screenHeight * 0.8) / $(".mart-escalator-shade").width();
+					verticalUpdown.call = "horizontal";
+
+					layersMovement = "verticalUpdown";
+
+				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left <= aniObsStartPos){
+					goMartUp = false;
+					goMartDown = false;
+					goMartComplete = false;
+				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left > aniObsStartPos + $(".mart-escalator-shade").width() ){
+					goMartComplete = true;
 				}
 
 
+				//보건소 영유아 예방접종
+				if( $aniObs.eq(a).hasClass("healthcenter-area-second") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && VP + $(".character-holder").position().left < aniObsEndPos && babyVaccineDone == false ){
+					babyVaccineDone = true;
+					$(".baby-vaccine").addClass("baby-vaccine-show");
+				}
+
+
+			}
+
+
+			//마트에서 선반 지나면 영유아 제품 차례대로 나오게
+			if(martItemshow.indexOf(false) !== -1){
+				for(m=0; m<$(".mart-shelves").length; m++){
+					if( VP + $(".character-holder").position().left > $(".mart-area").position().left +	$(".mart-shelves").eq(m).position().left-200 && martItemshow[m] == false ){
+						martItemshow[m] = true;
+						$(".mart-shelves").eq(m).find(".mart-item img").addClass("show");
+					}
+				}
 			}
 
 			//일하는 건물 도착하면 엘리베이터 타고 올라가게
@@ -486,8 +542,8 @@ $(function(){
 		honeymoonPops = true;
 		var $honeyPopItem = $(".honeymoon-aniOb");
 		for(h=0; h<$honeyPopItem.length;h++){
-			$honeyPopItem.eq(h).delay(200*h).animate({"width":"200px","opacity":"1"}, 800, "easeOutElastic"); 								
-		}	
+			$honeyPopItem.eq(h).delay(200*h).animate({"width":"200px","opacity":"1"}, 800, "easeOutElastic");
+		}
 	}
 	// 신혼 폭죽, 하트
 
@@ -514,16 +570,16 @@ $(function(){
 		}else if( nowChrStage !== n ){ //스테이지 바뀜
 			nowChrStage = n;
 			console.log(n+"번째 스테이지");
-			hideChrBoxforChange();		
-			if(n==0 || n==2){ // 기본복장				
+			hideChrBoxforChange();
+			if(n==0 || n==2){ // 기본복장
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-a").show();
 			}else if(n==1){ //학사모
 				$(".character-holder .character-box-normal").show();
-				$(".character-holder .character-spread-b").show();			
+				$(".character-holder .character-spread-b").show();
 			}else if(n==3){ //정장
 				$(".character-holder .character-box-normal").show();
-				$(".character-holder .character-spread-c").show();			
+				$(".character-holder .character-spread-c").show();
 			}else if(n==4){ // 비행기
 				$(".character-holder .character-box-plane").show();
 			}else if(n==5){ // 신혼여행 끝
@@ -540,7 +596,7 @@ $(function(){
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-h").show();
 				$(".character-holder .character-spread-g").show();
-			}else if(n==8){ // 출산 이후 남편 정장
+			}else if(n==8 || n==10){ // 출산 이후 남편 정장
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-j").show();
@@ -548,7 +604,7 @@ $(function(){
 			}else if(n==9){ // 출산 이후 남편 출근, 아내 혼자 남음
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-j").show();
-			}	
+			}
 		}
 
 	};

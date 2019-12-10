@@ -231,8 +231,43 @@ display: none;}
 .husband-company {}
 .husband-company img {}
 
-.mart-area { display:none;}
+.mart-area { left: 28500px; height: 80%; top: 80%; width: 4500px;}
+.mart-area > div { position: absolute; }
+.mart-entrance {top: -278px; left:-620px;  }
+.mart-entrance-reverse {top: -278px; right:-620px; }
+.mart-base-back { bottom:0; left:0; width: 100%; height:100%;  background: #d0ddd6;background: linear-gradient(120deg,#d0ddd6 40%,#f9e2af);}
+.mart-wall-deco { bottom: 0; left:50%; }
+.mart-wall-deco-1 {margin-left: -800px;}
+.mart-wall-deco-2 {margin-left: -550px;}
+.mart-window { top: 50px; }
+.mart-area .window-1 { left: 900px; }
+.mart-area .window-2 { left: 1600px; }
+.mart-area .window-3 { left: 2300px; }
+.mart-area .window-4 { left: 3000px; }
+.mart-area .window-5 { left: 3700px; }
+.mart-light { top: 0px; } 
+.mart-area .mart-light-1 { left: 1200px; }
+.mart-area .mart-light-2 { left: 2100px; }
+.mart-area .mart-light-3 { left: 3000px; }
+.mart-shelves { bottom: 0;  }
+.mart-shelves-1 { left: 1600px; }
+.mart-shelves-2 { left:2100px; }
+.mart-shelves-3 { left: 2600px; }
+.mart-shelves .mart-item { position: absolute; top:-150px; width:100%;  }
+.mart-shelves .mart-item > img { display:block; margin: 0 auto; opacity:0; position: relative; top: 150px; transform: scale(0.3);transition:all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s;}
+.mart-shelves .mart-item > img.show { opacity: 1; top:0;transform: scale(1); }
+.mart-cashier { right: 1100px; bottom: 0px;  }
 
+.healthcenter-area-second { left: 34500px; bottom: 20%; }
+.healthcenter-area-second .heathcenter{ }
+.healthcenter-area-second .baby-vaccine { position: absolute; top: 30px;  background: #fff;border-radius: 10px; box-shadow: 5px 5px 0px #111; box-sizing: border-box; padding: 20px; left: 700px;transition:all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; transform: scale(0.1);  opacity: 0;}
+.healthcenter-area-second .baby-vaccine .baby-vaccine-1 { }
+.healthcenter-area-second .baby-vaccine .baby-vaccine-2 {}
+.healthcenter-area-second .baby-vaccine-show { transform: scale(1);  opacity: 1;} 
+
+.husbandBack-stand { left: 37000px; bottom:20%; } 
+.husbandBack-stand .husbandBack {  } 
+.husbandBack-house-area { left: 37500px; bottom: 20%; }
 /*** dimension 요소들 **/
 
 /*** 캐릭터 전환지점 **/
@@ -246,8 +281,12 @@ display: none;}
 .change-point-7 { left: 23150px; bottom: 20%;}
 .change-point-8 { left: 24800px; bottom: 20%;}
 .change-point-9 { left: 26650px; bottom: 20%;}
-
+.change-point-10 { left: 37000px; bottom: 20%;}
+.change-point-11 { left: 38000px; bottom: 20%;}
 /*** 캐릭터 전환지점 **/
+
+.vertical-transform-point{position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10;}
+.vertical-transform-point-1 {left: 29700px; top: 80%; }
 
 /*** dimension 요소들: horizon-2 **/
 .tree { position: absolute; bottom: 20%; }
@@ -302,7 +341,7 @@ display: none;}
 .light-17 { left: 17000px; }
 .light-18 { left: 18000px; }
 .light-19 { left: 19000px; }
-.rainbow { position: absolute; bottom: 20%;  left: 8000px; }
+.rainbow { position: absolute; bottom: 20%;  left: 4200px; }
 /*** dimension 요소들: horizon-2 **/
 
 /*** dimension 요소들: horizon-3 **/
@@ -334,6 +373,11 @@ display: none;}
 .healthcenter-shade { bottom: 20%;  left: 20268px; }
 .hospital-shade { bottom: 20%; left: 23023px;}
 .babybirth-house-shade { bottom: 20%; left: 24572px;}
+.mart-entrance-shade {left: 28085px; bottom: 20%;}
+.mart-entrance-reverse-shade {  left: 32993px;bottom: 20%;}
+.mart-escalator-shade { left: 28500px; top: 74%; }
+.mart-escalator-reverse-shade { left: 32000px; top: 74%; }
+.healthcenter-second-shade { bottom: 20%;   left: 34768px; }
 
 /*** 캐릭터 박스 **/
 .character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:300px;bottom: 20%;bottom:100%;  }
