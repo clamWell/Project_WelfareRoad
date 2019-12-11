@@ -482,6 +482,10 @@ $(function(){
 					$(".baby-vaccine").addClass("baby-vaccine-show");
 				}
 
+				//동사무소 지날때 기초연금 수령
+				if( $aniObs.eq(a).hasClass("community-center-area") && (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && annuityGiven == false ){
+					annuitySupport();
+				}
 
 			}
 
@@ -591,6 +595,8 @@ $(function(){
 	}
 	// 신혼 폭죽, 하트
 
+
+
 	// 신혼집 애니메이션
 	function houseHeart(){
 		houseHeartDone = true;
@@ -626,6 +632,30 @@ $(function(){
 	};
 	//남편이 돌아와 점프하는 애니메이션
 
+	var grandpaCanMove = false, 
+  		grandpaMoveCounter = 0,
+		grandpaMoveTimer;
+	//아버지 보행기 움직이는 애니메이션
+	function grandpaMove(){	
+		if(grandpaCanMove==false){
+			$(".grandpa img").css("left","0px");
+			clearInterval(grandpaMoveTimer);
+		}else if(grandpaCanMove==true){
+			$(".grandpa img").css("left", (-1 * 133 * grandpaMoveCounter)  + "px");
+			if(grandpaMoveCounter>=1){
+				grandpaMoveCounter = 0;
+			}else{
+				grandpaMoveCounter++;
+			}
+		}	
+	};	
+	function makeGrandpaMove(){
+		if(grandpaCanMove == true){
+			grandpaMoveTimer = setInterval(function() { grandpaMove() }, 500);
+		}
+	};
+	//아버지 보행기 움직이는 애니메이션
+
 	var neighboorCanHello = false, 
   		neighboorHelloCounter = 0,
 		neighboorHelloTimer;
@@ -651,14 +681,58 @@ $(function(){
 	};
 	//옆집 아주머니 인사하는 액션
 
+	var annuityGiven = false;
+	// 동사무소 기초연금 지원
+	function annuitySupport(){
+		annuityGiven = true;
+		var $annuityItem = $(".support-money");
+		for(a=0; a<$annuityItem.length;a++){
+			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":"150px","opacity":"1", "top":"0"}, 800, "easeOutBounce");
+			if(a==2){ $(".surplus img").animate({"width":"59px","opacity":"1", "top":"0"}, 800, "easeOutBounce");}
+		}
+	}
+	// 동사무소 기초연금 지원
+
+
+	var canSeagullMove = false, 
+  		SeagullMoveCounter = 0,
+		SeagullMoveTimer;
+
+	// 갈매기 파닥파닥
+	function SeagullMove(){	
+		if(canSeagullMove==false){
+			$(".sea-gull img").css("left","0px");
+			clearInterval(SeagullMoveTimer);
+		}else if(canSeagullMove==true){
+			$(".sea-gull img").css("left", (-1 * 100 * SeagullMoveCounter)  + "px");
+			if(SeagullMoveCounter>=1){
+				SeagullMoveCounter = 0;
+			}else{
+				SeagullMoveCounter++;
+			}
+		}	
+	};	
+	function makeSeagullMove(){
+		if(canSeagullMove == true){
+			SeagullMoveTimer = setInterval(function() { SeagullMove() }, 250);
+		}
+	};
+	// 갈매기 파닥파닥
 
 	///// 캐릭터 스테이지마다 바뀌는 부분 구분 체크 /////
 	function hideChrBoxforChange(){
 		$(".character-holder .character-box").hide();
 		$(".character-holder .character-spread").hide();
 		$(".husbandBack-stand").hide();
+		$(".grandma-stand").hide();
+		$(".grandpa-stand").hide();
+		$(".dimension-holder").removeClass("dimension-holder-bgChage");
+		$(".car-wheel").removeClass("car-wheel-rotate");
+		$(".passenger > div").hide();
 		husbandCanJump = false;
 		neighboorCanHello = false;
+		grandpaCanMove = false;
+		canSeagullMove = false;
 	};
 
 	function changeChrBox(n){
@@ -668,15 +742,19 @@ $(function(){
 			nowChrStage = n;
 			console.log(n+"번째 스테이지");
 			hideChrBoxforChange();
+			if(n>=12){
+				$(".dimension-holder").addClass("dimension-holder-bgChage");
+			}
 			if(n==0 || n==2){ // 기본복장
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-a").show();
 			}else if(n==1){ //학사모
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-b").show();
-			}else if(n==3){ //정장
+			}else if(n==3 || n==12){ //정장
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-c").show();
+				if(n==12){  $(".grandma-stand").show();}
 			}else if(n==4){ // 비행기
 				$(".character-holder .character-box-plane").show();
 			}else if(n==5){ // 신혼여행 끝
@@ -709,6 +787,29 @@ $(function(){
 				$(".character-holder .character-spread-k").show();
 				neighboorCanHello = true; 
 			    makeNeighboorHello();
+			}else if(n==13){ // 정장 아내 + 친정엄마
+				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-spread-c").show();
+				$(".character-holder .character-box-normal-grandma").show();
+				$(".character-holder .character-spread-l").show();
+			}else if(n==14){ // 아내 + 남편 + 친정엄마 차안에
+				$(".character-holder .character-box-car").show();
+				$(".grandpa-stand").show();
+				$(".car-grandma").show();
+				$(".car-woman").show();
+				$(".car-man").show();
+				$(".car-wheel").addClass("car-wheel-rotate");
+				grandpaCanMove= true; 
+				makeGrandpaMove();
+			}else if(n==15){ // 아내 + 남편 + 친정엄마 + 친정아빠 차안에
+				$(".character-holder .character-box-car").show();
+				$(".car-grandpa").show();
+				$(".car-grandma").show();
+				$(".car-woman").show();
+				$(".car-man").show();
+				$(".car-wheel").addClass("car-wheel-rotate");
+				canSeagullMove = true;
+				makeSeagullMove();
 			}
 		}
 
@@ -729,6 +830,7 @@ $(function(){
 		}
 	};
 	////// 캐릭터 스테이지 구분 체크  /////
+
 
 	function afterLoad(){
 		$("body").removeClass("fixed");

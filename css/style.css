@@ -140,10 +140,12 @@ width: 27px; height: 30px;}
 .wrap { width:100%; overflow-x:hidden;  }
 .container {  width:100%; position: relative;  }
 
-.actual-scroll { width:100%; height:50000px; top:0;left:0; position: relative;}
+.actual-scroll { width:100%; height:59500px; top:0;left:0; position: relative;}
 .scroll-animate-area { width:100%; position: relative;}
 .dimension-holder {  background: linear-gradient(180deg,#408bc7 50%,#cfc8b5); background:#43beec; 
-background: linear-gradient(180deg,#43beec 40%,#cfc8b5); position: fixed; width: 100%; height:100vh; top: 0; left: 0; overflow:hidden; }
+background: linear-gradient(180deg,#43beec 40%,#cfc8b5); position: fixed; width: 100%; height:100vh; top: 0; left: 0; overflow:hidden;
+ transition: background 0.8s ease 0s;}
+.dimension-holder-bgChage {background: linear-gradient(180deg,#f9a963 40%,#fedea5);  }
 .dimension-holder-fixed { } 
 .dimension-holder > div { position:absolute; }
 .dimension-holder .horizon-dimension {left:0; height:100%; top: 100%;  }
@@ -152,14 +154,15 @@ background: linear-gradient(180deg,#43beec 40%,#cfc8b5); position: fixed; width:
 .dimension-holder .horizon-dimension-3 { z-index:2;}
 .dimension-holder .horizon-dimension-4 { z-index:1;}
 .dimension-holder .vertical-dimension {}
-.road { background:#fbbc16; width:100%; height:100%; top: 80%; left:0;position: absolute; }
+.road { background:#fbbc16; width:100%; height:100%; top: 80%; left:0;position: absolute;background: #564f48;background: #715d44;}
+.road .grass { width: 100%; height:50px; background: url("../img/grass.png") repeat-x; position: absolute; left:0; top:0; }
 .dimension-holder .horizon-dimension-1 .ob {position: absolute;}
 
 /*** dimension 요소들: horizon-1 **/
 .bank-sign { width: 470px; height: 670px; left: 2000px; top: -10%; top: -25%; }
 .bank-sign-front { position: absolute; width: 200px; height:200px;bottom:80px;left:50%; margin-left:-100px;
 background:#333; border-radius: 50%;}
-.bank-sign-front img { width:100%; transform-origin: top; transform: none; transition:all 0.2s ease 0s;transition:all 0.5s ease 0s;}
+.bank-sign-front img { width:100%; transform-origin: top; transform: none; transition:all 0.5s ease 0s;}
 .bank-sign-front img.rotate { transform: rotate(-40deg); }
 .flying-money { width: 150px; height: 78px; position: absolute; top: 100px; right: 30px; }
 .flying-money .flying-money-wing { width:100%; height:100%; overflow:hidden; }
@@ -281,7 +284,7 @@ display: none;}
 
 .park-area { left:41500px; bottom: 20%;width: 1200px; height:100px;  }
 .park-tree {position: absolute; bottom: 0;}
-.park-tree-1 {left: 50px; }
+.park-tree-1 {left: 300px; }
 .park-tree-2 {left: 500px;}
 .park-tree-3 {left:570px;}
 .park-tree-4 { left: 800px; }
@@ -295,9 +298,53 @@ display: none;}
 .workingmom-house-area { left: 43200px; bottom: 20%; }
 .workingmom-house {}
 
+.business-zone-area { bottom: 20%; left: 46500px; }
+.business-zone-buildings { position: relative;}
+.business-zone-buildings img { }
+
+.grandma-stand { bottom: 20%;  left: 50300px; }
+.grandma-stand .grandma {  }
+.grandma-stand .grandma img {}
+
+.grandma-house-area { bottom: 20%;  left: 51000px; }
+.grandma-house-area .grandma-house {}
+.grandma-house-area .grandma-house img{}
+
+.hospice-area {bottom: 20%;  left: 54500px;  }
+.grandpa-stand { bottom: 20%;  left: 54300px; }
+.grandpa-stand .grandpa {width: 133px; height:161px; overflow:hidden;   }
+.grandpa-stand .grandpa img {position: relative; left:0;}
+
+.community-center-area { bottom: 20%;  left: 56000px; }
+.community-center { }
+.community-center img {}
+.support-money-holder { position: absolute; top: 30px; right:100px; }
+.support-money { position: absolute; bottom: 0; left:0; }
+.support-money-1 { bottom: 0px; left: 0px; }
+.support-money-2 { bottom: 30px; left: 20px; }
+.support-money-3 { bottom: 60px; left: 40px; }
+.support-money img { width: 2px; opacity: 0; position: relative; top: 50px; }
+.support-money-holder .surplus { bottom: -70px; left: -50px;position: absolute;}
+.support-money-holder .surplus  img  { width: 2px; opacity: 0; position: relative; top: 50px;  }
+
+.ending-harbor-area { bottom: 20%;  left: 59000px;}
+.ending-harbor { position: relative; } 
+.ending-harbor > div { position: absolute;}
+.ending-harbor .sunset { left: 500px; top:-460px; }  
+.ending-harbor .sea { left:0; top: 20%; } 
+.ending-harbor .sunset-over-sea {top:-1px; left: 475px; } 
+.ending-harbor .sea-gull { width: 100px;height:18px; overflow:hidden;  } 
+.ending-harbor .sea-gull-1 {top: -500px; left:520px; animation: seagull 1s linear 0s infinite;}
+.ending-harbor .sea-gull-2 {top: -300px; left:720px; animation: seagull 2.5s linear 0.5s infinite;}
+.ending-harbor .sea-gull-3 { top: -450px; left: 870px; animation: seagull 1.5s linear 1s infinite;}
+.ending-harbor .sea-gull img {vertical-align: top; position: relative; left:0;}
 /*** dimension 요소들 **/
 
-/*** 캐릭터 전환지점 **/
+.jump-point {position: absolute; width: 50px; height: 20px; background: #ff12f8; z-index:11; }
+.jump-point-1 { left: 2500px; bottom: 20%;}
+.jump-point-2 { left: 4900px; bottom: 20%;}
+
+/*** 캐릭터 전환지점 ***/
 .change-point { position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10; }
 .change-point-1 { left: 3550px; bottom: 20%; }
 .change-point-2 { left: 5500px; bottom: 20%;}
@@ -310,8 +357,25 @@ display: none;}
 .change-point-9 { left: 26650px; bottom: 20%;}
 .change-point-10 { left: 37000px; bottom: 20%;}
 .change-point-11 { left: 38500px; bottom: 20%;}
+.change-point-12 { left: 44000px; bottom: 20%;}
+.change-point-13 { left: 50300px; bottom: 20%;}
+.change-point-14 { left: 51900px; bottom: 20%;}
+.change-point-15 { left: 54400px; bottom: 20%;}
+/*** 캐릭터 전환지점 ***/
 
-/*** 캐릭터 전환지점 **/
+
+/*** 인생주기 스테이지 구분 ***/
+.life-stage-point {  position: absolute;  top: 40px; box-sizing:border-box; padding: 20px 5px;width: 200px; background:#fff; font-size:16px;
+font-weight: bold; color:#333; text-align: center; }
+.life-stage-1 { left: 1600px; }
+.life-stage-2 { left: 10500px; top: -1000px;}
+.life-stage-3 { left: 19000px; }
+.life-stage-4 { left: 23600px; }
+.life-stage-5 { left: 45200px; }
+.life-stage-6 { left: 50000px; }
+
+/*** 인생주기 스테이지 구분 ***/
+
 
 .vertical-transform-point{position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10;}
 .vertical-transform-point-1 {left: 29700px; top: 80%; }
@@ -348,6 +412,16 @@ display: none;}
 .tree-28 { left: 11000px; }
 .tree-29 { left: 11500px; }
 .tree-30 { left: 12050px; }
+.tree-31 { left: 12550px; }
+.tree-32 { left: 13040px; }
+.tree-33 { left: 13250px; }
+.tree-34 { left: 14000px; }
+.tree-35 { left: 14100px; }
+.tree-36 { left: 14700px; }
+.tree-37 { left: 15100px; }
+.tree-38 { left: 15670px; }
+.tree-39 { left: 16100px; }
+.tree-40 { left: 16550px; }
 .tree img { width:100%; }
 .light { position: absolute; bottom: 20%; }
 .light-1 { left: 1000px; }
@@ -390,6 +464,13 @@ display: none;}
 .horizon-dimension-4 .cloud-8 { left: 1000px; top: -100%;}
 .horizon-dimension-4 .cloud-9 { left: 1800px;top: -60%;}
 .horizon-dimension-4 .cloud-10 { left: 2200px;top: -80%;}
+.horizon-dimension-4 .cloud-11 {left: 2550px; top: 10%; }
+.horizon-dimension-4 .cloud-12 { left: 3150px; top: 18%;}
+.horizon-dimension-4 .cloud-13 { left: 3650px;top: 5%;}
+.horizon-dimension-4 .cloud-14 { left: 4150px; top: 25%;}
+.horizon-dimension-4 .cloud-15 {left: 4650px; top: 15%;  opacity: 0.7;}
+.horizon-dimension-4 .cloud-16 { left: 5150px; top: 3%;}
+.horizon-dimension-4 .cloud-17 { left: 5650px;top: 30%;opacity: 0.3;}
 
 /*** dimension 요소들: horizon-5 **/
 .horizen-dimension-chr-over { z-index:11;  }
@@ -408,10 +489,13 @@ display: none;}
 .mart-escalator-reverse-shade { left: 32000px; top: 74%; }
 .healthcenter-second-shade { bottom: 20%;   left: 34768px; }
 .husbandBack-house-shade { bottom:20%; left: 38072px;}
+.workingmom-house-shade { bottom:20%; left: 43772px;}
+.grandma-house-shade {  bottom:20%; left: 51573px;} 
 
 /*** 캐릭터 박스 **/
 .character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:300px;bottom: 20%;bottom:100%;  }
-.character-box { width:100%; height:100%;  overflow:hidden;}
+.character-box { width:100%; height:100%;  overflow:hidden; display:none; }
+.character-box-normal { display:block; }
 .character-box img { }
 .character-spread { }
 .character-spread-a {width: 600px; height: 350px; background: url("../img/ch_s1_spread.png") no-repeat; background-position: 0 0; position: relative;  }
@@ -425,15 +509,45 @@ display: none;}
 .character-spread-i {width: 600px; height: 350px; background: url("../img/ch_s7_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-j {width: 600px; height: 350px; background: url("../img/ch_s7_spread_woman.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-k {width: 600px; height: 350px; background: url("../img/ch_s8_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
-.character-box-normal-husband { display:none; left: 80px;position: absolute;top: 0px; z-index: -1;}
-.character-box-plane { width: 460px; height:337px; display:none; position: relative; transform: rotate(0deg);-webkit-transform: rotate(0deg); -ms-transform: rotate(0deg);  overflow: hidden; }
+.character-spread-l {width: 600px; height: 350px; background: url("../img/ch_s9_spread_grandma.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-box-normal-husband { left: 80px;position: absolute;top: 0px; z-index: -1;}
+.character-box-plane { width: 460px; height:337px;  position: relative; transform: rotate(0deg);-webkit-transform: rotate(0deg); -ms-transform: rotate(0deg);  overflow: hidden; }
 .character-box-plane .plane-holder { width: 460px; height:337px; position: relative; left:0; top:0;}
 .character-box-plane .plane-holder img { width: 460px; height:674px;  }
 .plane-rotate-up { transform: rotate(-15deg); }
 .plane-rotate-down { transform: rotate(15deg); }
-.character-box-wedding { width: 200px; height: 175px;overflow:hidden;  display:none; }
+.character-box-wedding { width: 200px; height: 175px;overflow:hidden;   }
 .character-box-wedding-husband { left: 100px;position: absolute;top: 0px; z-index: -1;}
+.character-box-normal-grandma {right: 85px;position: absolute;top: 0px; z-index: -1;}
 
+.character-box-car { width: 494px;height: 258px; overflow: visible; }
+.car-holder { width:100%; height:100%;  position: relative; bottom:88px; animation: engine 1s linear infinite; }
+.car-holder .car-body { width: 100%;  position: relative;} 
+.car-holder .car-body img{  } 
+.car-holder .car-body .body { width: 100%; } 
+.car-holder .car-body .car-wheel { position: absolute; bottom: 9px; }
+.wheel-left { left: 78px; }
+.wheel-right { right: 100px; }
+.car-wheel-rotate { animation: rotate 1.2s linear infinite;}
+.car-holder .passenger { position: absolute;top:0;left:0;}
+.car-holder .passenger > div { position: absolute; display:none;}
+.car-holder .passenger .car-grandpa { left: 40px;  top: 20px;}
+.car-holder .passenger .car-grandma { left: 120px;  top: 20px;}
+.car-holder .passenger .car-man { lefT: 210px;  top: 20px;}
+.car-holder .passenger .car-woman { left: 280px; top: 20px; }
+@keyframes rotate{
+	0%{ transform: rotate(0deg); -webkit-transform: rotate(0deg); -ms-transform: rotate(0deg);  }
+	100%{ transform: rotate(360deg);  -webkit-transform: rotate(360deg); -ms-transform: rotate(360deg);}
+}
+
+@keyframes engine{
+	0%{-webkit-transform:translateY(7px);transform:translateY(7px)}
+	50%{-webkit-transform:translateY(7px); transform:translateY(0)}to{-webkit-transform:translateY(7px);transform:translateY(7px)}	
+}
+@keyframes seagull{
+	0%{-webkit-transform:translateY(20px);transform:translateY(20px)}
+	50%{-webkit-transform:translateY(20px); transform:translateY(0)}to{-webkit-transform:translateY(20px);transform:translateY(20px)}	
+}
 
 /*****footer*****/
 .footer-area { padding-top: 30px; background: linear-gradient(180deg,#070812 20%,#181923); background: linear-gradient(180deg,#111111 20%,#252524);}
