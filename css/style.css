@@ -142,8 +142,8 @@ width: 27px; height: 30px;}
 
 .actual-scroll { width:100%; height:59500px; top:0;left:0; position: relative;}
 .scroll-animate-area { width:100%; position: relative;}
-.dimension-holder {  background: linear-gradient(180deg,#408bc7 50%,#cfc8b5); background:#43beec; 
-background: linear-gradient(180deg,#43beec 40%,#cfc8b5); position: fixed; width: 100%; height:100vh; top: 0; left: 0; overflow:hidden;
+.dimension-holder { background: linear-gradient(180deg,#32b7ff 40%,#a2d7ff);
+background: linear-gradient(180deg,#4ccfff 40%,#e1f7ff); position: fixed; width: 100%; height:100vh; top: 0; left: 0; overflow:hidden;
  transition: background 0.8s ease 0s;}
 .dimension-holder-bgChage {background: linear-gradient(180deg,#f9a963 40%,#fedea5);  }
 .dimension-holder-fixed { } 
@@ -228,7 +228,13 @@ display: none;}
 .hospital-area .hospital img {}
 .babycry { position: absolute; top:300px; right:100px; }
 .babycry img { width: 20px; opacity: 0; }
+
+
 .baby-house-area { left: 24000px; }
+
+.care-center-area {left: 24300px; bottom: 20%; }
+.care-center {}
+.care-center img {}
 
 .husband-company-area { left: 26700px; bottom: 20%; }
 .husband-company {}
@@ -240,7 +246,7 @@ display: none;}
 .mart-entrance-reverse {top: -278px; right:-620px; }
 .mart-base-back { bottom:0; left:0; width: 100%; height:100%;  background: #d0ddd6;background: linear-gradient(120deg,#d0ddd6 40%,#f9e2af);}
 .mart-wall-deco { bottom: 0; left:50%; }
-.mart-wall-deco-1 {margin-left: -800px;}
+.mart-wall-deco-1 {margin-left: -800px; display:none;}
 .mart-wall-deco-2 {margin-left: -550px;}
 .mart-window { top: 50px; }
 .mart-area .window-1 { left: 900px; }
@@ -323,7 +329,7 @@ display: none;}
 .support-money-1 { bottom: 0px; left: 0px; }
 .support-money-2 { bottom: 30px; left: 20px; }
 .support-money-3 { bottom: 60px; left: 40px; }
-.support-money img { width: 2px; opacity: 0; position: relative; top: 50px; }
+.support-money img { width: 2px; opacity: 0; position: relative; left: 150px; }
 .support-money-holder .surplus { bottom: -70px; left: -50px;position: absolute;}
 .support-money-holder .surplus  img  { width: 2px; opacity: 0; position: relative; top: 50px;  }
 
@@ -340,7 +346,7 @@ display: none;}
 .ending-harbor .sea-gull img {vertical-align: top; position: relative; left:0;}
 /*** dimension 요소들 **/
 
-.jump-point {position: absolute; width: 50px; height: 20px; background: #ff12f8; z-index:11; }
+.jump-point {position: absolute; width: 200px; height: 20px; background: #ff12f8; z-index:11; }
 .jump-point-1 { left: 2500px; bottom: 20%;}
 .jump-point-2 { left: 4900px; bottom: 20%;}
 
@@ -482,7 +488,8 @@ font-weight: bold; color:#333; text-align: center; }
 .honeymoon-house-shade { bottom: 20%; left: 17572px;}
 .healthcenter-shade { bottom: 20%;  left: 20268px; }
 .hospital-shade { bottom: 20%; left: 23023px;}
-.babybirth-house-shade { bottom: 20%; left: 24572px;}
+.babybirth-house-shade { bottom: 20%; left: 24572px; display:none;}
+.care-center-shade { bottom: 20%; left: 24709px; }
 .mart-entrance-shade {left: 28085px; bottom: 20%;}
 .mart-entrance-reverse-shade {  left: 32993px;bottom: 20%;}
 .mart-escalator-shade { left: 28500px; top: 74%; }
@@ -507,7 +514,7 @@ font-weight: bold; color:#333; text-align: center; }
 .character-spread-g {width: 600px; height: 350px; background: url("../img/ch_s5_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-h {width: 600px; height: 350px; background: url("../img/ch_s6_spread.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-i {width: 600px; height: 350px; background: url("../img/ch_s7_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
-.character-spread-j {width: 600px; height: 350px; background: url("../img/ch_s7_spread_woman.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-j {width: 600px; height: 350px; background: url("../img/ch_s7_spread_woman_change.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-k {width: 600px; height: 350px; background: url("../img/ch_s8_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-l {width: 600px; height: 350px; background: url("../img/ch_s9_spread_grandma.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-box-normal-husband { left: 80px;position: absolute;top: 0px; z-index: -1;}

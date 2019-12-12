@@ -59,13 +59,21 @@ $(function(){
 	var chrStart, chrEnd, counter = 0;
 	var chrAniTimer;
 	var switcher = 1;
+	var chrJumping = false;
 
+	var chrLeftEdge = $(".character-holder").position().left * 0.2;
+	var chrRightEdge = (screenWidth - $(".character-holder").position().left - $(".character-holder").width()) * 0.6;
+
+	console.log(chrLeftEdge);
+	console.log(chrRightEdge);
 
 	var VP_when_moving1, VP_when_moving2;
 	var preVP, deltaVP, VP = 0;
+	var touchVP = touchStartX = touchCurrentX = touchEndX = 0;
 	var vertical_p;
 
 	var layersMovement = "horizontal"; //일단 디폴트를 수평이동으로 설정해둠
+
 
 	/////  스크롤, 디멘션 세팅(S)  /////
 	function settingDimenstionWidth(){
@@ -115,6 +123,9 @@ $(function(){
 
 	//캐릭터 움직이도록 프레임변경
 	function chrRun() {
+
+		if (chrJumping == true) return;
+
 		var chrWidth = nowChrStage == 5 ? 200 : defaultchrWidth;
 		if (chrStatus == "run")	chrStart = chrRunStartFrame, chrEnd = chrRunEndFrame;
 
@@ -145,6 +156,51 @@ $(function(){
 		canChrAni = true;
 
 	}
+
+	function chrJumpCheck(){
+		$(".jump-point").each(function(i){
+			chrJump(this);
+			chrJumpFall(this);
+		});
+	}
+
+	function chrJump(e){
+
+		if (preVP <= $(e).position().left - chrRightEdge && VP > $(e).position().left - chrRightEdge || preVP >= $(e).position().left + $(e).width() - chrLeftEdge && VP < $(e).position().left + $(e).width() - chrLeftEdge){
+			chrJumping = true;
+			console.log("up");
+			chrFall();
+			$(".character-holder").stop().animate({bottom: ["40%", "swing"]}, 250, function(){
+				console.log("up end")
+				chrJumpDown(e);
+			});
+		}
+
+	}
+
+	function chrJumpDown(e) {
+		if (VP > $(e).position().left - chrRightEdge && VP < $(e).position().left + $(e).width() - chrLeftEdge){
+			$(".character-holder").stop().animate({bottom: ["20%", "easeInCubic"] }, 150, function(){
+				chrJumping = false;
+				console.log("down");
+				defaultCharcterFrame();
+			});
+		}
+	}
+
+
+	function chrJumpFall(e){
+
+		if (preVP < $(e).position().left - chrLeftEdge + $(e).width() && VP >= $(e).position().left - chrLeftEdge + $(e).width() || preVP > $(e).position().left - chrRightEdge && VP <= $(e).position().left - chrRightEdge){
+			$(".character-holder").stop().animate({bottom: ["20%", "easeInCubic"]}, 150, function(){
+				chrJumping = false;
+				console.log("fall");
+				defaultCharcterFrame();
+			});
+		}
+
+	}
+
 	////// 캐릭터 뛰는 동작 (E)  //////
 
 	////// 화면 이동 (S)  /////
@@ -171,13 +227,24 @@ $(function(){
 			if (deviceName == "computer"){ // PC
 				VP = (ieTest == true) ? document.documentElement.scrollTop : pageYOffset; // ie 9 이하는 scrollTop 아니면 pageYOffset
 			} else { //모바일
-				if( VP = pageVerticalPositionOnTouch + (touchStartX - touchCurrentX) < 0){
+
+				VP = touchVP + (touchStartX - touchCurrentX);
+
+				if( VP < 0){
 					VP = 0
 				}
+
+				if (VP > $(".actual-scroll").height() + screenWidth){
+					VP = $(".actual-scroll").height() + screenWidth;
+				}
+
+				console.log(VP);
 		    }
+
 			deltaVP = VP - preVP;
+
 			if (VP <= 0){
-				//  초기위치 리셋용
+				//  초기위치로 돌아왔을 때 리셋용
 			}
 
 		}
@@ -486,7 +553,6 @@ $(function(){
 				if( $aniObs.eq(a).hasClass("community-center-area") && (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && annuityGiven == false ){
 					annuitySupport();
 				}
-
 			}
 
 
@@ -520,7 +586,7 @@ $(function(){
 			}
 		}
 		//console.log(nowElevator);
-	};
+	}
 
 	function chrGoUpBuilding(){
 		nowElevator = true;
@@ -532,6 +598,7 @@ $(function(){
 			layersMovement = "horizontal";
 		});
 	}
+
 	function chrGoDownBuilding(){
 		nowElevator = true;
 		console.log("빌딩내려가기");
@@ -541,7 +608,7 @@ $(function(){
 			nowElevator = false;
 			layersMovement = "horizontal";
 		});
-	};
+	}
 
 	// 은행 애니메이션
 	function animateBank(){
@@ -553,7 +620,7 @@ $(function(){
 			});
 		});
 		$(".bank-sign-front img").addClass("rotate");
-	};
+	}
 
 	// 날개 파닥파닥
 	function moneyfly() {
@@ -568,12 +635,13 @@ $(function(){
 				moneyCounter++;
 			}
 		}
-	};
+	}
+
 	function makeMoneyfly(){
 		if(canMoneyFly ==true){
 			moneyFlyTimer = setInterval(function() { moneyfly() }, 200);
 		}
-	};
+	}
 
 	// 남편 만나는 애니메이션
 	function sendHeart(){
@@ -582,8 +650,7 @@ $(function(){
 		for(h=0; h<$heart.length;h++){
 			$heart.eq(h).delay(300 * h).animate({"width": "30px", "top":"0", "left":"-100px","opacity":"0"}, 700, "swing");
 		}
-	};
-
+	}
 
 	// 신혼 폭죽, 하트
 	function AnimateHoneymoonPops(){
@@ -593,9 +660,6 @@ $(function(){
 			$honeyPopItem.eq(h).delay(200*h).animate({"width":"200px","opacity":"1"}, 800, "easeOutElastic");
 		}
 	}
-	// 신혼 폭죽, 하트
-
-
 
 	// 신혼집 애니메이션
 	function houseHeart(){
@@ -604,15 +668,14 @@ $(function(){
 		for(h=0; h<$heart.length;h++){
 			$heart.eq(h).delay(300 * h).animate({"width": "68px", "top":"150px", "left":"70%","opacity":"0"}, 800, "swing");
 		}
-	};
-	// 신혼집 애니메이션
+	}
 
-	var husbandCanJump = false, 
+	var husbandCanJump = false,
   		husbandBackCounter = 0,
 		husbandJumpTimer;
 
 	//남편이 돌아와 점프하는 애니메이션
-	function husbandBackJump(){	
+	function husbandBackJump(){
 		if(husbandCanJump==false){
 			$(".husbandBack img").css("left","0px");
 			clearInterval(husbandJumpTimer);
@@ -623,14 +686,15 @@ $(function(){
 			}else{
 				husbandBackCounter++;
 			}
-		}	
-	};	
+		}
+	};
 	function makehusbandJump(){
 		if(husbandCanJump == true){
 			husbandJumpTimer = setInterval(function() { husbandBackJump() }, 500);
 		}
-	};
+	}
 	//남편이 돌아와 점프하는 애니메이션
+
 
 	var grandpaCanMove = false, 
   		grandpaMoveCounter = 0,
@@ -656,12 +720,13 @@ $(function(){
 	};
 	//아버지 보행기 움직이는 애니메이션
 
-	var neighboorCanHello = false, 
+
+	var neighboorCanHello = false,
   		neighboorHelloCounter = 0,
 		neighboorHelloTimer;
 
 	//옆집 아주머니 인사하는 액션
-	function neighboorHello(){	
+	function neighboorHello(){
 		if(neighboorCanHello==false){
 			$(".neighboor-family-holder .mom img").css("left","0px");
 			clearInterval(neighboorHelloTimer);
@@ -672,13 +737,14 @@ $(function(){
 			}else{
 				neighboorHelloCounter++;
 			}
-		}	
-	};	
+		}
+	}
+
 	function makeNeighboorHello(){
 		if(neighboorCanHello == true){
 			neighboorHelloTimer = setInterval(function() { neighboorHello() }, 300);
 		}
-	};
+	}
 	//옆집 아주머니 인사하는 액션
 
 	var annuityGiven = false;
@@ -719,7 +785,8 @@ $(function(){
 	};
 	// 갈매기 파닥파닥
 
-	///// 캐릭터 스테이지마다 바뀌는 부분 구분 체크 /////
+
+	//// 캐릭터 스테이지마다 바뀌는 부분 구분 체크 /////
 	function hideChrBoxforChange(){
 		$(".character-holder .character-box").hide();
 		$(".character-holder .character-spread").hide();
@@ -828,9 +895,34 @@ $(function(){
 				}
 			}
 		}
-	};
+	}
 	////// 캐릭터 스테이지 구분 체크  /////
 
+	function touchInit(){
+
+		document.addEventListener("touchstart", handleStart, !1), document.addEventListener("touchmove", handleMove, !1), document.addEventListener("touchend", handleEnd, !1)
+
+	}
+
+	function handleStart(e){
+		touchStartX = e.targetTouches[0].pageX;
+		touchVP = VP;
+	}
+
+	function handleMove(e){
+		e.preventDefault();
+		touchCurrentX = e.targetTouches[0].pageX;
+		if (canScroll == true){
+			detectPageVerticalPosition();
+			scrollAct();
+		}
+	}
+
+	function handleEnd(e){
+		e.preventDefault();
+		touchEndX = e.changedTouches[0].pageX;
+		return false;
+	}
 
 	function afterLoad(){
 		$("body").removeClass("fixed");
@@ -847,14 +939,15 @@ $(function(){
 		moveLayers();
 		animateObject();
 		orientChr();
-	};
+		chrJumpCheck();
+	}
 
 	settingDimenstionWidth();
 	setLayerSpeed();
 
 	$(window).on("load", function(){
 		afterLoad();
-
+		touchInit();
 	})
 	.on("scroll", function() {
 		if (canScroll == true){
