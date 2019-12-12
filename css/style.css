@@ -37,10 +37,10 @@ body::-webkit-scrollbar-thumb { background:#e3cbc3; border-radius: 2px; }
 /* loading */
 .loading-page { width: 100%; height:100vh; position: fixed; z-index: 100; left: 0px; right:0px;top:0;}
 .loading-gif {   position: relative;top: 50%;margin-top: -110px;}
-p.loading-ment {  text-align: center; color: #6b1e12; margin-top: 8px; font-size: 16px; font-weight:bold; letter-spacing: 4px; }
-.loading-spinner-box { width: 400px; margin: 0 auto; box-sizing: border-box; padding: 30px;background: #ffa285;box-shadow: 4px 4px 0px #6b1e12;}
+p.loading-ment {  text-align: center; color:#005e82; margin-top: 8px; font-size: 16px; font-weight:bold; letter-spacing: 4px; }
+.loading-spinner-box { width: 400px; margin: 0 auto; box-sizing: border-box; padding: 30px;     background: #ffffff; box-shadow: 4px 4px 0px #005e82;}
 .spinner {margin: 0px auto;width: 70px; text-align: center;}
-.spinner > div {width: 14px;height: 14px;background-color: #6b1e12;border-radius: 100%;display: inline-block;
+.spinner > div {width: 14px;height: 14px;background: #005e82;border-radius: 100%;display: inline-block;
 -webkit-animation: sk-bouncedelay 1.4s infinite ase-in-out both; animation: sk-bouncedelay 1.4s infinite ease-in-out both;}
 .spinner .bounce1 {  -webkit-animation-delay: -0.32s; animation-delay: -0.32s;}
 .spinner .bounce2 {  -webkit-animation-delay: -0.16s;animation-delay: -0.16s;}
@@ -160,7 +160,7 @@ background: linear-gradient(180deg,#4ccfff 40%,#e1f7ff); position: fixed; width:
 
 /*** dimension 요소들: horizon-1 **/
 .bank-sign { width: 470px; height: 670px; left: 2000px; top: -10%; top: -25%; }
-.bank-sign-front { position: absolute; width: 200px; height:200px;bottom:80px;left:50%; margin-left:-100px;
+.bank-sign-front { position: absolute; width: 200px; height:200px;bottom:60px;left:50%; margin-left:-100px;
 background:#333; border-radius: 50%;}
 .bank-sign-front img { width:100%; transform-origin: top; transform: none; transition:all 0.5s ease 0s;}
 .bank-sign-front img.rotate { transform: rotate(-40deg); }
@@ -220,8 +220,8 @@ display: none;}
 .healthcenter-area .healthcenter img {}
 .drug-aniOb { position: absolute; top: 120px; right: 300px;  }
 .drug-aniOb img { opacity:0; position: relative; top: -100px;}
-.drug-1 { }
-.drug-2 { right: 180px; }
+.drug-1 { right: 150px;}
+.drug-2 { right: 30px; }
 
 .hospital-area { left: 22800px; bottom: 20%; }
 .hospital-area .hospital {}
@@ -282,13 +282,22 @@ display: none;}
 .husbandBack-house-area { left: 37500px; bottom: 20%; }
 .husbandBack-house-area .cat { position: absolute; bottom: 0; right: -200px; }
 
-.neighboorhood-area { left: 40500px; bottom: 20%; }
+.neighboorhood-area { left: 40200px; bottom: 20%; }
 .neighboor-family-holder { position: relative; }
 .neighboor-family-holder .mom { position: relative;  width: 110px; height: 175px; overflow:hidden; }
 .neighboor-family-holder .mom img { position: relative; left:0;}
 .neighboor-family-holder .child { position: absolute; bottom: 0; right:-200px; }
 
-.park-area { left:41500px; bottom: 20%;width: 1200px; height:100px;  }
+.toy-museum { position: absolute; left:500px; bottom:0;  }
+.toy-museum > img { }
+.toy-museum .big-toy { position: absolute; top: -69px; left: 220px; }
+.toy-museum .big-toy img {position: relative; left: 300px; }
+.toy-museum .move-fast { position: absolute; top: -15px; left: 380px;}
+.toy-museum .move-fast img {position: relative; left: 300px; }
+.play-ground { position: absolute; bottom: 0;left: 1500px;  }
+.play-ground > div {    position: absolute; bottom: 0;}
+.play-ground-2 { left: 500px; }
+.park-area { left:41100px; bottom: 20%;width: 1200px; height:100px;  }
 .park-tree {position: absolute; bottom: 0;}
 .park-tree-1 {left: 300px; }
 .park-tree-2 {left: 500px;}
@@ -296,17 +305,27 @@ display: none;}
 .park-tree-4 { left: 800px; }
 .park-bench { position: absolute; bottom: 0; }
 .park-bench-1 {left: 0; }
-.park-bench-2 { left: 800px; }
+.park-bench-2 { left: 1300px; display:none;}
 .park-pigeon {position: absolute; bottom: 0;}
-.park-pigeon-1 {left: 300px; }
-.park-pigeon-2 { left: 1200px; }
+.park-pigeon-1 {left: -100px; }
+.park-pigeon-2 { left: 1450px; }
+.flower { position: absolute; bottom:0; }
+.flower-1{ left: 1300px; }
+.flower-2{  left: 1350px; }
+.flower-3{  left: 1400px; }
 
-.workingmom-house-area { left: 43200px; bottom: 20%; }
+.workingmom-house-area { left: 44000px; bottom: 20%; }
 .workingmom-house {}
 
-.business-zone-area { bottom: 20%; left: 46500px; }
+.business-zone-area { bottom: 20%; left: 47000px; }
 .business-zone-buildings { position: relative;}
 .business-zone-buildings img { }
+
+.skill-card-area {bottom: 20%; left: 46500px; }
+.skill-card-area .skill-card { position: relative; bottom: 300px;  }
+.skill-card-area .skill-card img { position: relative; width:1px; height:auto; transform: rotate(-5deg); top: 100px; }
+.skill-card-area .skill-up-text { position: absolute; right:0px; top: -150px;}
+.skill-card-area .skill-up-text img { transform: rotate(-5deg); position: relative; width:1px; height:auto;  }
 
 .grandma-stand { bottom: 20%;  left: 50300px; }
 .grandma-stand .grandma {  }
@@ -333,7 +352,7 @@ display: none;}
 .support-money-holder .surplus { bottom: -70px; left: -50px;position: absolute;}
 .support-money-holder .surplus  img  { width: 2px; opacity: 0; position: relative; top: 50px;  }
 
-.ending-harbor-area { bottom: 20%;  left: 59000px;}
+.ending-harbor-area { bottom: 20%;  left: 59100px;}
 .ending-harbor { position: relative; } 
 .ending-harbor > div { position: absolute;}
 .ending-harbor .sunset { left: 500px; top:-460px; }  
@@ -346,24 +365,28 @@ display: none;}
 .ending-harbor .sea-gull img {vertical-align: top; position: relative; left:0;}
 /*** dimension 요소들 **/
 
-.jump-point {position: absolute; width: 200px; height: 20px; background: #ff12f8; z-index:11; }
-.jump-point-1 { left: 2500px; bottom: 20%;}
-.jump-point-2 { left: 4900px; bottom: 20%;}
+.jump-point {position: absolute; width: 100px;  z-index:11; }
+.jump-point-1 { left: 1000px; bottom: 20%;}
+.jump-point-2 { left: 22000px; bottom: 20%;}
+.jump-point .kone {  }
+.jump-point .kone img { }
+.jump-point .warm-holder { width: 70px; height:27px; overflow:hidden;}
+.jump-point .warm-holder img { position: relative; left:0; }
 
 /*** 캐릭터 전환지점 ***/
-.change-point { position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10; }
+.change-point { position: absolute; width: 40px; height: 20px;  z-index:10; }
 .change-point-1 { left: 3550px; bottom: 20%; }
 .change-point-2 { left: 5500px; bottom: 20%;}
 .change-point-3 { left: 6800px; bottom: 20%;}
 .change-point-4 { left: 10100px; bottom: 1330px; }
 .change-point-5 { left: 14500px; bottom: 20%;}
-.change-point-6 { left: 18000px; bottom: 20%;}
+.change-point-6 { left: 17700px; bottom: 20%;}
 .change-point-7 { left: 23150px; bottom: 20%;}
 .change-point-8 { left: 24800px; bottom: 20%;}
 .change-point-9 { left: 26650px; bottom: 20%;}
 .change-point-10 { left: 37000px; bottom: 20%;}
 .change-point-11 { left: 38500px; bottom: 20%;}
-.change-point-12 { left: 44000px; bottom: 20%;}
+.change-point-12 { left: 45000px; bottom: 20%;}
 .change-point-13 { left: 50300px; bottom: 20%;}
 .change-point-14 { left: 51900px; bottom: 20%;}
 .change-point-15 { left: 54400px; bottom: 20%;}
@@ -372,7 +395,7 @@ display: none;}
 
 /*** 인생주기 스테이지 구분 ***/
 .life-stage-point {  position: absolute;  top: 40px; box-sizing:border-box; padding: 20px 5px;width: 200px; background:#fff; font-size:16px;
-font-weight: bold; color:#333; text-align: center; }
+font-weight: bold; color:#333; text-align: center; display:none}
 .life-stage-1 { left: 1600px; }
 .life-stage-2 { left: 10500px; top: -1000px;}
 .life-stage-3 { left: 19000px; }
@@ -380,8 +403,40 @@ font-weight: bold; color:#333; text-align: center; }
 .life-stage-5 { left: 45200px; }
 .life-stage-6 { left: 50000px; }
 
+.flag-point { position: absolute; bottom:20%;}
+.flag-point .pole { position:relative; width: 50px; }
+.flag-point .pole img { width:100%; }
+.flag-point .flag-color { position: absolute; left:29px; top: 300px;width: 200px; }
+.flag-point .flag-color img { width:100%; }
+.flag-point-1 { left: 1200px; }
+.flag-point-2 { left: 15500px; }
+.flag-point-3 { left: 19100px; }
+.flag-point-4 { left: 26000px; }
+.flag-point-5 { left: 46100px; }
+.flag-point-6 { left: 50500px; }
+
 /*** 인생주기 스테이지 구분 ***/
 
+/*** 네비게이션 ***/
+.stage-navi { }
+.navi-fixed {transition: right 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; position: fixed; right: -100px; top:50%; margin-top: -280px; z-index: 12; }
+.navi-show {right: 20px;  }
+.stage-navi .navi-wrap {}
+.stage-navi .navi-wrap ul { width: 60px; }
+.stage-navi .navi-wrap ul li { position: relative;margin: 4px 0;  }
+.stage-navi .navi-wrap ul li .each-navi {width: 100%; height:100%; position: relative; }
+.stage-navi .navi-wrap ul li > p { transition:all 0.2s ease 0s;  position: absolute; height: 100%; line-height: 60px; background: #fff;
+right: 30px; width: 120px; /* text-align: right; */ display:none; box-sizing: border-box; padding-right: 35px; padding-left:20px; border-radius: 30px 0px 0px 30px;
+ font-weight: bold; color: #4f5254;}
+.stage-navi .navi-wrap ul li .each-navi .thumb { width: 100%; transition:all 0.2s ease 0s;  border: 2px solid #354950; box-sizing: border-box; width: 60px; height: 60px; 
+background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radius: 25px; cursor: pointer;overflow:hidden;}
+.stage-navi .navi-wrap ul li .each-navi .thumb img { width: 100%;}
+.stage-navi .navi-wrap ul li:hover {}
+.stage-navi .navi-wrap ul li:hover > p { display: inline-block;}
+.stage-navi .navi-wrap ul li:hover > .each-navi .thumb {  border: 2px solid #fff; border-radius: 30px;   }
+.stage-navi .navi-wrap ul li.on .each-navi .thumb {  border: 2px solid #fff;  }
+.stage-navi .navi-wrap ul li.on p { display: inline-block;}
+/*** 네비게이션 ***/
 
 .vertical-transform-point{position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10;}
 .vertical-transform-point-1 {left: 29700px; top: 80%; }
@@ -450,12 +505,15 @@ font-weight: bold; color:#333; text-align: center; }
 .light-18 { left: 18000px; }
 .light-19 { left: 19000px; }
 .rainbow { position: absolute; bottom: 20%;  left: 4200px; }
-.rainbow-2 { position: absolute; bottom: 20%;  left: 12300px; }
+.rainbow-2 { position: absolute; bottom: 20%;  left: 12300px; display:none; }
 /*** dimension 요소들: horizon-2 **/
 
 /*** dimension 요소들: horizon-3 **/
 .background-building {  bottom: 20%; position: absolute; }
 .background-building-1 {left: 1500px;}
+.background-building-2 {left: 4500px;}
+.background-building-3 {left: 9000px;}
+.background-building  img {  position: relative; bottom: -1px; }
 
 /*** dimension 요소들: horizon-4 **/
 .horizon-dimension-4 .cloud { width:180px; height:120px; position: absolute;   }
@@ -485,8 +543,8 @@ font-weight: bold; color:#333; text-align: center; }
 .joc-center-building-shade { bottom: 20%; left: 5528px; }
 .academy-building-shade { bottom: 20%; left: 6822px; }
 .work-building-shade { left: 8400px;bottom: 39%; }
-.honeymoon-house-shade { bottom: 20%; left: 17572px;}
-.healthcenter-shade { bottom: 20%;  left: 20268px; }
+.honeymoon-house-shade { bottom: 20%;left: 17642px;}
+.healthcenter-shade { bottom: 20%; left: 20252px; }
 .hospital-shade { bottom: 20%; left: 23023px;}
 .babybirth-house-shade { bottom: 20%; left: 24572px; display:none;}
 .care-center-shade { bottom: 20%; left: 24709px; }
@@ -494,13 +552,13 @@ font-weight: bold; color:#333; text-align: center; }
 .mart-entrance-reverse-shade {  left: 32993px;bottom: 20%;}
 .mart-escalator-shade { left: 28500px; top: 74%; }
 .mart-escalator-reverse-shade { left: 32000px; top: 74%; }
-.healthcenter-second-shade { bottom: 20%;   left: 34768px; }
-.husbandBack-house-shade { bottom:20%; left: 38072px;}
-.workingmom-house-shade { bottom:20%; left: 43772px;}
-.grandma-house-shade {  bottom:20%; left: 51573px;} 
+.healthcenter-second-shade { bottom: 20%; left: 34752px; }
+.husbandBack-house-shade { bottom:20%; left: 38142px; }
+.workingmom-house-shade { bottom:20%; left: 44642px;}
+.grandma-house-shade {  bottom:20%; left: 51642px;} 
 
 /*** 캐릭터 박스 **/
-.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:300px;bottom: 20%;bottom:100%;  }
+.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:200px;bottom: 20%;bottom:100%;  }
 .character-box { width:100%; height:100%;  overflow:hidden; display:none; }
 .character-box-normal { display:block; }
 .character-box img { }

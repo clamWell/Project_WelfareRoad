@@ -48,7 +48,9 @@ $(function(){
 	var goMartDown = goMartUp = goMartComplete = false;
 	var outMartUp = outMartDown = outMartComplete = false;
 	var martItemshow = [false, false, false];
+	var flagUp = [false, false, false,false, false, false];
 	var babyVaccineDone = false;
+	var skillCardShow = false;
 	var upDownWidth;
 	var oStartP, oEndP, vStartP, vEndP, updownSwitcher;
 
@@ -91,6 +93,7 @@ $(function(){
 			window.setTimeout(function(){
 				canScroll = true;
 				canChrAni = true;
+				$(".stage-navi").addClass("navi-show");
 			}, 500);
 		});
 	}
@@ -168,10 +171,10 @@ $(function(){
 
 		if (preVP <= $(e).position().left - chrRightEdge && VP > $(e).position().left - chrRightEdge || preVP >= $(e).position().left + $(e).width() - chrLeftEdge && VP < $(e).position().left + $(e).width() - chrLeftEdge){
 			chrJumping = true;
-			console.log("up");
+			//console.log("up");
 			chrFall();
 			$(".character-holder").stop().animate({bottom: ["40%", "swing"]}, 250, function(){
-				console.log("up end")
+				//console.log("up end")
 				chrJumpDown(e);
 			});
 		}
@@ -182,7 +185,7 @@ $(function(){
 		if (VP > $(e).position().left - chrRightEdge && VP < $(e).position().left + $(e).width() - chrLeftEdge){
 			$(".character-holder").stop().animate({bottom: ["20%", "easeInCubic"] }, 150, function(){
 				chrJumping = false;
-				console.log("down");
+				//console.log("down");
 				defaultCharcterFrame();
 			});
 		}
@@ -194,7 +197,7 @@ $(function(){
 		if (preVP < $(e).position().left - chrLeftEdge + $(e).width() && VP >= $(e).position().left - chrLeftEdge + $(e).width() || preVP > $(e).position().left - chrRightEdge && VP <= $(e).position().left - chrRightEdge){
 			$(".character-holder").stop().animate({bottom: ["20%", "easeInCubic"]}, 150, function(){
 				chrJumping = false;
-				console.log("fall");
+				//console.log("fall");
 				defaultCharcterFrame();
 			});
 		}
@@ -539,9 +542,6 @@ $(function(){
 					layersMovement = "verticalUpdown";
 				}
 
-				//console.log("up : " + outMartUp);
-				//console.log("down : " + outMartDown);
-				//console.log("comp : " + outMartComplete);
 
 				//보건소 영유아 예방접종
 				if( $aniObs.eq(a).hasClass("healthcenter-area-second") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && VP + $(".character-holder").position().left < aniObsEndPos && babyVaccineDone == false ){
@@ -549,10 +549,22 @@ $(function(){
 					$(".baby-vaccine").addClass("baby-vaccine-show");
 				}
 
+				//자격증
+				if( $aniObs.eq(a).hasClass("skill-card-area") && ( VP + screenWidth*0.5 > aniObsStartPos) && VP + $(".character-holder").position().left < aniObsEndPos && skillCardShow == false ){
+					skillCardShow = true;
+					$(".skill-card img").animate({"width":"289px", "top":"0"}, 800, "easeOutBounce", function(){
+						$(".skill-up-text img").animate({"width":"182px", 500, "easeOutBounce");
+					});
+				}
+
 				//동사무소 지날때 기초연금 수령
 				if( $aniObs.eq(a).hasClass("community-center-area") && (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && annuityGiven == false ){
 					annuitySupport();
 				}
+				if( $aniObs.eq(a).hasClass("park-area") && (VP> aniObsStartPos) && (VP< aniObsEndPos) && isToyRun == false ){
+					makeToyRun();
+				}
+
 			}
 
 
@@ -584,6 +596,17 @@ $(function(){
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoDownBuilding() );
 				$("body").addClass("fixed");
 			}
+			
+			//깃발
+			if(flagUp.indexOf(false) !== -1){
+				for(f=0; f<$(".flag-point").length; f++){
+					if( VP + $(".character-holder").position().left > $(".flag-point").eq(f).position().left-200 && flagUp[f] == false ){
+						flagUp[f] = true;
+						$(".flag-point").eq(f).find(".flag-color").animate({"top":"30px"}, 1000, "easeOutElastic");
+					}
+				}
+			}
+
 		}
 		//console.log(nowElevator);
 	}
@@ -612,11 +635,11 @@ $(function(){
 
 	// 은행 애니메이션
 	function animateBank(){
-		$(".bank-sign").animate({"top":"-15%"}, 800, "swing", function(){
+		$(".bank-sign").animate({"top":"-5%"}, 700, "easeOutBounce", function(){
 			makeMoneyfly();
-			$(".flying-money").animate({"top":"-80%", "right":"-1200px"}, 1500, "swing", function(){
+			$(".flying-money").animate({"top":"-110%", "right":"-1200px"}, 1500, "swing", function(){
 				canMoneyFly = false;
-				$(".flying-money").animate({"top":"-0%"}, 700, "easeInElastic");
+				$(".flying-money").animate({"top":"-0%"}, 700, "swing");
 			});
 		});
 		$(".bank-sign-front img").addClass("rotate");
@@ -747,6 +770,16 @@ $(function(){
 	}
 	//옆집 아주머니 인사하는 액션
 
+	// 장난감 뛰어오는 액션
+	var isToyRun = false;		
+	function makeToyRun(){
+		 isToyRun = true;
+		$(".move-fast img").animate({"left":"0"}, 400, "swing", function(){
+			$(".big-toy img").animate({"left":"0"}, 800, "easeOutBounce");
+		});
+	};
+	// 장난감 뛰어오는 액션
+
 	var annuityGiven = false;
 	// 동사무소 기초연금 지원
 	function annuitySupport(){
@@ -807,7 +840,7 @@ $(function(){
 		if( nowChrStage == n){ // 스테이지 같음 아무런 액션 하지 않음
 		}else if( nowChrStage !== n ){ //스테이지 바뀜
 			nowChrStage = n;
-			console.log(n+"번째 스테이지");
+			console.log("캐릭터 "+n+"번째 스테이지");
 			hideChrBoxforChange();
 			if(n>=12){
 				$(".dimension-holder").addClass("dimension-holder-bgChage");
@@ -898,6 +931,52 @@ $(function(){
 	}
 	////// 캐릭터 스테이지 구분 체크  /////
 
+	//// 라이프사이클 스테이지 구분 ////
+	function adjustStage(s){
+		if( nowLifeStage == s){
+		}else if( nowLifeStage !==s ){
+			nowLifeStage = s;	
+			$(".stage-navi .navi-wrap ul li").removeClass("on");
+			if(s==0){				
+				console.log("스테이지 진입 전 입니다");
+			}else{
+				$(".stage-navi .navi-wrap ul li").eq(s-1).addClass("on");
+				console.log("지금은 "+s+"번째 스테이지 입니다");
+			}			
+			
+		}	
+	};
+
+	var $stagePoint = $(".flag-point");
+	var nowLifeStage = 0; 
+
+	function checkStage(){
+		var chrPos = VP + $(".character-holder").position().left;
+		if( chrPos < $stagePoint.eq(0).position().left){ // stage 0
+			adjustStage(0);
+		}else if( chrPos >= $stagePoint.eq($stagePoint.length-1).position().left ){ // lastStage
+			adjustStage($stagePoint.length);
+		}else if( chrPos >= $stagePoint.eq(0).position().left && chrPos < $stagePoint.eq($stagePoint.length-1).position().left){
+			for(s=0;s<$stagePoint.length-1;s++){
+				if( chrPos >= $stagePoint.eq(s).position().left && chrPos <$stagePoint.eq(s+1).position().left){
+					adjustStage(s+1);
+				}
+			}
+		}
+	}
+	//// 라이프사이클 스테이티 구분 ////
+
+	//// 네비게이션 클릭 ////
+	$(".stage-navi .navi-wrap ul li").on("click", function(){
+		$(".character-holder").hide();
+		$(".character-holder").fadeIn();
+		var nav_index = $(this).index();
+		var movePos = $stagePoint.eq(nav_index).position().left;
+		window.scrollTo(0, movePos);		
+	});
+
+	//// 네비게이션 클릭 ////
+
 	function touchInit(){
 
 		document.addEventListener("touchstart", handleStart, !1), document.addEventListener("touchmove", handleMove, !1), document.addEventListener("touchend", handleEnd, !1)
@@ -935,6 +1014,7 @@ $(function(){
 
 	function scrollAct(){
 		checkChrBoxState();
+		checkStage();
 		makeChrRun();
 		moveLayers();
 		animateObject();
