@@ -86,8 +86,7 @@ box-sizing: border-box;  padding: 10px; background: #ececf1;  border-radius: 4px
 /* Header */
 
 /* common */
-.wrap-psrelative { width: 100%; height :100%; position: relative; }
-.wrap_psrelative  { width: 100%; height :100%; position: relative; }
+.wrap-psrelative, .wrap_psrelative { width: 100%; height :100%; position: relative; }
 .wrap_mw_1000 { max-width: 1000px; margin: 0 auto; }
 .wrap_mw_1100 { max-width: 1100px; margin: 0 auto; }
 .wrap_mw_1200 { max-width: 1200px; margin: 0 auto; }
@@ -233,7 +232,7 @@ display: none;}
 .hospital-area { left: 22800px; bottom: 15%; }
 .hospital-area .hospital {}
 .hospital-area .hospital img {}
-.babycry { position: absolute; top:300px; right:100px; }
+.babycry { position: absolute; top:300px; right:-100px; }
 .babycry img { width: 20px; opacity: 0; }
 
 
@@ -424,28 +423,8 @@ font-weight: bold; color:#333; text-align: center; display:none}
 
 /*** 인생주기 스테이지 구분 ***/
 
-/*** 네비게이션 ***/
-.stage-navi { }
-.navi-fixed {transition: right 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; position: fixed; right: -100px; top:50%; margin-top: -280px; z-index: 12; }
-.navi-show {right: 20px;  }
-.stage-navi .navi-wrap {}
-.stage-navi .navi-wrap ul { width: 60px; }
-.stage-navi .navi-wrap ul li { position: relative;margin: 4px 0;  }
-.stage-navi .navi-wrap ul li .each-navi {width: 100%; height:100%; position: relative; }
-.stage-navi .navi-wrap ul li > p { transition:all 0.2s ease 0s;  position: absolute; height: 100%; line-height: 60px; background: #fff;
-right: 30px; width: 120px; /* text-align: right; */ display:none; box-sizing: border-box; padding-right: 35px; padding-left:20px; border-radius: 30px 0px 0px 30px;
- font-weight: bold; color: #4f5254; background: rgba(255,255,255,0.7);}
-.stage-navi .navi-wrap ul li .each-navi .thumb { width: 100%; transition:all 0.2s ease 0s;  border: 2px solid #354950; box-sizing: border-box; width: 60px; height: 60px; 
-background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radius: 25px; cursor: pointer;overflow:hidden;}
-.stage-navi .navi-wrap ul li .each-navi .thumb img { width: 100%;}
-.stage-navi .navi-wrap ul li:hover {}
-.stage-navi .navi-wrap ul li:hover > p { display: inline-block;}
-.stage-navi .navi-wrap ul li:hover > .each-navi .thumb {  border: 2px solid #fff; border-radius: 30px;   }
-.stage-navi .navi-wrap ul li.on .each-navi .thumb {  border: 2px solid #fff;  }
-.stage-navi .navi-wrap ul li.on p { display: inline-block; background:#fff; }
-/*** 네비게이션 ***/
 
-.vertical-transform-point{position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5); z-index:10;}
+.vertical-transform-point{position: absolute; width: 50px; height: 20px; background:rgba(0,0,0,0.5);  z-index:10;}
 .vertical-transform-point-1 {left: 29700px; left: 32200px; top: 80%; }
 
 /*** dimension 요소들: horizon-2 **/
@@ -565,7 +544,7 @@ background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radiu
 .grandma-house-shade {  bottom: 15%; left: 51642px;} 
 
 /*** 캐릭터 박스 **/
-.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:200px;bottom: 15%;bottom:100%;  }
+.character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:450px;bottom: 15%;bottom:100%;  }
 .character-box { width:100%; height:100%;  overflow:hidden; display:none; }
 .character-box-normal { display:block; }
 .character-box img { }
@@ -620,6 +599,92 @@ background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radiu
 	0%{-webkit-transform:translateY(20px);transform:translateY(20px)}
 	50%{-webkit-transform:translateY(20px); transform:translateY(0)}to{-webkit-transform:translateY(20px);transform:translateY(20px)}	
 }
+
+/*** 네비게이션 ***/
+.stage-navi { }
+.navi-fixed {transition: right 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; position: fixed; right: -100px; top:50%; margin-top: -280px; z-index: 12; }
+.navi-show {right: 25px;  }
+.stage-navi .navi-wrap {}
+.stage-navi .navi-wrap ul { width: 60px; }
+.stage-navi .navi-wrap ul li { position: relative;margin: 4px 0;  }
+.stage-navi .navi-wrap ul li .each-navi {width: 100%; height:100%; position: relative; }
+.stage-navi .navi-wrap ul li > p { transition:all 0.2s ease 0s;  position: absolute; height: 100%; line-height: 60px; background: #fff;
+right: 30px; width: 120px; /* text-align: right; */ display:none; box-sizing: border-box; padding-right: 35px; padding-left:20px; border-radius: 30px 0px 0px 30px;
+ font-weight: bold; color: #4f5254; background: rgba(255,255,255,0.7);box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3);}
+.stage-navi .navi-wrap ul li .each-navi .thumb { width: 100%; transition:all 0.2s ease 0s;  border: 2px solid #354950; box-sizing: border-box; width: 60px; height: 60px; 
+background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radius: 25px; cursor: pointer;overflow:hidden;}
+.stage-navi .navi-wrap ul li .each-navi .thumb img { width: 100%;}
+.stage-navi .navi-wrap ul li:hover {}
+.stage-navi .navi-wrap ul li:hover > p { display: inline-block;}
+.stage-navi .navi-wrap ul li:hover > .each-navi .thumb {  border: 2px solid #fff; border-radius: 30px;   }
+.stage-navi .navi-wrap ul li.on .each-navi .thumb {  border: 2px solid #fff;  }
+.stage-navi .navi-wrap ul li.on p { background:#fff; }
+/*** 네비게이션 ***/
+
+.progress-bar { position: fixed; width: 10px; height:100vh; right:0px; top:0; }
+.progress-bar .bar-body { width:100%; height:100%;  background: rgba(0,0,0,0.5); background:rgba(255, 255, 255, 0.5);}
+.progress-bar .bar-body .scroll-value { width: 100%; height:0px; background: #ddd;}
+
+
+/***** 정책 레이어 ******/
+.policy-layer-point { position: absolute; bottom: 15%; height: 20px; background:#fff; z-index: 20; }
+.policy-1{ width: 2000px; left: 2500px; }
+.policy-2{ width: 1500px; left: 6000px; }
+.policy-3{ width: 2000px; left: 16500px; }
+.policy-4{ width: 1700px; left: 20000px; }
+.policy-5{ width: 4000px; left: 29000px; }
+
+.info-layer { position: absolute;  right:180px; top:-50px; z-index: 20;}
+.info-layer-fixed { position: fixed;  }
+.info-layer-box { width: 600px; position: relative; padding: 25px 30px; background:#fff; border-radius: 4px; }
+.toggle-box {box-sizing: border-box; padding-bottom: 35px; display:none;}
+.hang-right { background: #5d4e47; width: 22px; height: 50px; position: absolute; top:-50px; right: 50px; }
+.hang-left { background: #5d4e47;width: 22px; height: 50px;  position: absolute; top:-50px; left: 50px; }
+.policy-panel {box-sizing:border-box; margin-bottom: 0px; padding-bottom: 15px; border-bottom: 1px solid #dedfe0; position: relative; }
+.policy-panel h3.policy-name { font-size: 24px; line-height: 1.4;color:#333; margin-bottom:5px; font-weight: bold; } 
+.policy-panel h3.policy-name > span { color: #ffffff;  background: #607aff; box-sizing: border-box; padding: 3px 10px; font-size: 17px; line-height: 17px; margin-right: 8px; border-radius: 2px; }
+h3.policy-name .type-s1 { background: #607aff; }
+h3.policy-name .type-s2 { background: #ffd802; }
+h3.policy-name .type-s3 { background:#ff6d8c; }
+h3.policy-name .type-s4 { background: #bcd133; }
+h3.policy-name .type-s5 { background: #0067a5; }
+h3.policy-name .type-s6 {background: #ff7800;  }
+
+
+.policy-panel .policy-desc-simple { box-sizing: border-box; font-size: 18px; color: #353535;font-weight: bold; position: relative; }
+.policy-panel .policy-desc-simple p { position: relative;}
+.policy-panel .policy-desc-simple .deco { display:none; position: absolute; bottom: 3px; left:0;width: 250px;height: 10px; background: rgba(142, 155, 220, 0.2);}
+.policy-panel .policy-desc-specific { margin-top: 10px;  box-sizing: border-box; position: relative; padding-bottom: 50px; }
+.policy-panel .policy-desc-specific p { font-size: 16px;color: #333;  line-height:1.6;box-sizing: border-box;  padding: 3px 0; padding-left: 20px; border-left: 5px solid #000; color: #3f4754;}
+.policy-panel .see-more-btn { transition:all 0.2s ease 0s; position: absolute;right: 5px;bottom: 10px; box-sizing: border-box;display: inline-block; padding: 7px 15px;
+border-radius: 3px;font-size: 14px;color: #fff;font-weight: 500;cursor: pointer;border: 1px solid #111;color: #111; background: #fff;  }
+.policy-panel .see-more-btn:hover { border: 1px solid #607aff; color: #607aff;  box-shadow: 1px 1px 5px rgba(96, 119, 255, 0.1); }
+.policy-panel .see-more-btn .more-icon { margin-left:5px;display:none; width:0px;}
+.policy-panel .see-more-btn:hover > .more-icon { display: inline-block; width: auto; }
+.same-subject-policy-panel {   width: 100%;position: relative;}
+.same-subject-policy-panel .panel-title {  font-size: 17px;font-weight: bold; position: absolute; top: -40px; background: #fff;
+box-sizing: border-box; padding-right: 10px; color: #45464c;}
+.policy-list {margin-top: 20px; max-height: 105px; overflow-y: scroll; overflow-x: hidden;}
+.policy-list::-webkit-scrollbar {  width: 12px;}
+.policy-list::-webkit-scrollbar-track { background:#efefef; }
+.policy-list::-webkit-scrollbar-thumb { background:#ddd; border-radius: 2px; }
+.policy-list ul {}
+.policy-list ul li { background:#f8f9fd; cursor: pointer;transition:all 0.2s ease 0s;}
+.policy-list ul li:nth-child(even){ background:#f1f1fb; }
+.each-policy { width: 100%;box-sizing: border-box; padding: 5px 12px;position: relative;font-size: 15px;
+ line-height: 25px;}
+.each-policy .type { box-sizing: border-box; background: #495071;color: #fff;font-size: 13px;padding: 2px 8px; margin-right: 10px;border-radius: 3px;}
+.each-policy .name { font-weight: 400;}
+.each-policy .see-more {  position: absolute; font-size: 13px; opacity: 0.8; font-weight: 400; top: 5px;right: 10px;}
+.each-policy .see-more .more-icon{}
+.policy-list ul li:hover {background:#e1e3f7; box-shadow: 1px 1px 5px rgba(136, 138, 150, 0.5);  z-index: 2; transform: translate(-3px, 0px);} 
+
+.toggle-btn-holder { position: absolute;  bottom: 10px;width: 100%; left: 0;}
+.toggle-btn-holder > div { transition:all 0.2s ease 0s;  display:none;  box-sizing:border-box; text-align: center;cursor: pointer; font-size: 13px;  opacity: 0.6;}
+.toggle-btn-holder > div > img { display: block;margin: 0 auto;margin-bottom: 4px; }
+.toggle-btn-holder .show-btn { display:block; }
+.toggle-btn-holder .hide-btn { }
+.toggle-btn-holder > div:hover { opacity:1; }
 
 /*****footer*****/
 .footer-area { padding-top: 30px; background: linear-gradient(180deg,#070812 20%,#181923); background: linear-gradient(180deg,#111111 20%,#252524);}

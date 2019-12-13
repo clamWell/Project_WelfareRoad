@@ -94,6 +94,7 @@ $(function(){
 				canScroll = true;
 				canChrAni = true;
 				$(".stage-navi").addClass("navi-show");
+				$(".info-layer ").animate({"top":"0px"},500);
 			}, 500);
 		});
 	}
@@ -341,252 +342,18 @@ $(function(){
 	////// 화면 이동 (E)  //////
 
 	function animateObjectS1(){
-		
-	
-	};
-
-	///// 애니메이션 처리 /////
-	function animateObject(){
-		if (layersMovement == "horizontal"){
-			for(a = 0; a < $aniObs.length; a++){
-				var aniObsStartPos = $aniObs.eq(a).position().left;
-					aniObsEndPos = $aniObs.eq(a).position().left + $aniObs.eq(a).width();
-				//뱅크 애니메이션
-				if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("bank-sign") ) && (bankAniDone == false) ){
-					  animateBank(),
-					  bankAniDone = true;
-				}
-
-				//학원
-				if( ( $aniObs.eq(a).hasClass("academy-area") ) && (VP + screenWidth*0.5 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && (levelUpDone == false) ){
-					  animateLevelUp();
-				}
-
-				//남편 만나면 하트
-				if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("meet-husband")) && nowSendingHeart == false ){
-					sendHeart();
-				}
-				//남편이 여자캐릭터 방향으로 방향전환
-				if( (VP + $(".character-holder").position().left  > aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband") ){
-					$(".husband .husband-holder img").css({"left":"-90px"});
-				}else if( (VP + $(".character-holder").position().left <= aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband")){
-					$(".husband .husband-holder img").css({"left":"0px"});
-				}
-
-				// 뱅기 모드 시작
-				if ( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left  > aniObsEndPos) && weddingPlaneGoUp == false && weddingPlaneComplete == false){
-
-					weddingPlaneGoUp = true;
-					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
-					console.log("허니문떠남");
-
-					objectUpdown = [];
-					objectUpdown.push({
-						start: "horizontal",
-						o: $(".character-box-plane"),
-						s: 0,
-						e: -350,
-						m: 0,
-						p: -1 * (350 / upDownWidth),
-						call: "objectUpdown"
-					});
-					objectUpdown.push({
-						start: "objectUpdown",
-						o: $(".character-box-plane"),
-						s: -350,
-						e: 0,
-						m: -350,
-						p: 350 / upDownWidth,
-						call: "verticalUpdown"
-					});
-
-					verticalUpdown.start = "objectUpdown";
-					verticalUpdown.s = 1140;
-					verticalUpdown.e = 0;
-					verticalUpdown.m = 1140;
-					verticalUpdown.p = -1 * (1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2));
-					verticalUpdown.call = "horizontal";
-
-					layersMovement = "objectUpdown";
-
-				} else if ( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left <= aniObsEndPos) && ( weddingPlaneGoUp == true || weddingPlaneGoDown == true || weddingPlaneComplete == true) ){
-					weddingPlaneGoUp = false;
-					weddingPlaneComplete = false;
-					weddingPlaneGoDown = false;
-				}
-
-				if ($aniObs.eq(a).hasClass("workbuilding-area") && VP + $(".character-holder").position().left <= $changePoint.eq(4).position().left && weddingPlaneGoDown == false && weddingPlaneGoUp == true && weddingPlaneComplete == true) {
-
-					weddingPlaneGoDown = true;
-					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
-					console.log("허니문돌아옴")
-
-					objectUpdown = [];
-					objectUpdown.push({
-						start: "horizontal",
-						o: $(".character-box-plane"),
-						s: -350,
-						e: 0,
-						m: -350,
-						p: 350 / upDownWidth,
-						call: "objectUpdown"
-					});
-					objectUpdown.push({
-						start: "objectUpdown",
-						o: $(".character-box-plane"),
-						s: 0,
-						e: -350,
-						m: 0,
-						p: -1 * (350 / upDownWidth),
-						call: "verticalUpdown"
-					});
-
-					verticalUpdown.start = "objectUpdown";
-					verticalUpdown.s = 0;
-					verticalUpdown.e = 1140;
-					verticalUpdown.m = 0;
-					verticalUpdown.p = 1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2);
-					verticalUpdown.call = "horizontal";
-					layersMovement = "verticalUpdown";
-
-				} else if ($aniObs.eq(a).hasClass("workbuilding-area") && VP + $(".character-holder").position().left <= $changePoint.eq(4).position().left && weddingPlaneGoDown == true && weddingPlaneGoUp == true && weddingPlaneComplete == true){
-					layersMovement = "verticalUpdown";
-				}
-
-
-				//신혼 앨범 만나면 하트, 폭죽
-				if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsStartPos- 1000 ) && honeymoonPops == false ){
-					AnimateHoneymoonPops();
-				}
-
-				// 행복주택 지나갈때 하트
-				if( $aniObs.eq(a).hasClass("honeymoon-house-area") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && houseHeartDone == false ){
-					houseHeart();
-				}
-
-				// 보건소 지나갈 때 약 지원
-				if( $aniObs.eq(a).hasClass("healthcenter-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-700) && drugGiven == false ){
-					drugGiven = true;
-					var $drug = $(".drug-aniOb");
-					for(d=0; d<$drug.length;d++){
-						$drug.eq(d).find("img").delay(300*d).animate({"top":"0px","opacity":"1"}, 800, "easeOutElastic");
-					}
-				}
-				// 산부인과 병동 지나면서 아기출산
-				if( $aniObs.eq(a).hasClass("hospital-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-300) && babyCry == false ){
-					babyCry = true;
-					$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic");
-
-				}
-
-				// 마트 진입 에스컬레이터
-				var escalWidth = $(".mart-escalator-shade").width();
-
-				if ( $aniObs.eq(a).hasClass("mart-area") && (VP + $(".character-holder").position().left  > aniObsStartPos + escalWidth * 0.1) && goMartDown == false && goMartComplete == false){
-
-					goMartDown = true;
-
-					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = 0;
-					verticalUpdown.e = -(screenHeight * 0.8);
-					verticalUpdown.p = -1 * ((screenHeight * 0.8) / (escalWidth * 0.6));
-					verticalUpdown.call = "horizontal";
-
-					layersMovement = "verticalUpdown";
-
-				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.75 && goMartDown == true && goMartComplete == true && goMartUp == false ){
-
-					goMartUp = true;
-
-					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = -(screenHeight * 0.8);
-					verticalUpdown.e = 0;
-					verticalUpdown.m = -(screenHeight * 0.8);
-					verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
-					verticalUpdown.call = "horizontal";
-
-					layersMovement = "verticalUpdown";
-
-				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.1){
-					goMartUp = false;
-					goMartDown = false;
-					goMartComplete = false;
-				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left > aniObsStartPos + escalWidth * 0.75 && goMartDown == true){
-					goMartComplete = true;
-				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left < aniObsStartPos + escalWidth * 0.75 && goMartUp == true && goMartDown == true && goMartComplete == true){
-					layersMovement = "verticalUpdown";
-				}
-
-				// 마트 출구 에스컬레이터
-				if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && (VP + $(".character-holder").position().left  > aniObsStartPos + escalWidth * 0.1) && outMartUp == false && outMartComplete == false){
-
-					outMartUp = true;
-
-					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = -(screenHeight * 0.8);
-					verticalUpdown.e = 0;
-					verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
-					verticalUpdown.call = "horizontal";
-
-					layersMovement = "verticalUpdown";
-
-				} else if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.75 && outMartUp == true && outMartComplete == true && outMartDown == false ){
-
-					outMartDown = true;
-
-					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = 0;
-					verticalUpdown.e = -(screenHeight * 0.8);
-					verticalUpdown.m = 0;
-					verticalUpdown.p = -1 *((screenHeight * 0.8) / (escalWidth * 0.6));
-					verticalUpdown.call = "horizontal";
-
-					layersMovement = "verticalUpdown";
-
-				} else if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.1){
-					outMartUp = false;
-					outMartDown = false;
-					outMartComplete = false;
-				} else if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && VP + $(".character-holder").position().left > aniObsStartPos + escalWidth * 0.75 && outMartUp == true){
-					outMartComplete = true;
-				} else if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && VP + $(".character-holder").position().left < aniObsStartPos + escalWidth * 0.75 && outMartUp == true && outMartDown == true && outMartComplete == true){
-					layersMovement = "verticalUpdown";
-				}
-
-
-				//보건소 영유아 예방접종
-				if( $aniObs.eq(a).hasClass("healthcenter-area-second") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && VP + $(".character-holder").position().left < aniObsEndPos && babyVaccineDone == false ){
-					babyVaccineDone = true;
-					$(".baby-vaccine").addClass("baby-vaccine-show");
-				}
-
-				//자격증
-				if( $aniObs.eq(a).hasClass("skill-card-area") && ( VP + screenWidth*0.5 > aniObsStartPos) && VP + $(".character-holder").position().left < aniObsEndPos && skillCardShow == false ){
-					skillCardShow = true;
-					$(".skill-card img").animate({"width":"289px", "top":"0"}, 800, "easeOutBounce", function(){
-						$(".skill-up-text img").animate({"width":"182px"}, 500, "easeOutBounce");
-					});
-				}
-
-				//동사무소 지날때 기초연금 수령
-				if( $aniObs.eq(a).hasClass("community-center-area") && (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && annuityGiven == false ){
-					annuitySupport();
-				}
-				if( $aniObs.eq(a).hasClass("park-area") && (VP> aniObsStartPos) && (VP< aniObsEndPos) && isToyRun == false ){
-					makeToyRun();
-				}
-
+		for(a = 0; a < $aniObs.length; a++){
+			var aniObsStartPos = $aniObs.eq(a).position().left;
+				aniObsEndPos = $aniObs.eq(a).position().left + $aniObs.eq(a).width();
+			//뱅크 애니메이션
+			if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("bank-sign") ) && (bankAniDone == false) ){
+				  animateBank(),
+				  bankAniDone = true;
 			}
 
-
-			//마트에서 선반 지나면 영유아 제품 차례대로 나오게
-			if(martItemshow.indexOf(false) !== -1){
-				for(m=0; m<$(".mart-shelves").length; m++){
-					if( VP + screenWidth*0.4 > $(".mart-area").position().left + $(".mart-shelves").eq(m).position().left-200 && martItemshow[m] == false ){
-						martItemshow[m] = true;
-						$(".mart-shelves").eq(m).find(".mart-item img").addClass("show");
-					}
-				}
+			//학원
+			if( ( $aniObs.eq(a).hasClass("academy-area") ) && (VP + screenWidth*0.5 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && (levelUpDone == false) ){
+				  animateLevelUp();
 			}
 
 			//일하는 건물 도착하면 엘리베이터 타고 올라가게
@@ -608,19 +375,260 @@ $(function(){
 				$("body").addClass("fixed");
 			}
 			
-			//깃발
-			if(flagUp.indexOf(false) !== -1){
-				for(f=0; f<$(".flag-point").length; f++){
-					if( VP + screenWidth*0.7 > $(".flag-point").eq(f).position().left-200 && flagUp[f] == false ){
-						flagUp[f] = true;
-						$(".flag-point").eq(f).find(".flag-color").animate({"top":"30px"}, 1000, "easeOutElastic");
-					}
-				}
+			//남편 만나면 하트
+			if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("meet-husband")) && nowSendingHeart == false ){
+				sendHeart();
+			}
+			//남편이 여자캐릭터 방향으로 방향전환
+			if( (VP + $(".character-holder").position().left  > aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband") ){
+				$(".husband .husband-holder img").css({"left":"-90px"});
+			}else if( (VP + $(".character-holder").position().left <= aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband")){
+				$(".husband .husband-holder img").css({"left":"0px"});
+			}
+
+			// 뱅기 모드 시작
+			if ( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left  > aniObsEndPos) && weddingPlaneGoUp == false && weddingPlaneComplete == false){
+
+				weddingPlaneGoUp = true;
+				upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
+				console.log("허니문떠남");
+
+				objectUpdown = [];
+				objectUpdown.push({
+					start: "horizontal",
+					o: $(".character-box-plane"),
+					s: 0,
+					e: -350,
+					m: 0,
+					p: -1 * (350 / upDownWidth),
+					call: "objectUpdown"
+				});
+				objectUpdown.push({
+					start: "objectUpdown",
+					o: $(".character-box-plane"),
+					s: -350,
+					e: 0,
+					m: -350,
+					p: 350 / upDownWidth,
+					call: "verticalUpdown"
+				});
+
+				verticalUpdown.start = "objectUpdown";
+				verticalUpdown.s = 1140;
+				verticalUpdown.e = 0;
+				verticalUpdown.m = 1140;
+				verticalUpdown.p = -1 * (1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2));
+				verticalUpdown.call = "horizontal";
+
+				layersMovement = "objectUpdown";
+
+			} else if ( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left <= aniObsEndPos) && ( weddingPlaneGoUp == true || weddingPlaneGoDown == true || weddingPlaneComplete == true) ){
+				weddingPlaneGoUp = false;
+				weddingPlaneComplete = false;
+				weddingPlaneGoDown = false;
+			}
+
+			if ($aniObs.eq(a).hasClass("workbuilding-area") && VP + $(".character-holder").position().left <= $changePoint.eq(4).position().left && weddingPlaneGoDown == false && weddingPlaneGoUp == true && weddingPlaneComplete == true) {
+
+				weddingPlaneGoDown = true;
+				upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
+				console.log("허니문돌아옴")
+
+				objectUpdown = [];
+				objectUpdown.push({
+					start: "horizontal",
+					o: $(".character-box-plane"),
+					s: -350,
+					e: 0,
+					m: -350,
+					p: 350 / upDownWidth,
+					call: "objectUpdown"
+				});
+				objectUpdown.push({
+					start: "objectUpdown",
+					o: $(".character-box-plane"),
+					s: 0,
+					e: -350,
+					m: 0,
+					p: -1 * (350 / upDownWidth),
+					call: "verticalUpdown"
+				});
+
+				verticalUpdown.start = "objectUpdown";
+				verticalUpdown.s = 0;
+				verticalUpdown.e = 1140;
+				verticalUpdown.m = 0;
+				verticalUpdown.p = 1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2);
+				verticalUpdown.call = "horizontal";
+				layersMovement = "verticalUpdown";
+
+			} else if ($aniObs.eq(a).hasClass("workbuilding-area") && VP + $(".character-holder").position().left <= $changePoint.eq(4).position().left && weddingPlaneGoDown == true && weddingPlaneGoUp == true && weddingPlaneComplete == true){
+				layersMovement = "verticalUpdown";
+			}
+
+
+			//신혼 앨범 만나면 하트, 폭죽
+			if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsStartPos- 1000 ) && honeymoonPops == false ){
+				AnimateHoneymoonPops();
 			}
 
 		}
-		//console.log(nowElevator);
+	};
+
+	function animateObjectS2(){
+		if(  VP + $(".character-holder").position().left > $(".honeymoon-house-area").position().left +400 && houseHeartDone == false ){
+			houseHeart();
+		}			
 	}
+
+	function animateObjectS3(){
+		// 보건소 지나갈 때 약 지원
+		if( VP + $(".character-holder").position().left > $(".healthcenter-area").position().left + $(".healthcenter-area").width() -700 && drugGiven == false ){
+			drugGiven = true;
+			var $drug = $(".drug-aniOb");
+			for(d=0; d<$drug.length;d++){
+				$drug.eq(d).find("img").delay(300*d).animate({"top":"0px","opacity":"1"}, 800, "easeOutElastic");
+			}
+		}
+		// 산부인과 병동 지나면서 아기출산
+		if(  VP + $(".character-holder").position().left > $(".hospital-area").position().left + $(".hospital-area").width() -300 && babyCry == false ){
+			babyCry = true;
+			$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic");
+
+		}
+	}
+
+	function  animateObjectS4(){
+		// 마트 진입 에스컬레이터
+		var escalWidth = $(".mart-escalator-shade").width();
+
+		if ( VP + $(".character-holder").position().left  > $(".mart-area").position().left + escalWidth * 0.1 && goMartDown == false && goMartComplete == false){
+
+			goMartDown = true;
+
+			verticalUpdown.start = "horizontal";
+			verticalUpdown.s = 0;
+			verticalUpdown.e = -(screenHeight * 0.8);
+			verticalUpdown.p = -1 * ((screenHeight * 0.8) / (escalWidth * 0.6));
+			verticalUpdown.call = "horizontal";
+
+			layersMovement = "verticalUpdown";
+
+		} else if ( VP + $(".character-holder").position().left <= $(".mart-area").position().left + escalWidth * 0.75 && goMartDown == true && goMartComplete == true && goMartUp == false ){
+
+			goMartUp = true;
+
+			verticalUpdown.start = "horizontal";
+			verticalUpdown.s = -(screenHeight * 0.8);
+			verticalUpdown.e = 0;
+			verticalUpdown.m = -(screenHeight * 0.8);
+			verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
+			verticalUpdown.call = "horizontal";
+
+			layersMovement = "verticalUpdown";
+
+		} else if ( VP + $(".character-holder").position().left <= $(".mart-area").position().left + escalWidth * 0.1){
+			goMartUp = false;
+			goMartDown = false;
+			goMartComplete = false;
+		} else if ( VP + $(".character-holder").position().left > $(".mart-area").position().left + escalWidth * 0.75 && goMartDown == true){
+			goMartComplete = true;
+		} else if ( VP + $(".character-holder").position().left < $(".mart-area").position().left + escalWidth * 0.75 && goMartUp == true && goMartDown == true && goMartComplete == true){
+			layersMovement = "verticalUpdown";
+		}
+
+		// 마트 출구 에스컬레이터
+		if ( VP + $(".character-holder").position().left > $(".mart-area").position().left + escalWidth * 0.1 && outMartUp == false && outMartComplete == false){
+
+			outMartUp = true;
+
+			verticalUpdown.start = "horizontal";
+			verticalUpdown.s = -(screenHeight * 0.8);
+			verticalUpdown.e = 0;
+			verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
+			verticalUpdown.call = "horizontal";
+
+			layersMovement = "verticalUpdown";
+
+		} else if ( VP + $(".character-holder").position().left <= $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.75 && outMartUp == true && outMartComplete == true && outMartDown == false ){
+
+			outMartDown = true;
+
+			verticalUpdown.start = "horizontal";
+			verticalUpdown.s = 0;
+			verticalUpdown.e = -(screenHeight * 0.8);
+			verticalUpdown.m = 0;
+			verticalUpdown.p = -1 *((screenHeight * 0.8) / (escalWidth * 0.6));
+			verticalUpdown.call = "horizontal";
+
+			layersMovement = "verticalUpdown";
+
+		} else if ( VP + $(".character-holder").position().left <=  $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.1){
+			outMartUp = false;
+			outMartDown = false;
+			outMartComplete = false;
+		} else if ( VP + $(".character-holder").position().left > $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.75 && outMartUp == true){
+			outMartComplete = true;
+		} else if ( VP + $(".character-holder").position().left <  $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.75 && outMartUp == true && outMartDown == true && outMartComplete == true){
+			layersMovement = "verticalUpdown";
+		}
+
+		//마트에서 선반 지나면 영유아 제품 차례대로 나오게
+		if(martItemshow.indexOf(false) !== -1){
+			for(m=0; m<$(".mart-shelves").length; m++){
+				if( VP + screenWidth*0.4 > $(".mart-area").position().left + $(".mart-shelves").eq(m).position().left-200 && martItemshow[m] == false ){
+					martItemshow[m] = true;
+					$(".mart-shelves").eq(m).find(".mart-item img").addClass("show");
+				}
+			}
+		}
+
+		//보건소 영유아 예방접종
+		if( VP + $(".character-holder").position().left > $(".healthcenter-area-second").position().left +200 && VP + $(".character-holder").position().left < $(".healthcenter-area-second").position().left + $(".healthcenter-area-second").width() && babyVaccineDone == false ){
+			babyVaccineDone = true;
+			$(".baby-vaccine").addClass("baby-vaccine-show");
+		}
+		if( VP> $(".park-area").position().left  && VP< $(".park-area").position().left + $(".park-area").width() && isToyRun == false ){
+			makeToyRun();
+		}	
+	
+	}
+
+	function animateObjectS5(){
+		//자격증
+		if( VP + screenWidth*0.5 > $(".skill-card-area").position().left  && VP + $(".character-holder").position().left <   $(".skill-card-area").position().left + $(".skill-card-area").width() && skillCardShow == false ){
+			skillCardShow = true;
+			$(".skill-card img").animate({"width":"289px", "top":"0"}, 500, "easeOutBounce");
+			$(".skill-up-text img").delay(200).animate({"width":"182px"}, 500, "easeOutBounce");
+		}
+	}
+
+	function animateObjectS6(){
+		//동사무소 지날때 기초연금 수령
+		if( VP + screenWidth*0.7 > $(".community-center-area").position().left && VP + screenWidth*0.7 < $(".community-center-area").position().left+ $(".community-center-area").width() && annuityGiven == false ){
+			annuitySupport();
+		}
+
+	}
+
+
+	///// 애니메이션 처리 /////
+	function animateObject(s){
+		var stage = s;
+		if(stage !== 0 &&  (layersMovement == "horizontal")){			
+			eval("animateObjectS"+stage+"();");
+		}
+		if(flagUp.indexOf(false) !== -1){//깃발
+			for(f=0; f<$(".flag-point").length; f++){
+				if( VP + screenWidth*0.7 > $(".flag-point").eq(f).position().left-200 && flagUp[f] == false ){
+					flagUp[f] = true;
+					$(".flag-point").eq(f).find(".flag-color").animate({"top":"30px"}, 1000, "easeOutElastic");
+				}
+			}
+		}
+	}
+	///// 애니메이션 처리 /////
+
 
 	function chrGoUpBuilding(){
 		nowElevator = true;
@@ -814,7 +822,7 @@ $(function(){
 		annuityGiven = true;
 		var $annuityItem = $(".support-money");
 		for(a=0; a<$annuityItem.length;a++){
-			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":"150px","opacity":"1", "top":"0"}, 800, "easeOutBounce");
+			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":"150px","opacity":"1", "left":"0"}, 800, "easeOutBounce");
 			if(a==2){ $(".surplus img").animate({"width":"59px","opacity":"1", "top":"0"}, 800, "easeOutBounce");}
 		}
 	}
@@ -930,7 +938,7 @@ $(function(){
 				$(".car-man").show();
 				$(".car-wheel").addClass("car-wheel-rotate");
 				grandpaCanMove= true; 
-				makeGrandpaMove();
+				//makeGrandpaMove();
 			}else if(n==15){ // 아내 + 남편 + 친정엄마 + 친정아빠 차안에
 				$(".character-holder .character-box-car").show();
 				$(".car-grandpa").show();
@@ -995,6 +1003,105 @@ $(function(){
 		}
 	}
 	//// 라이프사이클 스테이티 구분 ////
+	function makePolicyLayer(){
+	
+	
+
+	}
+
+	function hidePolicyLayer(){
+		$(".hide-btn").hide();
+		$(".info-layer").stop().animate({"top":"0"}, 500);
+		$(".toggle-box").stop().slideUp(400, "easeInOutCubic", function(){
+			$(".show-btn").fadeIn();
+		});	
+	}
+	function ShowPolicyLayer(){
+		$(".show-btn").hide();
+		$(".info-layer").stop().animate({"top":"20px"}, 500);
+		$(".toggle-box").stop().slideDown(400, "easeInOutCubic", function(){
+			$(".hide-btn").fadeIn();
+		});	
+	}
+	//// 정책 스테이지 구분 ////
+	function showPolicyLayer(s){
+		if( nowPolicyStage == s){
+		}else if( nowPolicyStage !==s ){
+			nowPolicyStage = s;
+			if( s == 0){
+				console.log("레이어 밖");
+				hidePolicyLayer();
+			}else{
+				console.log(nowPolicyStage+"번째 정책 레이어");
+				ShowPolicyLayer();
+			}			
+		}
+	}
+
+	var $policyPoint = $(".policy-layer-point");
+	var nowPolicyStage = 0; 
+
+	function checkPolicy(){
+		var chrPos = VP + $(".character-holder").position().left;
+		if( chrPos <  $policyPoint.eq(0).position().left){
+			showPolicyLayer(0);
+		}else if( chrPos >= $policyPoint.eq($policyPoint.length-1).position().left){
+			showPolicyLayer(0);
+		}else{
+			for(p=0; p<$policyPoint.length; p++){
+				var policyStart = $policyPoint.eq(p).position().left,
+					policyEnd = $policyPoint.eq(p).position().left+$policyPoint.eq(p).width();
+				if( chrPos >= policyStart && chrPos < policyEnd ){
+					showPolicyLayer(p+1);
+				}else if( chrPos >= policyEnd && chrPos < $policyPoint.eq(p+1).position().left ){
+					showPolicyLayer(0);
+				}
+			}
+		}
+	
+	}
+	//// 정책 스테이지 구분 ////
+
+
+
+	// progress bar 그리기
+	function getPrgoressColor(){
+		switch (nowLifeStage){
+			case 0 :
+				return "#fff";
+				break;
+			case 1 :
+				return "#607aff";
+				break;
+			case 2 :
+				return "#ffd802";
+				break;
+			case 3 :
+				return "#ff6d8c";
+				break;
+			case 4 :
+				return "#bcd133";
+				break;
+			case 5 :
+				return "#0067a5";
+				break;
+			case 6 :
+				return "#ff7800";
+				break;		
+		}
+	};
+
+	function drawProgressBar(){
+		var nowScroll = VP;
+		var fullScroll = scrollDetph-screenWidth;
+		var ScrollPer = (nowScroll/fullScroll)*100;
+		if(isMobile==true){
+			$(".scroll-value").css({"width": ScrollPer+"%","background":getPrgoressColor()});
+		}else{
+			$(".scroll-value").css({"height": ScrollPer+"%", "background":getPrgoressColor()});
+		}
+	
+	}
 
 	//// 네비게이션 클릭 ////
 	$(".stage-navi .navi-wrap ul li").on("click", function(){
@@ -1006,6 +1113,17 @@ $(function(){
 	});
 
 	//// 네비게이션 클릭 ////
+		
+
+	//// 정책 레이어 여닫기 ///
+	$(".hide-btn").on("click", function(){		
+		hidePolicyLayer();
+	});
+	$(".show-btn").on("click", function(){
+		ShowPolicyLayer();
+	});
+	//// 정책 레이어 여닫기 ///
+
 
 	function touchInit(){
 
@@ -1047,9 +1165,11 @@ $(function(){
 		checkStage();
 		makeChrRun();
 		moveLayers();
-		animateObject();
+		animateObject(nowLifeStage);
 		orientChr();
 		chrJumpCheck();
+		drawProgressBar();
+		checkPolicy();
 	}
 
 	settingDimenstionWidth();
