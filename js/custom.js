@@ -88,7 +88,7 @@ $(function(){
 
 	// 시작하면 캐릭터 하늘에서 떨어짐
 	function ShowCharacterBox(){
-		$(".character-holder").stop().animate({"bottom":"20%"}, 1000, "swing", function(){
+		$(".character-holder").stop().animate({"bottom":"15%"}, 1000, "swing", function(){
 			defaultCharcterFrame();
 			window.setTimeout(function(){
 				canScroll = true;
@@ -183,7 +183,7 @@ $(function(){
 
 	function chrJumpDown(e) {
 		if (VP > $(e).position().left - chrRightEdge && VP < $(e).position().left + $(e).width() - chrLeftEdge){
-			$(".character-holder").stop().animate({bottom: ["20%", "easeInCubic"] }, 150, function(){
+			$(".character-holder").stop().animate({bottom: ["15%", "easeInCubic"] }, 150, function(){
 				chrJumping = false;
 				//console.log("down");
 				defaultCharcterFrame();
@@ -195,7 +195,7 @@ $(function(){
 	function chrJumpFall(e){
 
 		if (preVP < $(e).position().left - chrLeftEdge + $(e).width() && VP >= $(e).position().left - chrLeftEdge + $(e).width() || preVP > $(e).position().left - chrRightEdge && VP <= $(e).position().left - chrRightEdge){
-			$(".character-holder").stop().animate({bottom: ["20%", "easeInCubic"]}, 150, function(){
+			$(".character-holder").stop().animate({bottom: ["15%", "easeInCubic"]}, 150, function(){
 				chrJumping = false;
 				//console.log("fall");
 				defaultCharcterFrame();
@@ -340,6 +340,11 @@ $(function(){
 	}
 	////// 화면 이동 (E)  //////
 
+	function animateObjectS1(){
+		
+	
+	};
+
 	///// 애니메이션 처리 /////
 	function animateObject(){
 		if (layersMovement == "horizontal"){
@@ -351,6 +356,12 @@ $(function(){
 					  animateBank(),
 					  bankAniDone = true;
 				}
+
+				//학원
+				if( ( $aniObs.eq(a).hasClass("academy-area") ) && (VP + screenWidth*0.5 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && (levelUpDone == false) ){
+					  animateLevelUp();
+				}
+
 				//남편 만나면 하트
 				if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("meet-husband")) && nowSendingHeart == false ){
 					sendHeart();
@@ -553,7 +564,7 @@ $(function(){
 				if( $aniObs.eq(a).hasClass("skill-card-area") && ( VP + screenWidth*0.5 > aniObsStartPos) && VP + $(".character-holder").position().left < aniObsEndPos && skillCardShow == false ){
 					skillCardShow = true;
 					$(".skill-card img").animate({"width":"289px", "top":"0"}, 800, "easeOutBounce", function(){
-						$(".skill-up-text img").animate({"width":"182px", 500, "easeOutBounce");
+						$(".skill-up-text img").animate({"width":"182px"}, 500, "easeOutBounce");
 					});
 				}
 
@@ -571,7 +582,7 @@ $(function(){
 			//마트에서 선반 지나면 영유아 제품 차례대로 나오게
 			if(martItemshow.indexOf(false) !== -1){
 				for(m=0; m<$(".mart-shelves").length; m++){
-					if( VP + $(".character-holder").position().left > $(".mart-area").position().left +	$(".mart-shelves").eq(m).position().left-200 && martItemshow[m] == false ){
+					if( VP + screenWidth*0.4 > $(".mart-area").position().left + $(".mart-shelves").eq(m).position().left-200 && martItemshow[m] == false ){
 						martItemshow[m] = true;
 						$(".mart-shelves").eq(m).find(".mart-item img").addClass("show");
 					}
@@ -600,7 +611,7 @@ $(function(){
 			//깃발
 			if(flagUp.indexOf(false) !== -1){
 				for(f=0; f<$(".flag-point").length; f++){
-					if( VP + $(".character-holder").position().left > $(".flag-point").eq(f).position().left-200 && flagUp[f] == false ){
+					if( VP + screenWidth*0.7 > $(".flag-point").eq(f).position().left-200 && flagUp[f] == false ){
 						flagUp[f] = true;
 						$(".flag-point").eq(f).find(".flag-color").animate({"top":"30px"}, 1000, "easeOutElastic");
 					}
@@ -635,8 +646,8 @@ $(function(){
 
 	// 은행 애니메이션
 	function animateBank(){
-		$(".bank-sign").animate({"top":"-5%"}, 700, "easeOutBounce", function(){
-			makeMoneyfly();
+		makeMoneyfly();
+		$(".bank-sign").animate({"top":"-5%"}, 700, "easeOutBounce", function(){			
 			$(".flying-money").animate({"top":"-110%", "right":"-1200px"}, 1500, "swing", function(){
 				canMoneyFly = false;
 				$(".flying-money").animate({"top":"-0%"}, 700, "swing");
@@ -666,12 +677,29 @@ $(function(){
 		}
 	}
 
+	var levelUpDone = false;
+	//학원 레벨업
+	function animateLevelUp(){
+		levelUpDone = true; 	
+		for(l=0; l<$(".level-aniOb").length; l++){
+			if(l==$(".level-aniOb").length-1){
+				$(".level-aniOb").eq(0).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");	
+				$(".skillup img").animate({"width":"211px","top":"0"}, 500, "easeOutBounce");
+			}else{
+				$(".level-aniOb").eq($(".level-aniOb").length-l-1).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");	
+			}
+		}		
+	}
+	//학원 레벨업
+
+
+
 	// 남편 만나는 애니메이션
 	function sendHeart(){
 		nowSendingHeart = true;
 		var $heart = $(".husband .heart");
 		for(h=0; h<$heart.length;h++){
-			$heart.eq(h).delay(300 * h).animate({"width": "30px", "top":"0", "left":"-100px","opacity":"0"}, 700, "swing");
+			$heart.eq(h).delay(300 * h).animate({"width": "68px", "top":"0", "left":"-100px","opacity":"0"}, 700, "swing");
 		}
 	}
 
@@ -826,7 +854,7 @@ $(function(){
 		$(".husbandBack-stand").hide();
 		$(".grandma-stand").hide();
 		$(".grandpa-stand").hide();
-		$(".dimension-holder").removeClass("dimension-holder-bgChage");
+		$(".dimension-bg").fadeOut();
 		$(".car-wheel").removeClass("car-wheel-rotate");
 		$(".passenger > div").hide();
 		husbandCanJump = false;
@@ -843,7 +871,7 @@ $(function(){
 			console.log("캐릭터 "+n+"번째 스테이지");
 			hideChrBoxforChange();
 			if(n>=12){
-				$(".dimension-holder").addClass("dimension-holder-bgChage");
+				$(".dimension-bg-oldYear").fadeIn();
 			}
 			if(n==0 || n==2){ // 기본복장
 				$(".character-holder .character-box-normal").show();
@@ -857,10 +885,12 @@ $(function(){
 				if(n==12){  $(".grandma-stand").show();}
 			}else if(n==4){ // 비행기
 				$(".character-holder .character-box-plane").show();
+				$(".dimension-bg-wedding").fadeIn();
 			}else if(n==5){ // 신혼여행 끝
 				weddingPlaneComplete = true;
 				$(".character-holder .character-box-wedding").show();
 				$(".character-holder .character-box-wedding .character-spread").show();
+				$(".dimension-bg-night").fadeIn();
 			}else if(n==6){ // 신혼집 이후 아내 임신
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
