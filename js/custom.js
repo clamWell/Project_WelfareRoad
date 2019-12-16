@@ -499,6 +499,11 @@ $(function(){
 	}
 
 	function  animateObjectS4(){
+		//육아휴직중 멘트
+		if(  VP + screenWidth*0.7 > $(".parental-leave-text-holder").position().left && parentalLeaveShow == false ){			
+			showParentalLeaveText();
+		}
+
 		// 마트 진입 에스컬레이터
 		var escalWidth = $(".mart-escalator-shade").width();
 
@@ -588,7 +593,9 @@ $(function(){
 			babyVaccineDone = true;
 			$(".baby-vaccine").addClass("baby-vaccine-show");
 		}
-		if( VP> $(".park-area").position().left  && VP< $(".park-area").position().left + $(".park-area").width() && isToyRun == false ){
+
+		//장난감 
+		if( VP + screenWidth*0.5> $(".park-area").position().left  && VP < $(".park-area").position().left + $(".park-area").width() && isToyRun == false ){
 			makeToyRun();
 		}	
 	
@@ -754,6 +761,16 @@ $(function(){
 	}
 	//남편이 돌아와 점프하는 애니메이션
 
+	var parentalLeaveShow= false;
+	// 육아휴직중 멘트 뜨는 애니메이션 
+	function showParentalLeaveText(){
+		parentalLeaveShow = true;
+		var $textItem = $(".parental-leave-text-holder .text-holder > img");
+		for(t=0; t < $textItem.length;t++){
+			$textItem.eq(t).delay(100*t).animate({"opacity":"1", "top":"0"}, 500, "easeOutBounce");			
+		}
+	}
+	// 육아휴직중 멘트 뜨는 애니메이션 
 
 	var grandpaCanMove = false, 
   		grandpaMoveCounter = 0,
@@ -787,10 +804,10 @@ $(function(){
 	//옆집 아주머니 인사하는 액션
 	function neighboorHello(){
 		if(neighboorCanHello==false){
-			$(".neighboor-family-holder .mom img").css("left","0px");
+			$(".neighboor-family-holder .pa img").css("left","0px");
 			clearInterval(neighboorHelloTimer);
 		}else if(neighboorCanHello==true){
-			$(".neighboor-family-holder .mom img").css("left", (-1 * 110 * neighboorHelloCounter)  + "px");
+			$(".neighboor-family-holder .pa img").css("left", (-1 * 110 * neighboorHelloCounter)  + "px");
 			if(neighboorHelloCounter>=2){
 				neighboorHelloCounter = 0;
 			}else{
@@ -1002,70 +1019,40 @@ $(function(){
 			}
 		}
 	}
-	//// 라이프사이클 스테이티 구분 ////
-	function makePolicyLayer(){
-	
-	
+	//// 라이프사이클 스테이지 구분 ////
 
-	}
-
-	function hidePolicyLayer(){
-		$(".hide-btn").hide();
-		$(".info-layer").stop().animate({"top":"0"}, 500);
-		$(".toggle-box").stop().slideUp(400, "easeInOutCubic", function(){
-			$(".show-btn").fadeIn();
-		});	
-	}
-	function ShowPolicyLayer(){
-		$(".show-btn").hide();
-		$(".info-layer").stop().animate({"top":"20px"}, 500);
-		$(".toggle-box").stop().slideDown(400, "easeInOutCubic", function(){
-			$(".hide-btn").fadeIn();
-		});	
-	}
 	//// 정책 스테이지 구분 ////
-	function showPolicyLayer(s){
-		if( nowPolicyStage == s){
-		}else if( nowPolicyStage !==s ){
-			nowPolicyStage = s;
-			if( s == 0){
-				console.log("레이어 밖");
-				hidePolicyLayer();
-			}else{
-				console.log(nowPolicyStage+"번째 정책 레이어");
-				ShowPolicyLayer();
-			}			
+	var policyRepresent = policyData.filter(function(e,i,a){
+		return a[i]["represent"] == "yes";
+	});
+	console.log(policyRepresent);
+
+	function getStageText(){
+		switch (nowLifeStage){
+			case 0 :
+				return "-";
+				break;
+			case 1 :
+				return "청년";
+				break;
+			case 2 :
+				return "신혼";
+				break;
+			case 3 :
+				return "임신·출산";
+				break;
+			case 4 :
+				return "육아";
+				break;
+			case 5 :
+				return "재취업";
+				break;
+			case 6 :
+				return "노년";
+				break;		
 		}
 	}
-
-	var $policyPoint = $(".policy-layer-point");
-	var nowPolicyStage = 0; 
-
-	function checkPolicy(){
-		var chrPos = VP + $(".character-holder").position().left;
-		if( chrPos <  $policyPoint.eq(0).position().left){
-			showPolicyLayer(0);
-		}else if( chrPos >= $policyPoint.eq($policyPoint.length-1).position().left){
-			showPolicyLayer(0);
-		}else{
-			for(p=0; p<$policyPoint.length; p++){
-				var policyStart = $policyPoint.eq(p).position().left,
-					policyEnd = $policyPoint.eq(p).position().left+$policyPoint.eq(p).width();
-				if( chrPos >= policyStart && chrPos < policyEnd ){
-					showPolicyLayer(p+1);
-				}else if( chrPos >= policyEnd && chrPos < $policyPoint.eq(p+1).position().left ){
-					showPolicyLayer(0);
-				}
-			}
-		}
-	
-	}
-	//// 정책 스테이지 구분 ////
-
-
-
-	// progress bar 그리기
-	function getPrgoressColor(){
+	function getStageColor(){
 		switch (nowLifeStage){
 			case 0 :
 				return "#fff";
@@ -1091,14 +1078,94 @@ $(function(){
 		}
 	};
 
+
+	function makePolicyLayer(s){
+		var policyIndex =  getStageText() + "정책 "+ policyRepresent[s]["policyStage"].substr(policyRepresent[s]["policyStage"].length - 1); ;
+		$(".policy-name").html("<span class='type'>"+policyIndex+"</span>"+policyRepresent[s]["policy"]);
+		$(".policy-panel h3.policy-name > span").css({"background":getStageColor()});
+		$(".policy-desc-simple p").html(policyRepresent[s]["desSimple"]);
+		$(".policy-desc-specific p").html(policyRepresent[s]["desSpecific"]);
+		$("#goPolicyRep").attr("href", policyRepresent[s]["link"]);
+		
+		$(".policy-list ul").html("");
+		for(p=0;p<policyData.length;p++){
+			var policyStageKey = policyRepresent[s]["policyStage"];
+			if( policyData[p]["policyStage"] == policyStageKey && policyData[p]["represent"] == "no" ){
+				if(policyData[p].policyType==null){
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'>정책 자세히 보기 <span class='more-icon'>+</span></p></div></a></li>");
+				}else{
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'>정책 자세히 보기 <span class='more-icon'>+</span></p></div></a></li>");
+				}
+				
+			}			
+		}
+		$("#policyList").scrollTop(0);
+	}
+	function hidePolicyLayer(){
+		$(".hide-btn").hide();
+		$(".info-layer").stop().animate({"top":"0"}, 300);
+		$(".toggle-box").stop().slideUp(200, "swing", function(){
+			$(".show-btn").fadeIn();
+		});	
+	}
+	function ShowPolicyLayer(){
+		$(".show-btn").hide();
+		$(".info-layer").stop().animate({"top":"20px"}, 500);
+		$(".toggle-box").stop().slideDown(400, "easeInOutCubic", function(){
+			$(".hide-btn").fadeIn();
+		});	
+	}
+
+	function showPolicyLayer(s){
+		if( nowPolicyStage == s){
+		}else if( nowPolicyStage !==s ){
+			nowPolicyStage = s;
+			if( s == 0){
+				console.log("레이어 밖");
+				hidePolicyLayer();
+			}else{
+				console.log(nowPolicyStage+"번째 정책 레이어");
+				makePolicyLayer(s-1)
+				ShowPolicyLayer();
+			}			
+		}
+	}
+
+	var $policyPoint = $(".policy-layer-point");
+	var nowPolicyStage = 0; 
+
+	function checkPolicy(){
+		var chrPos = VP + $(".character-holder").position().left;
+		if( chrPos <  $policyPoint.eq(0).position().left){
+			showPolicyLayer(0);
+		}else if( chrPos >= $policyPoint.eq($policyPoint.length-1).position().left+$policyPoint.eq($policyPoint.length-1).width()){
+			showPolicyLayer(0);
+		}else{
+			for(p=0; p<$policyPoint.length; p++){
+				var policyStart = $policyPoint.eq(p).position().left,
+					policyEnd = $policyPoint.eq(p).position().left+$policyPoint.eq(p).width();
+				if( chrPos >= policyStart && chrPos < policyEnd ){
+					showPolicyLayer(p+1);
+				}else if( chrPos >= policyEnd && chrPos < $policyPoint.eq(p+1).position().left ){
+					showPolicyLayer(0);
+				}
+			}
+		}
+	
+	}
+	//// 정책 스테이지 구분 ////
+
+
+
+	// progress bar 그리기	
 	function drawProgressBar(){
 		var nowScroll = VP;
 		var fullScroll = scrollDetph-screenWidth;
 		var ScrollPer = (nowScroll/fullScroll)*100;
 		if(isMobile==true){
-			$(".scroll-value").css({"width": ScrollPer+"%","background":getPrgoressColor()});
+			$(".scroll-value").css({"width": ScrollPer+"%","background":getStageColor()});
 		}else{
-			$(".scroll-value").css({"height": ScrollPer+"%", "background":getPrgoressColor()});
+			$(".scroll-value").css({"height": ScrollPer+"%", "background":getStageColor()});
 		}
 	
 	}
@@ -1178,6 +1245,7 @@ $(function(){
 	$(window).on("load", function(){
 		afterLoad();
 		touchInit();
+		window.scrollTo(0, 0);
 	})
 	.on("scroll", function() {
 		if (canScroll == true){

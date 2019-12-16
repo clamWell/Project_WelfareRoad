@@ -2,6 +2,7 @@
 	include_once('/data/news/kh_storytelling/_common_header.php');
 	$css = "css/style.css?" . filemtime("css/style.css");
 	$js = "js/custom.js?" . filemtime("js/custom.js");
+	$policyData = "js/policyData.js?" . filemtime("js/policyData.js");
 ?>
 
 <!doctype html>
@@ -233,7 +234,6 @@
 							<div class="ob hospital-area aniOb">
 								<div class="hospital"><img src="img/hospital.png" alt="병원건물"></div>
 								<div class="babycry"><img src="img/babycry.png" alt="응애"></div>
-
 							</div>
 
 							<div class="ob care-center-area aniOb">
@@ -245,6 +245,18 @@
 							<div class="ob husband-company-area aniOb">
 								<div class="husband-company">
 									<img src="img/husband_company.png" alt="남편의 회사">
+								</div>
+							</div>
+							
+							<div class="ob parental-leave-text-holder aniOb">
+								<div class="text-holder">
+									<img src="img/parental-leave-text-1.png" alt="">
+									<img src="img/parental-leave-text-2.png" alt="">
+									<img src="img/parental-leave-text-3.png" alt="">
+									<img src="img/parental-leave-text-4.png" alt="">
+									<img src="img/parental-leave-text-5.png" alt="">
+									<img src="img/parental-leave-text-6.png" alt="" class="dot">
+									<img src="img/parental-leave-text-6.png" alt="" class="dot">
 								</div>
 							</div>
 
@@ -301,13 +313,18 @@
 							
 							<div class="ob neighboorhood-area aniOb">
 								<div class="neighboor-family-holder">
-									<div class="mom">
+									<div class="pa">
 										<img src="img/neighborhood-pa.png" alt="이웃집 아저씨">
 									</div>
 									<div class="child">
 										<img src="img/neighborhood-child.png" alt="이웃집 쌍둥이들">
 									</div>
-
+									<div class="baloon">
+										<div class="baloon-text">
+											<p>육아휴직 중이신가봐요! 저희는 다자녀라 아이돌봄 서비스 받고있어요.</p>
+										</div>
+										<img src="img/baloon-tail.png" alt="" class="tail">
+									</div>
 								</div>							
 							</div>
 
@@ -386,6 +403,14 @@
 									<img src="img/grandpa-stand.png" alt="">
 								</div>
 							</div>							
+							
+							<div class="ob grandma-hospital-area aniOb">
+								<div class="hospital"><img src="img/grandma-hospital.png" alt="병원건물"></div>
+								<div class="grandma-vaccine">
+									<img src="img/grandma-vaccine-1.png" alt="노인예방접종지원" class="grandma-vaccine">
+									<img src="img/grandma-vaccine-2.png" alt="노인예방접종지원" class="grandma-vaccine-2">
+								</div>
+							</div>
 
 							<div class="ob hospice-area aniOb">
 								<div class="hospice-building">
@@ -689,6 +714,9 @@
 							<div class="ob grandma-house-shade">
 								<img src="img/honeymoon_house_shade.png" alt="">
 							</div>	
+							<div class="ob grandma-hospital-shade">
+								<img src="img/grandma-hospital-shade.png" alt="">
+							</div>	
 
 							<!-- 정책레이어 뜨는 지점-->
 							<div class="policy-layer-point policy-1"></div>
@@ -696,6 +724,13 @@
 							<div class="policy-layer-point policy-3"></div>
 							<div class="policy-layer-point policy-4"></div>
 							<div class="policy-layer-point policy-5"></div>
+							<div class="policy-layer-point policy-6"></div>
+							<div class="policy-layer-point policy-7"></div>
+							<div class="policy-layer-point policy-8"></div>
+							<div class="policy-layer-point policy-9"></div>
+							<div class="policy-layer-point policy-10"></div>
+							<div class="policy-layer-point policy-11"></div>
+							<div class="policy-layer-point policy-12"></div>
 							<!-- 정책레이어 뜨는 지점-->							
 						</div>
 
@@ -706,60 +741,23 @@
 							<div class="hang-left"></div>
 							<div class="wrap-psrelative toggle-box">
 								<div class="policy-panel">
-									<h3 class="policy-name"><span class="type">청년정책 1</span>취업 후 상환 학자금 대출</h3>
+									<h3 class="policy-name"><span class="type"></span>취업 후 상환 학자금 대출</h3>
 									<div class="policy-desc-simple">
 										<span class="deco"></span>
 										<p>이자가 부담되는 대학생이라면 꼭! </p>
 									</div>
 									<div class="policy-desc-specific">
 										<p>소득분위 1~8구간의 만 35세 이하 대학생은 신용등급과 관계없이 등록금 전액과 최대 150만원의 생활비를 대출받을 수 있다. 대출금과 이자는 취업 후 일정 기준의 이상 소득이 발생했을 때 상환하면 된다. </p>
-										<div class="see-more-btn">정책 자세히 보기 <span class="more-icon">+</span></div>
+										<a href="#" id="goPolicyRep"  target='_blank'>
+											<div class="see-more-btn">정책 자세히 보기 <span class="more-icon">+</span></div>
+										</a>
+										
 									</div>
 								</div>
 								<div class="same-subject-policy-panel">
 									<p class="panel-title"><!-- 이와 비슷한 정책들은 무엇이 있을까? --><img src="img/panel-title.png" alt=""></p>
-									<div class="policy-list">
-										<ul>
-											<li>
-												<div class="each-policy">
-													<span class="type">주거집적공급</span><span class="name">공공임대주택 신혼부부 특별공급</span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">주거집적공급</span><span class="name">신혼부부 대상 기존주택 매임 입대주택 지원사업 </span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">자금지원</span><span class="name">신혼부부 대상 버팀목 대출</span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">자금지원</span><span class="name">공공임대주택 신혼부부 특별공급</span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">주거집적공급</span><span class="name">공공임대주택 신혼부부 특별공급</span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">주거집적공급</span><span class="name">신혼부부 대상 기존주택 매임 입대주택 지원사업 </span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">자금지원</span><span class="name">신혼부부 대상 버팀목 대출</span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
-											<li>
-												<div class="each-policy">
-													<span class="type">자금지원</span><span class="name">공공임대주택 신혼부부 특별공급</span><p class="see-more">정책 자세히 보기 <span class="more-icon">+</span></p>
-												</div>
-											</li>
+									<div class="policy-list" id="policyList">
+										<ul>											
 										</ul>
 									</div>									
 								</div>
@@ -829,6 +827,7 @@
     </div>
     <!-- //전체 wrap (E)-->
 	<script type="text/javascript" src="<?php echo $js; ?>"></script>
+	<script type="text/javascript" src="<?php echo $policyData; ?>"></script>	
 
 	<!-- imp 2019.12 YJ 추가-->
 	<SCRIPT type="text/javaSCRIPT">

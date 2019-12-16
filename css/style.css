@@ -139,7 +139,7 @@ width: 27px; height: 30px;}
 .wrap { width:100%; overflow-x:hidden;  }
 .container {  width:100%; position: relative;  }
 
-.actual-scroll { width:100%; height:59500px; top:0;left:0; position: relative;}
+.actual-scroll { width:100%; height:61400px; top:0;left:0; position: relative;}
 .scroll-animate-area { width:100%; position: relative;}
 .dimension-holder { background: linear-gradient(180deg,#32b7ff 40%,#a2d7ff);
 background: linear-gradient(180deg,#4ccfff 40%,#e1f7ff); position: fixed; width: 100%; height:100vh; top: 0; left: 0; overflow:hidden;
@@ -235,7 +235,6 @@ display: none;}
 .babycry { position: absolute; top:300px; right:-100px; }
 .babycry img { width: 20px; opacity: 0; }
 
-
 .baby-house-area { left: 24000px; }
 
 .care-center-area {left: 24300px; bottom: 15%; }
@@ -246,6 +245,10 @@ display: none;}
 .husband-company {}
 .husband-company img {}
 
+.parental-leave-text-holder { left: 27300px; bottom: 15%;}
+.parental-leave-text-holder .text-holder {  width: 550px; position: absolute; left:0; top:-350px; }
+.parental-leave-text-holder .text-holder > img { display: inline-block; opacity:0;position: relative;top: 100px; }
+  
 .mart-area { left: 28500px; height: 80%; top: 85%; width: 4500px;}
 .mart-area > div { position: absolute; }
 .mart-entrance {top: -37%;left:-620px;  }
@@ -290,9 +293,13 @@ display: none;}
 
 .neighboorhood-area { left: 40200px; bottom: 15%; }
 .neighboor-family-holder { position: relative; }
-.neighboor-family-holder .mom { position: relative;  width: 110px; height: 175px; overflow:hidden; }
-.neighboor-family-holder .mom img { position: relative; left:0;}
+.neighboor-family-holder .pa { position: relative;  width: 110px; height: 175px; overflow:hidden; }
+.neighboor-family-holder .pa img { position: relative; left:0;}
 .neighboor-family-holder .child { position: absolute; bottom: 0; right:-200px; }
+.neighboor-family-holder .baloon { position: absolute; top: -130px; width: 200px; left: 50px; }
+.neighboor-family-holder .baloon .baloon-text { box-sizing: border-box;  width:100%; padding: 20px; border-radius: 6px; background:#fff; }
+.neighboor-family-holder .baloon .baloon-text p {font-size: 15px; color: #51525f; font-weight: 600; }
+.neighboor-family-holder .baloon img { position: absolute; bottom: -25px; left: 30px; }
 
 .toy-museum { position: absolute; left:500px; bottom:0;  }
 .toy-museum > img { }
@@ -341,12 +348,18 @@ display: none;}
 .grandma-house-area .grandma-house {}
 .grandma-house-area .grandma-house img{}
 
-.hospice-area {bottom: 15%;  left: 54500px;  }
-.grandpa-stand { bottom: 15%;  left: 54300px; }
+.grandma-hospital-area {bottom: 15%;  left: 54500px;  }
+.grandma-hospital-area .hospital {}
+.grandma-vaccine {  position: absolute;top: 100px;  right: -50px;}
+.grandma-hospital-area .grandma-vaccine-1 { }
+.grandma-hospital-area .grandma-vaccine-2 { position: absolute; top: 30px; right:-80px; }
+
+.hospice-area { bottom: 15%;  left: 57000px;  }
+.grandpa-stand { bottom: 15%;  left: 56800px; }
 .grandpa-stand .grandpa {width: 133px; height:161px; overflow:hidden;   }
 .grandpa-stand .grandpa img {position: relative; left:0;}
 
-.community-center-area { bottom: 15%;  left: 56000px; }
+.community-center-area { bottom: 15%;  left: 59000px; }
 .community-center { }
 .community-center img {}
 .support-money-holder { position: absolute; top: 30px; right:100px; }
@@ -358,7 +371,7 @@ display: none;}
 .support-money-holder .surplus { bottom: -70px; left: -50px;position: absolute;}
 .support-money-holder .surplus  img  { width: 2px; opacity: 0; position: relative; top: 50px;  }
 
-.ending-harbor-area { bottom: 15%;  left: 59100px;}
+.ending-harbor-area { bottom: 15%;  left: 61100px;}
 .ending-harbor { position: relative; } 
 .ending-harbor > div { position: absolute;}
 .ending-harbor .sunset { left: 500px; top:-460px; }  
@@ -395,7 +408,7 @@ display: none;}
 .change-point-12 { left: 45000px; bottom: 15%;}
 .change-point-13 { left: 50300px; bottom: 15%;}
 .change-point-14 { left: 51900px; bottom: 15%;}
-.change-point-15 { left: 54400px; bottom: 15%;}
+.change-point-15 { left: 56900px; bottom: 15%;}
 /*** 캐릭터 전환지점 ***/
 
 
@@ -542,6 +555,7 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .husbandBack-house-shade { bottom: 15%; left: 38142px; }
 .workingmom-house-shade { bottom: 15%; left: 44642px;}
 .grandma-house-shade {  bottom: 15%; left: 51642px;} 
+.grandma-hospital-shade {  bottom: 15%;  left: 54500px;}
 
 /*** 캐릭터 박스 **/
 .character-holder { z-index: 10; width: 150px; height:175px; position: absolute; left:450px;bottom: 15%;bottom:100%;  }
@@ -592,8 +606,8 @@ font-weight: bold; color:#333; text-align: center; display:none}
 }
 
 @keyframes engine{
-	0%{-webkit-transform:translateY(7px);transform:translateY(7px)}
-	50%{-webkit-transform:translateY(7px); transform:translateY(0)}to{-webkit-transform:translateY(7px);transform:translateY(7px)}	
+	0%{-webkit-transform:translateY(-3px);transform:translateY(-3px)}
+	50%{-webkit-transform:translateY(-3px); transform:translateY(0)}to{-webkit-transform:translateY(7px);transform:translateY(-3px)}	
 }
 @keyframes seagull{
 	0%{-webkit-transform:translateY(20px);transform:translateY(20px)}
@@ -627,12 +641,20 @@ background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radiu
 
 
 /***** 정책 레이어 ******/
-.policy-layer-point { position: absolute; bottom: 15%; height: 20px; background:#fff; z-index: 20; }
+.policy-layer-point { position: absolute; bottom: 15%; height: 10px; background:rgba(255,255,255,0.2); z-index: 20; }
 .policy-1{ width: 2000px; left: 2500px; }
 .policy-2{ width: 1500px; left: 6000px; }
 .policy-3{ width: 2000px; left: 16500px; }
 .policy-4{ width: 1700px; left: 20000px; }
-.policy-5{ width: 4000px; left: 29000px; }
+.policy-5{ width: 1500px; left: 27000px; }
+.policy-6{ width: 1300px; left: 34500px; }
+.policy-7{ width: 1100px; left: 38000px; }
+.policy-8{ width: 1000px; left: 39800px; }
+.policy-9{ width: 2000px; left: 45800px; }
+.policy-10{ width: 1300px; left: 54200px; }
+.policy-11{ width: 1400px; left: 56700px; }
+.policy-12{ width: 1300px; left: 58900px; }
+
 
 .info-layer { position: absolute;  right:180px; top:-50px; z-index: 20;}
 .info-layer-fixed { position: fixed;  }
@@ -656,7 +678,7 @@ h3.policy-name .type-s6 {background: #ff7800;  }
 .policy-panel .policy-desc-simple .deco { display:none; position: absolute; bottom: 3px; left:0;width: 250px;height: 10px; background: rgba(142, 155, 220, 0.2);}
 .policy-panel .policy-desc-specific { margin-top: 10px;  box-sizing: border-box; position: relative; padding-bottom: 50px; }
 .policy-panel .policy-desc-specific p { font-size: 16px;color: #333;  line-height:1.6;box-sizing: border-box;  padding: 3px 0; padding-left: 20px; border-left: 5px solid #000; color: #3f4754;}
-.policy-panel .see-more-btn { transition:all 0.2s ease 0s; position: absolute;right: 5px;bottom: 10px; box-sizing: border-box;display: inline-block; padding: 7px 15px;
+.policy-panel .see-more-btn { transition:all 0.2s ease 0s; position: absolute;right: 5px;bottom: 5px; box-sizing: border-box;display: inline-block; padding: 7px 15px;
 border-radius: 3px;font-size: 14px;color: #fff;font-weight: 500;cursor: pointer;border: 1px solid #111;color: #111; background: #fff;  }
 .policy-panel .see-more-btn:hover { border: 1px solid #607aff; color: #607aff;  box-shadow: 1px 1px 5px rgba(96, 119, 255, 0.1); }
 .policy-panel .see-more-btn .more-icon { margin-left:5px;display:none; width:0px;}
@@ -664,24 +686,25 @@ border-radius: 3px;font-size: 14px;color: #fff;font-weight: 500;cursor: pointer;
 .same-subject-policy-panel {   width: 100%;position: relative;}
 .same-subject-policy-panel .panel-title {  font-size: 17px;font-weight: bold; position: absolute; top: -40px; background: #fff;
 box-sizing: border-box; padding-right: 10px; color: #45464c;}
-.policy-list {margin-top: 20px; max-height: 105px; overflow-y: scroll; overflow-x: hidden;}
+.policy-list {margin-top: 20px; max-height: 140px; overflow-y: scroll; overflow-x: hidden;}
 .policy-list::-webkit-scrollbar {  width: 12px;}
 .policy-list::-webkit-scrollbar-track { background:#efefef; }
 .policy-list::-webkit-scrollbar-thumb { background:#ddd; border-radius: 2px; }
 .policy-list ul {}
-.policy-list ul li { background:#f8f9fd; cursor: pointer;transition:all 0.2s ease 0s;}
+.policy-list ul li { background:#f8f9fd; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;transition:all 0.2s ease 0s;}
 .policy-list ul li:nth-child(even){ background:#f1f1fb; }
 .each-policy { width: 100%;box-sizing: border-box; padding: 5px 12px;position: relative;font-size: 15px;
  line-height: 25px;}
 .each-policy .type { box-sizing: border-box; background: #495071;color: #fff;font-size: 13px;padding: 2px 8px; margin-right: 10px;border-radius: 3px;}
-.each-policy .name { font-weight: 400;}
-.each-policy .see-more {  position: absolute; font-size: 13px; opacity: 0.8; font-weight: 400; top: 5px;right: 10px;}
+.each-policy .name { font-weight: 400;    font-weight: bold;}
+.each-policy .see-more {  position: absolute; font-size: 13px; opacity: 0.7; font-weight: 400; top: 5px;right: 10px;}
 .each-policy .see-more .more-icon{}
-.policy-list ul li:hover {background:#e1e3f7; box-shadow: 1px 1px 5px rgba(136, 138, 150, 0.5);  z-index: 2; transform: translate(-3px, 0px);} 
+.policy-list ul li:hover {background: #dadae8;/* box-shadow: 1px 1px 5px rgba(136, 138, 150, 0.5); transform: translate(-3px, 0px);  */z-index: 2;    border: 1px solid rgba(113, 114, 138, 0.5);} 
+.policy-list ul li:hover > a > div > .see-more { opacity: 1; color:#111; }
 
 .toggle-btn-holder { position: absolute;  bottom: 10px;width: 100%; left: 0;}
 .toggle-btn-holder > div { transition:all 0.2s ease 0s;  display:none;  box-sizing:border-box; text-align: center;cursor: pointer; font-size: 13px;  opacity: 0.6;}
-.toggle-btn-holder > div > img { display: block;margin: 0 auto;margin-bottom: 4px; }
+.toggle-btn-holder > div > img { display: block;margin: 0 auto;margin-bottom: 4px; width: 25px;}
 .toggle-btn-holder .show-btn { display:block; }
 .toggle-btn-holder .hide-btn { }
 .toggle-btn-holder > div:hover { opacity:1; }
