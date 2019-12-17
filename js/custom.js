@@ -25,17 +25,19 @@ $(function(){
 		$stagePoint = $(".flag-point"),
 		$aniObs = $(".aniOb");
 
+	if(isMobile == true){ $(".character-holder").css({"left": (screenWidth - $(".character-holder").width())/2 +"px" }); }
+
 	var oStartP, oEndP, vStartP, vEndP, updownSwitcher, upDownWidth;
 	var chrStatus = "run";
 	var canScroll, canChrAni = false;
-	var defaultchrWidth = 150;
+	var defaultchrWidth = $(".character-holder").width();
 	var chrRunStartFrame = 1, chrRunEndFrame = 2;
 	var chrStart, chrEnd, counter = 0;
 	var chrAniTimer;
 	var switcher = 1;
 	var chrJumping = false;
 	var movePos;
-
+	
 	var chrLeftEdge = $(".character-holder").position().left * 0.2;
 	var chrRightEdge = (screenWidth - $(".character-holder").position().left - $(".character-holder").width()) * 0.6;
 	var VP_when_moving1, VP_when_moving2;
@@ -121,10 +123,15 @@ $(function(){
 		var $orientChr, topValue;
 		if (nowChrStage == 4){
 			$orientChr = $(".plane-holder");
-			topValue = -337;
+			topValue = -1*$(".plane-holder").height();
 		} else {
 			$orientChr = $chrSpreadDiv;
-			topValue = -175;
+			if(isMobile==true){
+			
+			}else{			
+				topValue = -($(".character-holder").height());
+			}
+			
 		}
 		if (deltaVP > 0) $orientChr.css("top", "0px"); /// 눈 깜박임 추후 추가
 		if (deltaVP < 0) $orientChr.css("top", topValue + "px");
@@ -136,7 +143,7 @@ $(function(){
 	};
 
 	function chrFall(){
-	  	$chrSpreadDiv.css("left", "-450px");
+	  	$chrSpreadDiv.css("left", -1 * defaultchrWidth * 3);
 	}
 
 	//캐릭터 움직이도록 프레임변경
@@ -144,7 +151,7 @@ $(function(){
 
 		if (chrJumping == true) return;
 
-		var chrWidth = nowChrStage == 5 ? 200 : defaultchrWidth;
+		var chrWidth = nowChrStage == 5 ? $(".character-box-wedding").width() : defaultchrWidth;
 		if (chrStatus == "run")	chrStart = chrRunStartFrame, chrEnd = chrRunEndFrame;
 
 		$chrSpreadDiv.css("left", (-1 * chrWidth * counter)  + "px");
@@ -638,7 +645,7 @@ $(function(){
 				}
 				//남편이 여자캐릭터 방향으로 방향전환
 				if( (VP + $(".character-holder").position().left  > aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband") ){
-					$(".husband .husband-holder img").css({"left":"-90px"});
+					$(".husband .husband-holder img").css({"left": -1*$(".husband .husband-holder").width()+"px" });
 				}else if( (VP + $(".character-holder").position().left <= aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband")){
 					$(".husband .husband-holder img").css({"left":"0px"});
 				}
@@ -1093,7 +1100,7 @@ $(function(){
 		annuityGiven = true;
 		var $annuityItem = $(".support-money");
 		for(a=0; a<$annuityItem.length;a++){
-			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":"150px","opacity":"1", "top":"0"}, 800, "easeOutBounce");
+			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":"150px","opacity":"1", "left":"0"}, 800, "easeOutBounce");
 			if(a==2){ $(".surplus img").animate({"width":"59px","opacity":"1", "top":"0"}, 800, "easeOutBounce");}
 		}
 	}
@@ -1206,7 +1213,7 @@ $(function(){
 				$(".car-man").show();
 				$(".car-wheel").addClass("car-wheel-rotate");
 				grandpaCanMove= true; 
-				makeGrandpaMove();
+				//makeGrandpaMove();
 			}else if(n==15){ // 아내 + 남편 + 친정엄마 + 친정아빠 차안에
 				$(".character-holder .character-box-car").show();
 				$(".car-grandpa").show();
@@ -1340,9 +1347,9 @@ $(function(){
 			var policyStageKey = policyRepresent[s]["policyStage"];
 			if( policyData[p]["policyStage"] == policyStageKey && policyData[p]["represent"] == "no" ){
 				if(policyData[p].policyType==null){
-					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'>정책 자세히 보기 <span class='more-icon'>+</span></p></div></a></li>");
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}else{
-					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'>정책 자세히 보기 <span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}
 				
 			}			
@@ -1358,7 +1365,9 @@ $(function(){
 	}
 	function ShowPolicyLayer(){
 		$(".show-btn").hide();
-		$(".info-layer").stop().animate({"top":"20px"}, 500);
+		if(isMobile==true){
+			$(".info-layer").stop().animate({"top":"10px"}, 500);
+		}else{ 	$(".info-layer").stop().animate({"top":"20px"}, 500);}
 		$(".toggle-box").stop().slideDown(400, "easeInOutCubic", function(){
 			$(".hide-btn").fadeIn();
 		});	
@@ -1514,9 +1523,7 @@ $(function(){
 
 	/// 모바일 터치 ///
 	function touchInit(){
-
-		document.addEventListener("touchstart", handleStart, !1), document.addEventListener("touchmove", handleMove, !1), document.addEventListener("touchend", handleEnd, !1)
-
+		document.getElementsByClassName("dimension-holder")[0].addEventListener("touchstart", handleStart, !1), document.getElementsByClassName("dimension-holder")[0].addEventListener("touchmove", handleMove, !1), document.getElementsByClassName("dimension-holder")[0].addEventListener("touchend", handleEnd, !1)
 	}
 
 	function handleStart(e){
