@@ -47,7 +47,7 @@ $(function(){
 
 	var layersMovement = "horizontal"; //일단 디폴트를 수평이동으로 설정해둠
 
-	var moneyWidth = 150;
+	var moneyWidth = $(".flying-money").width();
 	var moneyFlyTimer;
 
 	var objectUpdown = [], oc = 0;
@@ -246,8 +246,8 @@ $(function(){
 				if( VP < 0){
 					VP = 0
 				}
-				if (VP > $(".actual-scroll").height() + screenWidth){
-					VP = $(".actual-scroll").height() + screenWidth;
+				if (VP > $(".actual-scroll").height() - screenWidth){
+					VP = $(".actual-scroll").height() - screenWidth;
 				}
 		    }
 			deltaVP = VP - preVP;
@@ -657,31 +657,34 @@ $(function(){
 					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
 					console.log("허니문떠남");
 
+					var updownValue = (isMobile==true)? 180 : 350; 
 					objectUpdown = [];
 					objectUpdown.push({
 						start: "horizontal",
 						o: $(".character-box-plane"),
 						s: 0,
-						e: -350,
+						e: -1 * updownValue,
 						m: 0,
-						p: -1 * (350 / upDownWidth),
+						p: -1 * (updownValue / upDownWidth),
 						call: "objectUpdown"
 					});
 					objectUpdown.push({
 						start: "objectUpdown",
 						o: $(".character-box-plane"),
-						s: -350,
+						s: -1 * updownValue,
 						e: 0,
-						m: -350,
-						p: 350 / upDownWidth,
+						m: -1 * updownValue,
+						p: updownValue / upDownWidth,
 						call: "verticalUpdown"
 					});
 
+					var buildingHeight = (isMobile==true)? 520 : 1140; 
+					var arrivePointCorrect = (isMobile==true)? 150 : 500; 
 					verticalUpdown.start = "objectUpdown";
-					verticalUpdown.s = 1140;
+					verticalUpdown.s = buildingHeight;
 					verticalUpdown.e = 0;
-					verticalUpdown.m = 1140;
-					verticalUpdown.p = -1 * (1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2));
+					verticalUpdown.m = buildingHeight;
+					verticalUpdown.p = -1 * (buildingHeight / ($changePoint.eq(4).position().left - arrivePointCorrect - aniObsEndPos - upDownWidth * 2));
 					verticalUpdown.call = "horizontal";
 
 					layersMovement = "objectUpdown";
@@ -697,32 +700,35 @@ $(function(){
 					weddingPlaneGoDown = true;
 					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
 					console.log("허니문돌아옴")
-
+					
+					var updownValue = (isMobile==true)? 180 : 350; 
 					objectUpdown = [];
 					objectUpdown.push({
 						start: "horizontal",
 						o: $(".character-box-plane"),
-						s: -350,
+						s:  -1 * updownValue,
 						e: 0,
-						m: -350,
-						p: 350 / upDownWidth,
+						m: -1 * updownValue,
+						p: updownValue / upDownWidth,
 						call: "objectUpdown"
 					});
 					objectUpdown.push({
 						start: "objectUpdown",
 						o: $(".character-box-plane"),
 						s: 0,
-						e: -350,
+						e:  -1 * updownValue,
 						m: 0,
-						p: -1 * (350 / upDownWidth),
+						p: -1 * (updownValue / upDownWidth),
 						call: "verticalUpdown"
 					});
 
+					var buildingHeight = (isMobile==true)? 520 : 1140; 
+					var arrivePointCorrect = (isMobile==true)? 150 : 500; 
 					verticalUpdown.start = "objectUpdown";
 					verticalUpdown.s = 0;
-					verticalUpdown.e = 1140;
+					verticalUpdown.e = buildingHeight;
 					verticalUpdown.m = 0;
-					verticalUpdown.p = 1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2);
+					verticalUpdown.p = buildingHeight / ($changePoint.eq(4).position().left - arrivePointCorrect - aniObsEndPos - upDownWidth * 2);
 					verticalUpdown.call = "horizontal";
 					layersMovement = "verticalUpdown";
 
@@ -737,12 +743,12 @@ $(function(){
 				}
 
 				// 행복주택 지나갈때 하트
-				if( $aniObs.eq(a).hasClass("honeymoon-house-area") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && houseHeartDone == false ){
+				if( $aniObs.eq(a).hasClass("honeymoon-house-area") && ( VP + $(".character-holder").position().left > aniObsStartPos+screenWidth*0.3) && houseHeartDone == false ){
 					houseHeart();
 				}
 
 				// 보건소 지나갈 때 약 지원
-				if( $aniObs.eq(a).hasClass("healthcenter-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-700) && drugGiven == false ){
+				if( $aniObs.eq(a).hasClass("healthcenter-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-screenWidth*0.5) && drugGiven == false ){
 					drugGiven = true;
 					var $drug = $(".drug-aniOb");
 					for(d=0; d<$drug.length;d++){
@@ -752,7 +758,7 @@ $(function(){
 				// 산부인과 병동 지나면서 아기출산
 				if( $aniObs.eq(a).hasClass("hospital-area") && ( VP + $(".character-holder").position().left > aniObsEndPos-300) && babyCry == false ){
 					babyCry = true;
-					$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic");
+					$(".babycry img").animate({ "width": (isMobile==true)? "150px" : "230px","opacity":"1"}, 800, "easeOutElastic");
 
 				}
 
@@ -767,12 +773,13 @@ $(function(){
 				if ( $aniObs.eq(a).hasClass("mart-area") && (VP + $(".character-holder").position().left  > aniObsStartPos + escalWidth * 0.1) && goMartDown == false && goMartComplete == false){
 
 					goMartDown = true;
-
+					
+					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 					verticalUpdown.start = "horizontal";
 					verticalUpdown.s = 0;
 					verticalUpdown.m = 0;
-					verticalUpdown.e = -(screenHeight * 0.8);
-					verticalUpdown.p = -1 * ((screenHeight * 0.8) / (escalWidth * 0.6));
+					verticalUpdown.e = -1 * martHeight; 
+					verticalUpdown.p = -1 * (martHeight / (escalWidth * 0.6));
 					verticalUpdown.call = "horizontal";
 
 					layersMovement = "verticalUpdown";
@@ -780,12 +787,13 @@ $(function(){
 				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.75 && goMartDown == true && goMartComplete == true && goMartUp == false ){
 
 					goMartUp = true;
-
+					
+					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = -(screenHeight * 0.8);
+					verticalUpdown.s = -1 * martHeight; 
 					verticalUpdown.e = 0;
-					verticalUpdown.m = -(screenHeight * 0.8);
-					verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
+					verticalUpdown.m = -1 * martHeight; 
+					verticalUpdown.p = martHeight / (escalWidth * 0.6);
 					verticalUpdown.call = "horizontal";
 
 					layersMovement = "verticalUpdown";
@@ -804,12 +812,13 @@ $(function(){
 				if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && (VP + $(".character-holder").position().left  > aniObsStartPos + escalWidth * 0.1) && outMartUp == false && outMartComplete == false){
 
 					outMartUp = true;
+					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 
 					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = -(screenHeight * 0.8);
-					verticalUpdown.m = -(screenHeight * 0.8);
+					verticalUpdown.s = -1 * martHeight;
+					verticalUpdown.m =  -1 * martHeight;
 					verticalUpdown.e = 0;
-					verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
+					verticalUpdown.p = martHeight / (escalWidth * 0.6);
 					verticalUpdown.call = "horizontal";
 
 					layersMovement = "verticalUpdown";
@@ -817,12 +826,13 @@ $(function(){
 				} else if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.75 && outMartUp == true && outMartComplete == true && outMartDown == false ){
 
 					outMartDown = true;
-
+					
+					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 					verticalUpdown.start = "horizontal";
 					verticalUpdown.s = 0;
-					verticalUpdown.e = -(screenHeight * 0.8);
+					verticalUpdown.e = -1 * martHeight;
 					verticalUpdown.m = 0;
-					verticalUpdown.p = -1 *((screenHeight * 0.8) / (escalWidth * 0.6));
+					verticalUpdown.p = -1 *( martHeight / (escalWidth * 0.6));
 					verticalUpdown.call = "horizontal";
 
 					layersMovement = "verticalUpdown";
@@ -847,9 +857,8 @@ $(function(){
 				//자격증
 				if( $aniObs.eq(a).hasClass("skill-card-area") && ( VP + screenWidth*0.5 > aniObsStartPos) && VP + $(".character-holder").position().left < aniObsEndPos && skillCardShow == false ){
 					skillCardShow = true;
-					$(".skill-card img").animate({width:"289px", "top":"0"}, 800, "easeOutBounce", function(){
-						$(".skill-up-text img").animate({width:"182px"}, 500, "easeOutBounce");
-					});
+					$(".skill-card img").animate({width: (isMobile==true)? "180px" : "289px", "top":"0"}, 600, "easeOutBounce");			
+					$(".skill-up-text img").delay(100).animate({width: (isMobile==true)? "150px" : "182px"}, 500, "easeOutBounce");
 				}
 
 				//동사무소 지날때 기초연금 수령
@@ -875,7 +884,8 @@ $(function(){
 			}
 
 			//일하는 건물 도착하면 엘리베이터 타고 올라가게
-			if( ( VP + $(".character-holder").position().left >  $(".workbuilding-area").position().left-50 ) && workBuildingArrive == false && nowElevator == false){
+			var scrollReviesd = (isMobile==true)? 0 : 50; 
+			if( ( VP + $(".character-holder").position().left >  $(".workbuilding-area").position().left-scrollReviesd ) && workBuildingArrive == false && nowElevator == false){
 				layersMovement = "vertical";
 				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
 				workBuildingArrive = true;
@@ -884,7 +894,7 @@ $(function(){
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoUpBuilding() );
 			}
 			//일하는 건물에서 다시 엘리베이터 타고 내려가게
-			if(  ( VP + $(".character-holder").position().left < $(".workbuilding-area").position().left+50 ) && workBuildingArrive == true && nowElevator == false){
+			if(  ( VP + $(".character-holder").position().left < $(".workbuilding-area").position().left+scrollReviesd ) && workBuildingArrive == true && nowElevator == false){
 				layersMovement = "vertical";
 				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
 				workBuildingArrive = false;
@@ -907,12 +917,12 @@ $(function(){
 	}
 
 
-	
+	var correctValueAfterMove = (isMobile==true) ? 100 : 200;
 	function chrGoUpBuilding(){
 		nowElevator = true;
 		console.log("빌딩올라가기");
-		$(".horizon-dimension").stop().animate({"top":"1140px"}, 1200, "swing",function(){
-			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left+200);
+		$(".horizon-dimension").stop().animate({"top": (isMobile==true)? "520px": "1140px"}, 1200, "swing",function(){
+			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left+correctValueAfterMove);
 			$("body").removeClass("fixed");
 			nowElevator = false;
 			layersMovement = "horizontal";
@@ -923,7 +933,7 @@ $(function(){
 		nowElevator = true;
 		console.log("빌딩내려가기");
 		$(".horizon-dimension").stop().animate({"top":"0%"}, 1200, "swing",function(){
-			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left-300);
+			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left-correctValueAfterMove);
 			$("body").removeClass("fixed");
 			nowElevator = false;
 			layersMovement = "horizontal";
@@ -933,11 +943,18 @@ $(function(){
 	// 은행 애니메이션
 	function animateBank(){
 		makeMoneyfly();
-		$(".bank-sign").animate({"top":"-5%"}, 700, "easeOutBounce", function(){		
+		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 700, "easeOutBounce", function(){		
 			for(f=0; f<$(".flying-money").length; f++){
-				$(".flying-money").eq(f).delay(150*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){					
-					$(".flying-money").animate({"top":"-0%"}, 500, "swing");
-				});
+				if(isMobile==true){
+					$(".flying-money").eq(f).delay(150*f).animate({"top":"-30%", "right":"-350px"}, 1200, "swing", function(){	
+						$(".flying-money").animate({"top":"100%"}, 500, "swing");
+					});
+				}else{
+					$(".flying-money").eq(f).delay(150*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){	
+						$(".flying-money").animate({"top":"-0%"}, 500, "swing");
+					});
+				}
+				
 				if( f == $(".flying-money").length-1 ){canMoneyFly = false;}				
 			}
 			
@@ -974,7 +991,7 @@ $(function(){
 		for(l=0; l<$(".level-aniOb").length; l++){
 			if(l==$(".level-aniOb").length-1){
 				$(".level-aniOb").eq(0).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");	
-				$(".skillup img").animate({"width":"211px","top":"0"}, 500, "easeOutBounce");
+				$(".skillup img").animate({"width": (isMobile==true)? "150px" : "211px","top":"0"}, 500, "easeOutBounce");
 			}else{
 				$(".level-aniOb").eq($(".level-aniOb").length-l-1).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");	
 			}
@@ -998,7 +1015,7 @@ $(function(){
 		honeymoonPops = true;
 		var $honeyPopItem = $(".honeymoon-aniOb");
 		for(h=0; h<$honeyPopItem.length;h++){
-			$honeyPopItem.eq(h).delay(200*h).animate({"width":"200px","opacity":"1"}, 800, "easeOutElastic");
+			$honeyPopItem.eq(h).delay(100*h).animate({"width": (isMobile==true)? "120px" : "200px","opacity":"1"}, 800, "easeOutElastic");
 		}
 	}
 
@@ -1100,21 +1117,21 @@ $(function(){
 		annuityGiven = true;
 		var $annuityItem = $(".support-money");
 		for(a=0; a<$annuityItem.length;a++){
-			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":"150px","opacity":"1", "left":"0"}, 800, "easeOutBounce");
-			if(a==2){ $(".surplus img").animate({"width":"59px","opacity":"1", "top":"0"}, 800, "easeOutBounce");}
+			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":  (isMobile==true)? "90px" : "150px","opacity":"1", "left":"0"}, 800, "easeOutBounce");
+			if(a==2){ $(".surplus img").animate({"width": (isMobile==true)? "30px" : "59px","opacity":"1", "top":"0"}, 800, "easeOutBounce");}
 		}
 	}
 	// 동사무소 기초연금 지원
 
 
 
-	// 갈매기 파닥파닥
+	// 갈매기 파닥파닥	
 	function SeagullMove(){
 		if(canSeagullMove==false){
 			$(".sea-gull img").css("left","0px");
 			clearInterval(SeagullMoveTimer);
 		}else if(canSeagullMove==true){
-			$(".sea-gull img").css("left", (-1 * 100 * SeagullMoveCounter)  + "px");
+			$(".sea-gull img").css("left", (-1 * $(".sea-gull").width() * SeagullMoveCounter)  + "px");
 			if(SeagullMoveCounter>=1){
 				SeagullMoveCounter = 0;
 			}else{
@@ -1347,7 +1364,7 @@ $(function(){
 			var policyStageKey = policyRepresent[s]["policyStage"];
 			if( policyData[p]["policyStage"] == policyStageKey && policyData[p]["represent"] == "no" ){
 				if(policyData[p].policyType==null){
-					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy policy-noType'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}else{
 					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}
