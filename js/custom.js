@@ -37,7 +37,7 @@ $(function(){
 	var switcher = 1;
 	var chrJumping = false;
 	var movePos;
-	
+
 	var chrLeftEdge = $(".character-holder").position().left * 0.2;
 	var chrRightEdge = (screenWidth - $(".character-holder").position().left - $(".character-holder").width()) * 0.6;
 	var VP_when_moving1, VP_when_moving2;
@@ -90,7 +90,7 @@ $(function(){
 	var grandpaCanMove = false;
 	var annuityGiven = false;
 	var canSeagullMove = false;
-	var levelUpDone = false; 
+	var levelUpDone = false;
 	var parentalLeaveShow= false;
 
 	/////  스크롤, 디멘션 세팅(S)  /////
@@ -126,13 +126,16 @@ $(function(){
 			topValue = -1*$(".plane-holder").height();
 		} else {
 			$orientChr = $chrSpreadDiv;
-			if(isMobile==true){
-			
-			}else{			
-				topValue = -($(".character-holder").height());
-			}
-			
+			topValue = -($(".character-holder").height());
+
+/*			if(isMobile==true){
+
+			} else {
+
+			}*/
+
 		}
+		console.log(topValue);
 		if (deltaVP > 0) $orientChr.css("top", "0px"); /// 눈 깜박임 추후 추가
 		if (deltaVP < 0) $orientChr.css("top", topValue + "px");
 	}
@@ -253,6 +256,7 @@ $(function(){
 			deltaVP = VP - preVP;
 			if (VP <= 0){
 				//  초기위치로 돌아왔을 때 리셋용
+				resetVariables(0);
 			}
 		}
 	}
@@ -366,7 +370,7 @@ $(function(){
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoDownBuilding() );
 				$("body").addClass("fixed");
 			}
-			
+
 			//남편 만나면 하트
 			if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("meet-husband")) && nowSendingHeart == false ){
 				sendHeart();
@@ -467,7 +471,7 @@ $(function(){
 	function animateObjectS2(){
 		if(  VP + $(".character-holder").position().left > $(".honeymoon-house-area").position().left +400 && houseHeartDone == false ){
 			houseHeart();
-		}			
+		}
 	}
 
 	function animateObjectS3(){
@@ -489,7 +493,7 @@ $(function(){
 
 	function  animateObjectS4(){
 		//육아휴직중 멘트
-		if(  VP + screenWidth*0.7 > $(".parental-leave-text-holder").position().left && parentalLeaveShow == false ){			
+		if(  VP + screenWidth*0.7 > $(".parental-leave-text-holder").position().left && parentalLeaveShow == false ){
 			showParentalLeaveText();
 		}
 		// 마트 진입 에스컬레이터
@@ -584,10 +588,10 @@ $(function(){
 			$(".baby-vaccine").addClass("baby-vaccine-show");
 		}
 
-		//장난감 
+		//장난감
 		if( VP + screenWidth*0.5> $(".park-area").position().left  && VP < $(".park-area").position().left + $(".park-area").width() && isToyRun == false ){
 			makeToyRun();
-		}	
+		}
 
 	}
 
@@ -612,7 +616,7 @@ $(function(){
 	/*
 	function animateObject(s){
 		var stage = s;
-		if(stage !== 0 &&  (layersMovement == "horizontal")){			
+		if(stage !== 0 &&  (layersMovement == "horizontal")){
 			eval("animateObjectS"+stage+"();");
 		}
 		if(flagUp.indexOf(false) !== -1){//깃발
@@ -657,7 +661,7 @@ $(function(){
 					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
 					console.log("허니문떠남");
 
-					var updownValue = (isMobile==true)? 180 : 350; 
+					var updownValue = (isMobile==true)? 180 : 350;
 					objectUpdown = [];
 					objectUpdown.push({
 						start: "horizontal",
@@ -678,8 +682,8 @@ $(function(){
 						call: "verticalUpdown"
 					});
 
-					var buildingHeight = (isMobile==true)? 520 : 1140; 
-					var arrivePointCorrect = (isMobile==true)? 150 : 500; 
+					var buildingHeight = (isMobile==true)? 520 : 1140;
+					var arrivePointCorrect = (isMobile==true)? 150 : 500;
 					verticalUpdown.start = "objectUpdown";
 					verticalUpdown.s = buildingHeight;
 					verticalUpdown.e = 0;
@@ -700,8 +704,8 @@ $(function(){
 					weddingPlaneGoDown = true;
 					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
 					console.log("허니문돌아옴")
-					
-					var updownValue = (isMobile==true)? 180 : 350; 
+
+					var updownValue = (isMobile==true)? 180 : 350;
 					objectUpdown = [];
 					objectUpdown.push({
 						start: "horizontal",
@@ -722,8 +726,8 @@ $(function(){
 						call: "verticalUpdown"
 					});
 
-					var buildingHeight = (isMobile==true)? 520 : 1140; 
-					var arrivePointCorrect = (isMobile==true)? 150 : 500; 
+					var buildingHeight = (isMobile==true)? 520 : 1140;
+					var arrivePointCorrect = (isMobile==true)? 150 : 500;
 					verticalUpdown.start = "objectUpdown";
 					verticalUpdown.s = 0;
 					verticalUpdown.e = buildingHeight;
@@ -763,7 +767,7 @@ $(function(){
 				}
 
 				//육아휴직중 멘트
-				if(  VP + screenWidth*0.7 > $(".parental-leave-text-holder").position().left && parentalLeaveShow == false ){			
+				if(  VP + screenWidth*0.7 > $(".parental-leave-text-holder").position().left && parentalLeaveShow == false ){
 					showParentalLeaveText();
 				}
 
@@ -773,12 +777,12 @@ $(function(){
 				if ( $aniObs.eq(a).hasClass("mart-area") && (VP + $(".character-holder").position().left  > aniObsStartPos + escalWidth * 0.1) && goMartDown == false && goMartComplete == false){
 
 					goMartDown = true;
-					
+
 					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 					verticalUpdown.start = "horizontal";
 					verticalUpdown.s = 0;
 					verticalUpdown.m = 0;
-					verticalUpdown.e = -1 * martHeight; 
+					verticalUpdown.e = -1 * martHeight;
 					verticalUpdown.p = -1 * (martHeight / (escalWidth * 0.6));
 					verticalUpdown.call = "horizontal";
 
@@ -787,12 +791,12 @@ $(function(){
 				} else if ( $aniObs.eq(a).hasClass("mart-area") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.75 && goMartDown == true && goMartComplete == true && goMartUp == false ){
 
 					goMartUp = true;
-					
+
 					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 					verticalUpdown.start = "horizontal";
-					verticalUpdown.s = -1 * martHeight; 
+					verticalUpdown.s = -1 * martHeight;
 					verticalUpdown.e = 0;
-					verticalUpdown.m = -1 * martHeight; 
+					verticalUpdown.m = -1 * martHeight;
 					verticalUpdown.p = martHeight / (escalWidth * 0.6);
 					verticalUpdown.call = "horizontal";
 
@@ -826,7 +830,7 @@ $(function(){
 				} else if ( $aniObs.eq(a).hasClass("mart-escalator-reverse-shade") && VP + $(".character-holder").position().left <= aniObsStartPos + escalWidth * 0.75 && outMartUp == true && outMartComplete == true && outMartDown == false ){
 
 					outMartDown = true;
-					
+
 					var martHeight = (isMobile==true)? 450 : screenHeight * 0.8;
 					verticalUpdown.start = "horizontal";
 					verticalUpdown.s = 0;
@@ -857,7 +861,7 @@ $(function(){
 				//자격증
 				if( $aniObs.eq(a).hasClass("skill-card-area") && ( VP + screenWidth*0.5 > aniObsStartPos) && VP + $(".character-holder").position().left < aniObsEndPos && skillCardShow == false ){
 					skillCardShow = true;
-					$(".skill-card img").animate({width: (isMobile==true)? "180px" : "289px", "top":"0"}, 600, "easeOutBounce");			
+					$(".skill-card img").animate({width: (isMobile==true)? "180px" : "289px", "top":"0"}, 600, "easeOutBounce");
 					$(".skill-up-text img").delay(100).animate({width: (isMobile==true)? "150px" : "182px"}, 500, "easeOutBounce");
 				}
 
@@ -884,7 +888,7 @@ $(function(){
 			}
 
 			//일하는 건물 도착하면 엘리베이터 타고 올라가게
-			var scrollReviesd = (isMobile==true)? 0 : 50; 
+			var scrollReviesd = (isMobile==true)? 0 : 50;
 			if( ( VP + $(".character-holder").position().left >  $(".workbuilding-area").position().left-scrollReviesd ) && workBuildingArrive == false && nowElevator == false){
 				layersMovement = "vertical";
 				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
@@ -912,6 +916,20 @@ $(function(){
 					}
 				}
 			}
+			//차량 마지막에 멈추게 
+			if( VP + $(".character-holder").position().left > $(".ending-harbor-area").position().left ){
+				var overDriveValue = VP + $(".character-holder").position().left-$(".ending-harbor-area").position().left;
+				console.log(overDriveValue+"만큼 오버해서 이동");
+				$(".character-box-car").css({"left":(-1*overDriveValue)+"px"});	
+				$(".info-layer").hide();
+				//$(".ending-layer").stop().slideDown(800, "easeInOutCubic");
+				$(".ending-layer").slideDown(800, "easeInOutCubic");
+			}
+			if(  VP + $(".character-holder").position().left <= $(".ending-harbor-area").position().left){
+				$(".info-layer").show();
+				$(".ending-layer").hide();
+			}
+			
 
 		}
 	}
@@ -943,21 +961,21 @@ $(function(){
 	// 은행 애니메이션
 	function animateBank(){
 		makeMoneyfly();
-		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 700, "easeOutBounce", function(){		
+		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 700, "easeOutBounce", function(){
 			for(f=0; f<$(".flying-money").length; f++){
 				if(isMobile==true){
-					$(".flying-money").eq(f).delay(150*f).animate({"top":"-30%", "right":"-350px"}, 1200, "swing", function(){	
-						$(".flying-money").animate({"top":"100%"}, 500, "swing");
+					$(".flying-money").eq(f).delay(150*f).animate({"top":"-40%", "right":"-350px"}, 1200, "swing", function(){
+						$(".flying-money").animate({"top":"150px"}, 500, "swing");
 					});
 				}else{
-					$(".flying-money").eq(f).delay(150*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){	
+					$(".flying-money").eq(f).delay(150*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){
 						$(".flying-money").animate({"top":"-0%"}, 500, "swing");
 					});
 				}
-				
-				if( f == $(".flying-money").length-1 ){canMoneyFly = false;}				
+
+				if( f == $(".flying-money").length-1 ){canMoneyFly = false;}
 			}
-			
+
 		});
 		$(".bank-sign-front img").addClass("rotate");
 	}
@@ -984,18 +1002,18 @@ $(function(){
 		}
 	}
 
-	 
+
 	//학원 레벨업
 	function animateLevelUp(){
-		levelUpDone = true; 	
+		levelUpDone = true;
 		for(l=0; l<$(".level-aniOb").length; l++){
 			if(l==$(".level-aniOb").length-1){
-				$(".level-aniOb").eq(0).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");	
+				$(".level-aniOb").eq(0).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");
 				$(".skillup img").animate({"width": (isMobile==true)? "150px" : "211px","top":"0"}, 500, "easeOutBounce");
 			}else{
-				$(".level-aniOb").eq($(".level-aniOb").length-l-1).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");	
+				$(".level-aniOb").eq($(".level-aniOb").length-l-1).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");
 			}
-		}		
+		}
 	}
 	//학원 레벨업
 
@@ -1049,16 +1067,16 @@ $(function(){
 		}
 	}
 	//남편이 돌아와 점프하는 애니메이션
-	
-	// 육아휴직중 멘트 뜨는 애니메이션 
+
+	// 육아휴직중 멘트 뜨는 애니메이션
 	function showParentalLeaveText(){
 		parentalLeaveShow = true;
 		var $textItem = $(".parental-leave-text-holder .text-holder > img");
 		for(t=0; t < $textItem.length;t++){
-			$textItem.eq(t).delay(100*t).animate({"opacity":"1", "top":"0"}, 500, "easeOutBounce");			
+			$textItem.eq(t).delay(100*t).animate({"opacity":"1", "top":"0"}, 500, "easeOutBounce");
 		}
 	}
-	// 육아휴직중 멘트 뜨는 애니메이션 
+	// 육아휴직중 멘트 뜨는 애니메이션
 
 	//아버지 보행기 움직이는 애니메이션
 	function grandpaMove(){
@@ -1125,7 +1143,7 @@ $(function(){
 
 
 
-	// 갈매기 파닥파닥	
+	// 갈매기 파닥파닥
 	function SeagullMove(){
 		if(canSeagullMove==false){
 			$(".sea-gull img").css("left","0px");
@@ -1169,7 +1187,7 @@ $(function(){
 		}else if( nowChrStage !== n ){ //스테이지 바뀜
 			nowChrStage = n;
 			console.log("캐릭터 "+n+"번째 스테이지");
-			hideChrBoxforChange();			
+			hideChrBoxforChange();
 			if(n>=12){
 				$(".dimension-bg-oldYear").fadeIn();
 			}
@@ -1210,12 +1228,12 @@ $(function(){
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-j").show();
 				$(".husbandBack-stand").show();
-				husbandCanJump = true; 
+				husbandCanJump = true;
 				makehusbandJump();
 			}else if(n==11){ // 아내와 남편 육아 바톤터치
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-k").show();
-				neighboorCanHello = true; 
+				neighboorCanHello = true;
 			    makeNeighboorHello();
 			}else if(n==13){ // 정장 아내 + 친정엄마
 				$(".character-holder .character-box-normal").show();
@@ -1229,7 +1247,7 @@ $(function(){
 				$(".car-woman").show();
 				$(".car-man").show();
 				$(".car-wheel").addClass("car-wheel-rotate");
-				grandpaCanMove= true; 
+				grandpaCanMove= true;
 				//makeGrandpaMove();
 			}else if(n==15){ // 아내 + 남편 + 친정엄마 + 친정아빠 차안에
 				$(".character-holder .character-box-car").show();
@@ -1321,7 +1339,7 @@ $(function(){
 				break;
 			case 6 :
 				return "노년";
-				break;		
+				break;
 		}
 	}
 	function getStageColor(){
@@ -1346,11 +1364,11 @@ $(function(){
 				break;
 			case 6 :
 				return "#ff7800";
-				break;		
+				break;
 		}
 	};
 
-	
+
 	function makePolicyLayer(s){
 		var policyIndex =  getStageText() + "정책 "+ policyRepresent[s]["policyStage"].substr(policyRepresent[s]["policyStage"].length - 1); ;
 		$(".policy-name").html("<span class='type'>"+policyIndex+"</span>"+policyRepresent[s]["policy"]);
@@ -1358,7 +1376,7 @@ $(function(){
 		$(".policy-desc-simple p").html(policyRepresent[s]["desSimple"]);
 		$(".policy-desc-specific p").html(policyRepresent[s]["desSpecific"]);
 		$("#goPolicyRep").attr("href", policyRepresent[s]["link"]);
-		
+
 		$(".policy-list ul").html("");
 		for(p=0;p<policyData.length;p++){
 			var policyStageKey = policyRepresent[s]["policyStage"];
@@ -1368,8 +1386,8 @@ $(function(){
 				}else{
 					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}
-				
-			}			
+
+			}
 		}
 		$("#policyList").scrollTop(0);
 	}
@@ -1378,7 +1396,7 @@ $(function(){
 		$(".info-layer").stop().animate({"top":"0"}, 300);
 		$(".toggle-box").stop().slideUp(200, "swing", function(){
 			$(".show-btn").fadeIn();
-		});	
+		});
 	}
 	function ShowPolicyLayer(){
 		$(".show-btn").hide();
@@ -1387,7 +1405,7 @@ $(function(){
 		}else{ 	$(".info-layer").stop().animate({"top":"20px"}, 500);}
 		$(".toggle-box").stop().slideDown(400, "easeInOutCubic", function(){
 			$(".hide-btn").fadeIn();
-		});	
+		});
 	}
 
 	function checkPolicyLayer(s){
@@ -1405,19 +1423,19 @@ $(function(){
 				console.log(nowPolicyStage+"번째 정책 레이어");
 				makePolicyLayer(s-1)
 				ShowPolicyLayer();
-			}			
+			}
 		}
 	}
 
 	var $policyPoint = $(".policy-layer-point");
-	var nowPolicyStage = 0; 
+	var nowPolicyStage = 0;
 
 	$(".tempo-box").show();
 	$(".real-box").hide();
 
 	function checkPolicy(){
 		var chrPos = VP + $(".character-holder").position().left;
-		if( chrPos <  $policyPoint.eq(0).position().left){		
+		if( chrPos <  $policyPoint.eq(0).position().left){
 			checkPolicyLayer(0);
 		}else if( chrPos >= $policyPoint.eq($policyPoint.length-1).position().left+$policyPoint.eq($policyPoint.length-1).width()){
 			checkPolicyLayer(0);
@@ -1432,9 +1450,9 @@ $(function(){
 				}
 			}
 		}
-	
+
 	}
-	$(".hide-btn").on("click", function(){		
+	$(".hide-btn").on("click", function(){
 		hidePolicyLayer();
 	});
 	$(".show-btn").on("click", function(){
@@ -1502,7 +1520,7 @@ $(function(){
 	}
 	/// 변수 값 리셋 ///
 
-	/// progress bar 그리기	 /// 
+	/// progress bar 그리기	 ///
 	function drawProgressBar(){
 		var nowScroll = VP;
 		var fullScroll = scrollDetph-screenWidth;
@@ -1512,24 +1530,31 @@ $(function(){
 		}else{
 			$(".scroll-value").css({"height": ScrollPer+"%", "background":getStageColor()});
 		}
-	
+
 	}
-	/// progress bar 그리기	 /// 
+	/// progress bar 그리기	 ///
 
 	//// 네비게이션 클릭 ////
-	$(".stage-navi .navi-wrap ul li").on("click", function(){		
+	$(".stage-navi .navi-wrap ul li").on("click", function(){
 		var nav_index = $(this).index();
 		console.log(nav_index);
 		movePos = $stagePoint.eq(nav_index).position().left;
 
 		$(".character-holder").stop().fadeOut(100, function(){
 			resetVariables(nav_index);
-			window.scrollTo(0, movePos);
+			if (deviceName == "computer"){
+				window.scrollTo(0, movePos);
+			} else {
+				VP = movePos;
+				layersMovement = "horizontal";
+				scrollAct();
+			}
+
 			$(".horizon-dimension").css("top", "0px");
-			layersMovement = "horizontal";
+
 			setTimeout(function(){
 				$(".character-holder").fadeIn();
-			}, 500);			
+			}, 500);
 		});
 
 	});

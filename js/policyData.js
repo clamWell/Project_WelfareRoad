@@ -5,7 +5,7 @@ var policyData = [
     "represent": "yes",
     "policy": "취업후 상환 학자금 대출 ",
     "desSimple": "이자가 부담되는 대학생이라면!",
-    "desSpecific": "소득분위 1~8구간의 만 35세 이하 대학생은 등록금 전액과 학기당 최대 150만원의 생활비를 대출받아 취업 후 일정 기준의 이상 소득이 발생했을 때 상환한다. ",
+    "desSpecific": "등록금과 생활비를 대출받고, 취업 후 일정 이상 소득이 발생했을 때 상환할 수 있습니다.",
     "link": "http://www.gov.kr/portal/service/serviceInfo/GES000000110",
     "policyType": "자금지원"
   },
@@ -85,7 +85,7 @@ var policyData = [
     "represent": "yes",
     "policy": "취업성공패키지",
     "desSimple": "취·성·패로 취업 GO~",
-    "desSpecific": "최대 25만원의 참여수당과 직업훈련비를 지원받고, 집중 취업 알선으로 면접도 도와주는 패키지! 내일 배움카로 최대 300만원 한도에서 훈련비의 전액 또는 90%까지의 금액을 지원받을 수 있다.",
+    "desSpecific": "최대 25만원의 참여수당과 직업훈련비를 지원하고, 이후 집중적으로 취업을 도와 드립니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=154",
     "policyType": null
   },
@@ -134,8 +134,8 @@ var policyData = [
     "policyStage": "신혼1",
     "represent": "yes",
     "policy": "신혼부부 행복주택 공급",
-    "desSimple": "대학생, 사회초년생, 신혼부부에게 80% 공급",
-    "desSpecific": "대학생, 청년, 신혼부부 등을 위해 직장과 학교가 가깝고 대중교통 이용이 편리한 곳에 지어진 공공임대주택이다. 행복주택 근처에는 국공립 어린이집, 고용센터, 작은도서관 등의 편의시설도 함께 들어온다. 일반형 행복주택은 대학생, 사회초년생, 신혼부부에게 80%, 취약계층과 노인계층에게 20%로 공급된다.",
+    "desSimple": "대학생, 신혼부부 등에게 80% 공급",
+    "desSpecific": "젊은층의 주거 안정을 위해 주변 시세보다 저렴한 임대주택을 공급합니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=12405",
     "policyType": null
   },
@@ -214,8 +214,8 @@ var policyData = [
     "policyStage": "임신·출산1",
     "represent": "yes",
     "policy": "임신부 철분제·엽산제 지원",
-    "desSimple": "보건소에서 임신부 등록, 꼭 해야 하는 이유",
-    "desSpecific": "임신 16주 이상의 임신부는 보건소에서 5개월분의 철분제와 엽산제를 지원받을 수 있다. 산모 수첩과 신분증을 가지고 관내 보건소에 방문해 임신부 등록을 하면 된다. 보건소에서는 임신성 당뇨, 빈혈 검사 등 각종 검사를 해 줄 뿐만 아니라 출산 교육과 출산 후 지원 정보도 제공하고 있으니 확인해보자.",
+    "desSimple": "보건소에서 임신부 등록하세요",
+    "desSpecific": "16주 이상의 임신부는 보건소에서 철분제와 엽산제를 지원하고, 각종 검사도 해 드립니다.",
     "link": "http://www.gov.kr/portal/service/serviceInfo/WII000001280",
     "policyType": null
   },
@@ -293,10 +293,10 @@ var policyData = [
     "policyStageNumb": 5,
     "policyStage": "육아1",
     "represent": "yes",
-    "policy": "모성보호 육아지원",
+    "policy": "출산 전후 육아지원",
     "desSimple": "출산휴가, 육아휴직, 육아기 근로시간 단축",
-    "desSpecific": "출산 후 급여는 통상임금의 100% (상한액 540만원)를 받을 수 있다. 사업주는 여성근로자를 출산전후 휴가 기간과 그 후 30일 동안 해고할 수 없다. 유산 또는 사산한 경우에도 근로자가 청구하면 휴가를 주고 통상임금을 지원해야 한다.",
-    "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=146",
+    "desSpecific": "출산 전후 90일의 휴가를 부여하고, 통상임금의 100%(최대 540만원)를 지원합니다.",
+    "link": "http://www.worklife.kr/website/index/m4/worker_pay.asp",
     "policyType": null
   },
   {
@@ -365,7 +365,7 @@ var policyData = [
     "represent": "yes",
     "policy": "어린이 예방접종비 지원",
     "desSimple": "예방접종비, 필요없어요",
-    "desSpecific": "12세 이하 어린이는 B형 간염, 파상풍, 폐렴균, 홍역 등을 예방하는 17종 백신을 무료로 접종받을 수 있다. 걱정이 된다면 문자를 통해 다음 예방접종을 알려주는 ‘필수예방접종 사전알림’ 서비스를 신청하자.",
+    "desSpecific": "12세 이하 어린이는 B형 간염, 홍역 등을 예방하는 17종 백신을 무료로 접종받을 수 있습니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=245",
     "policyType": null
   },
@@ -413,9 +413,9 @@ var policyData = [
     "policyStageNumb": 7,
     "policyStage": "육아3",
     "represent": "yes",
-    "policy": "배우자 출산휴가, 아빠 육아휴직 보너스제 ",
+    "policy": "아빠 육아휴직 보너스제",
     "desSimple": "첫 3달은 최대 750만원 지원",
-    "desSpecific": "부모 중 한 명이 육아휴직을 사용한 후에 같은 자녀에 대해 다른 양육자가 육아휴직을 사용하면 두 번째 육아휴직자는 첫 3개월 동안 통상임금의 100%(상한액 250만원)에 해당하는 육아휴직 급여를 받을 수 있다. 나머지 기간 동안에는 통상임금의 50%(상한액 120만원)에 해당하는 금액을 받을 수 있다.",
+    "desSpecific": "아빠와 엄마가 한 자녀에 대해 연이어 육아휴직을 사용하면 두 번째 휴직자는 첫 3개월 동안 통상임금의 100%(최대 250만원)를 받을 수 있습니다.",
     "link": "http://www.worklife.kr/website/index/m4/worker_pay.asp",
     "policyType": null
   },
@@ -495,7 +495,7 @@ var policyData = [
     "represent": "yes",
     "policy": "아이돌봄서비스",
     "desSimple": "1:1로 안전하게, 아이돌보미가 찾아가요",
-    "desSpecific": "12세 이하 자녀를 둔 가정에 돌보미가 원하는 시간대에 필요한 만큼 아이돌보미가 직접 방문해 아이들을 돌봐주는 서비스, 맞벌이나 장애부모, 다자녀 가정 등은 연 720시간 내에서 정부 지원을 받을수 있는데 서비스 요금에 대한 정부지원 금액은 소득 수준에 따라 다르다.",
+    "desSpecific": "원하는 시간대에 필요한 만큼 아이돌보미가 직접 찾아가 아이들을 돌봐 드립니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=164",
     "policyType": null
   },
@@ -735,7 +735,7 @@ var policyData = [
     "represent": "yes",
     "policy": "여성경제활동 촉진지원",
     "desSimple": "전국 158개소 운영 중",
-    "desSpecific": "임신과 출산, 혹은 가족 돌봄으로 경제활동을 중단했거나 경제활동을 한 적이 없는 여성 중 취업을 희망하는 이들은 여성 새로 일하기 센터를 통해 취업처를 찾을 수 있다. 2019년 기준으로 전국에 158개소가 운영 중이며 취업뿐만 아니라 창업에 대한 직업 교육 훈련도 받을 수 있다.",
+    "desSpecific": "경력이 단절됐거나 경제활동 경험이 없는 여성들은 '여성 새로 일하기 센터'에서 취업을 도와드립니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=170",
     "policyType": null
   },
@@ -796,7 +796,7 @@ var policyData = [
     "policy": "근로시간 단축 청구권",
     "desSimple": null,
     "desSpecific": null,
-    "link": "링크 없음 / 가족돌봄, 질병, 은퇴준비, 학업등으로 1년 2년 범위내 연장 가능하지만 학업은 연장 없음 ",
+    "link": "http://news.khan.co.kr/kh_news/khan_art_view.html?art_id=201908021825001",
     "policyType": null
   },
   {
@@ -815,7 +815,7 @@ var policyData = [
     "represent": "yes",
     "policy": "노인 폐렴구균 예방접종 지원",
     "desSimple": "1회 접종만으로도 합병증 50-80% 예방 가능",
-    "desSpecific": "정부는 만 65세 이상 어르신의 침습성 폐렴구균 감염병을 예방하기 위해, 무료 예방접종 사업을 하고 있다. 폐렴구균 예방접종은 1회 접종만으로 폐렴구균 감염에 의한 패혈증, 뇌수막염 등 심각한 합병증을 50-80% 예방할 수 있다.",
+    "desSpecific": "만 65세 이상 어르신은 폐렴구균 감염병 예방을 위해 무료 예방 접종을 받을 수 있습니다.",
     "link": "http://www.gov.kr/portal/service/serviceInfo/SD0000016141",
     "policyType": null
   },
@@ -914,8 +914,8 @@ var policyData = [
     "policyStage": "노년2",
     "represent": "yes",
     "policy": "노인 장기요양보험 - 시설급여",
-    "desSimple": "시설급여는 20%만 본인부담",
-    "desSpecific": "소득수준과 상관없이 거동이 불편하고 일상생활을 혼자서 수행하기 어려워 장기요양 1~5등급 판정을 받은 65세 이상 혹은 치매·뇌혈관 질환 등을 가진 어르신은 방문요양을 위한 재가급여나 노인요양시설 등에 입소하기 위한 시설급여를 받을 수 있다. 재가급여는 15%, 시설급여는 20%의 본인부담금이 있다.",
+    "desSimple": "홀로 일상생활이 어려운 어르신을 위해",
+    "desSpecific": "거동이 불편한 어르신이 집이나 시설에서 머물며 도움받을 수 있도록 지원합니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=345",
     "policyType": null
   },
@@ -984,8 +984,8 @@ var policyData = [
     "policyStage": "노년2",
     "represent": "yes",
     "policy": "기초연금 지급",
-    "desSimple": "65세부터 최대 30만원 지원",
-    "desSpecific": "만 65세 이상의 어르신 중, 소득인정액이 일정 수준 이하인 분들은 월 최대 30만원의 기초연금을 받을 수 있다.",
+    "desSimple": "어려운 노후를 보내시는 어르신들에게",
+    "desSpecific": "만 65세 이상의 어르신 중, 소득인정액이 일정 이하인 분들은 기초연금을 드립니다.",
     "link": "http://www.gov.kr/portal/service/serviceInfo/SSE000000170",
     "policyType": null
   },
