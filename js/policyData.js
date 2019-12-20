@@ -731,7 +731,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "yes",
     "policy": "여성경제활동 촉진지원",
     "desSimple": "전국 158개소 운영 중",
@@ -741,7 +741,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "여성기업종합지원센터 운영",
     "desSimple": null,
@@ -751,7 +751,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "결혼이민여성 취업지원",
     "desSimple": null,
@@ -761,7 +761,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "여성 인재 데이터베이스 등록 서비스 제공",
     "desSimple": null,
@@ -771,7 +771,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "육아기 근로시간 단축 및 급여",
     "desSimple": null,
@@ -781,7 +781,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "경력단절여성 고용 관련 세제혜택",
     "desSimple": null,
@@ -791,7 +791,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "근로시간 단축 청구권",
     "desSimple": null,
@@ -801,7 +801,7 @@ var policyData = [
   },
   {
     "policyStageNumb": 9,
-    "policyStage": "육아5",
+    "policyStage": "워라밸1",
     "represent": "no",
     "policy": "여성 창업지원",
     "desSimple": null,

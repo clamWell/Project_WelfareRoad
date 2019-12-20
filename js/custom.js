@@ -103,15 +103,24 @@ $(function(){
 		$(".horizon-dimension-5").width(scrollDetph); // 근경 중 캐릭터 위로 덮는 요소들
 	}
 
+	function showPagetitle(){
+		$(".intro-title .main-title-1 img").animate({"top":"0px", "opacity":"1"}, 500, "easeInOutBack");
+		$(".intro-title .main-title-2 img").delay(200).animate({"top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){			
+			$(".intro-title .sub-title img").animate({"left":"0px", "opacity":"1"}, 500, "swing");
+			$(".intro-title .bee").css({"opacity":"1"})
+			$(".intro-title .bee-1 img").animate({"top":"0px", "left":"0px"}, 600, "swing");
+			$(".intro-title .bee-2 img").animate({"top":"0px", "right":"0px"}, 600, "swing");
+		});
+	};
+
 	// 시작하면 캐릭터 하늘에서 떨어짐
 	function ShowCharacterBox(){
-		$(".character-holder").stop().animate({"bottom":"15%"}, 1000, "swing", function(){
-			defaultCharcterFrame();
+		$(".character-holder").stop().animate({"bottom":"15%"}, 800, "swing", function(){
+			defaultCharcterFrame();		
+			showPagetitle();
 			window.setTimeout(function(){
 				canScroll = true;
 				canChrAni = true;
-				$(".stage-navi").addClass("navi-show");
-				$(".info-layer ").animate({"top":"0px"},500);
 				$(".intro-manual").show();
 			}, 500);
 		});
@@ -632,6 +641,12 @@ $(function(){
 	}*/
 
 	function animateObject(){
+		if( firstScroll== false && VP > screenWidth ){
+			firstScroll = true; 
+			$(".intro-manual").fadeOut(1000);
+			$(".stage-navi").addClass("navi-show");
+			$(".info-layer ").animate({"top":"0px"},500);
+		}
 		if (layersMovement == "horizontal"){
 			for(a = 0; a < $aniObs.length; a++){
 				var aniObsStartPos = $aniObs.eq(a).position().left;
@@ -1572,6 +1587,10 @@ $(function(){
 
 	//// 네비게이션 클릭 ////
 
+	$(".video-board-area").on("click", function(){
+		 window.open("https://www.youtube.com/channel/UCHXvjavEtkPFJCfGlm0wTXw");
+		 console.log("t");
+	});
 
 
 	/// 모바일 터치 ///
@@ -1609,8 +1628,9 @@ $(function(){
 		});
 	}
 
+	var firstScroll = false; 
+
 	function scrollAct(){
-		$(".intro-manual").fadeOut(1000);
 		checkChrBoxState();
 		checkStage();
 		makeChrRun();
@@ -1625,6 +1645,29 @@ $(function(){
 
 	settingDimenstionWidth();
 	setLayerSpeed();
+
+	if( ieTest == true) {
+		$("body").on("mousewheel", function(){ 
+			event.preventDefault()
+			var wheelDelta = event.wheelDelta;
+			var currentScrollPosition = window.pageYOffset;
+			window.scrollTo(0, currentScrollPosition - wheelDelta); 
+		});
+		$("body").keydown(function(e){
+			e.preventDefault();
+			var currentScrollPosition = window.pageYOffset;
+			switch (e.which) {
+				case 38: // up 
+					window.scrollTo(0, currentScrollPosition - 120); 
+					break;
+				case 40: // down
+					window.scrollTo(0, currentScrollPosition + 120);
+					break;
+				default: 
+					return;
+			} 
+		}); 
+	}
 
 	$(window).on("load", function(){
 		afterLoad();
