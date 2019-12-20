@@ -75,6 +75,7 @@ $(function(){
 	var houseHeartDone = false;
 	var drugGiven = false;
 	var babyCry = false;
+	var changeImgShow = false;
 
 	var goMartDown = goMartUp = goMartComplete = false;
 	var outMartUp = outMartDown = outMartComplete = false;
@@ -111,6 +112,7 @@ $(function(){
 				canChrAni = true;
 				$(".stage-navi").addClass("navi-show");
 				$(".info-layer ").animate({"top":"0px"},500);
+				$(".intro-manual").show();
 			}, 500);
 		});
 	}
@@ -851,6 +853,12 @@ $(function(){
 					layersMovement = "verticalUpdown";
 				}
 
+				//바톤터치 
+				if( $aniObs.eq(a).hasClass("player-change") && ( VP + $(".character-holder").position().left +screenWidth*0.2 > aniObsStartPos ) && VP + $(".character-holder").position().left < aniObsEndPos && changeImgShow == false ){
+					changeImgShow = true;
+					$(".change-img-holder").addClass("change-img-holder-show");
+				}				
+
 
 				//보건소 영유아 예방접종
 				if( $aniObs.eq(a).hasClass("healthcenter-area-second") && ( VP + $(".character-holder").position().left > aniObsStartPos+400) && VP + $(".character-holder").position().left < aniObsEndPos && babyVaccineDone == false ){
@@ -1408,13 +1416,16 @@ $(function(){
 		});
 	}
 
+	$(".tempo-box").hide();
+	$(".real-box").show();
+
 	function checkPolicyLayer(s){
 		if( nowPolicyStage == s){
 		}else if( nowPolicyStage !==s ){
 			nowPolicyStage = s;
 			if( s == 0){
-				$(".tempo-box").show();
-				$(".real-box").hide();
+				//$(".tempo-box").show();
+				//$(".real-box").hide();
 				console.log("레이어 밖");
 				hidePolicyLayer();
 			}else{
@@ -1599,6 +1610,7 @@ $(function(){
 	}
 
 	function scrollAct(){
+		$(".intro-manual").fadeOut(1000);
 		checkChrBoxState();
 		checkStage();
 		makeChrRun();

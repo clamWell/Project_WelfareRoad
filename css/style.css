@@ -169,6 +169,22 @@ background: linear-gradient(180deg,#4ccfff 40%,#e1f7ff); position: fixed; width:
 
 .footer-logo { position: fixed; bottom: 10px; left: 15px; opacity:0.5; }
 
+.intro-manual { position: fixed; bottom: 30px;width: 100%;  animation: blink 1.5s linear infinite; display:none; }
+.intro-manual .pc { display:block; }
+.intro-manual .m { display:none; }
+.intro-manual .manual-icon {width: 200px; margin: 0 auto; text-align: center; margin-bottom: 15px;}
+.intro-manual .manual-icon .scroll-icon {width: 20px;}
+.intro-manual .manual-icon .keyboard-icon {width: 25px; margin-left: 20px;}
+.intro-manual .text-holder { margin-top: 0; }
+.intro-manual .text-holder img { display: block; margin: 0 auto;width: 400px; }
+
+@keyframes blink {
+	0%{ opacity:1; }
+	49%{ opacity:1;}
+	50%{ opacity:0.2;}
+	95% { opacity:0.2; }
+	100% { opacity:1; }
+}
 
 /*** dimension 요소들: horizon-1 **/
 .bank-sign { width: 470px; left: 2000px; top: -40%; }
@@ -287,7 +303,7 @@ display: none;}
 
 .healthcenter-area-second { left: 34500px; bottom: 15%; }
 .healthcenter-area-second .heathcenter{ }
-.healthcenter-area-second .baby-vaccine { position: absolute; top: 30px;  background: #fff;border-radius: 10px; box-shadow: 5px 5px 0px #111; box-sizing: border-box; padding: 20px; left: 700px;transition:all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; transform: scale(0.1);  opacity: 0;}
+.healthcenter-area-second .baby-vaccine { position: absolute; top: 30px;  background: #fff;border-radius: 10px; box-shadow: 5px 5px 0px #111; box-sizing: border-box; padding: 20px; left: 700px; transition:all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; transform: scale(0.1);  opacity: 0;}
 .healthcenter-area-second .baby-vaccine .baby-vaccine-1 { }
 .healthcenter-area-second .baby-vaccine .baby-vaccine-2 {}
 .healthcenter-area-second .baby-vaccine-show { transform: scale(1);  opacity: 1;} 
@@ -299,6 +315,12 @@ display: none;}
 .husband-jump-aft { position: relative;}
 .husbandBack-house-area { left: 37500px; bottom: 15%; }
 .husbandBack-house-area .cat { position: absolute; bottom: 0; right: -200px; }
+.player-change { position: absolute; bottom: 15%;  left: 38320px;}
+.player-change .change-img-holder {position: relative; bottom: 100px; box-sizing: border-box;  width:100%; padding: 20px;border-radius: 6px; background:#fff; transition:all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; }
+.player-change .change-img-holder .change { width: 200px; }
+.player-change .tail { position: absolute; bottom: -25px; left: 30px; width: auto;  }
+.player-change .change-img-holder { transform: scale(0); -webkit-transform: scale(0); -ms-transform: scale(0); }
+.player-change .change-img-holder-show { transform: scale(1); -webkit-transform: scale(1); -ms-transform: scale(1); }
 
 .neighboorhood-area { left: 40200px; bottom: 15%; }
 .neighboor-family-holder { position: relative; }
@@ -394,10 +416,6 @@ display: none;}
 .light-house-area .light-house {}
 .light-house-area .light-house img {}
 .light-house-area .yellow-light {position: absolute; top: -90px; left: -770px; animation: light 4s linear 0s infinite;}
-@keyframes light{
-	0%{  transform: rotate3d(0, 1, 0, 0deg); transform-origin: center right;  }
-	100%{  transform: rotate3d(0, 1, 0, 360deg); transform-origin: center right; }
-}
 
 .ending-harbor-area { bottom: 15%; left: 65300px; }
 .ending-harbor { position: relative; } 
@@ -424,7 +442,18 @@ display: none;}
 .jump-point .kone {  }
 .jump-point .kone img { }
 .jump-point .warm-holder { width: 70px; height:27px; overflow:hidden;}
-.jump-point .warm-holder img { position: relative; left:0; }
+.jump-point .warm-holder img { position: relative; left:0;  width: 140px; height: 27px;
+animation: warmMove 1.2s linear infinite; }
+
+@keyframes warmMove {
+	0%{  position: relative; left: -0px;  }
+	49%{  position: relative; left: -0px;  }
+	50%{  position: relative; left: -70px;  }
+	99%{ position: relative; left: -70px; }
+	100%{  position: relative; left: -0px;  }
+}
+
+
 
 /*** 캐릭터 전환지점 ***/
 .change-point { position: absolute; width: 40px; height: 20px;  z-index:10; }
@@ -1107,7 +1136,19 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .rainbow{left: 1800px;}
 
 
-    
+.intro-manual { bottom: auto;  top: 60px; animation: none;  }
+.intro-manual .pc { display:none; }
+.intro-manual .m { display:block; }
+.intro-manual .text-holder img { width: 280px; }
+.intro-manual .manual-icon { margin-bottom: 5px; }
+.swipe-icon { width: 70px; position: relative; left: -20px;transform-origin: bottom right; animation: swipe 1.5s alternate ease-in-out infinite;}   
+@keyframes swipe{
+	0%{ transform: rotate(30deg); }
+	50%{  transform: rotate(30deg); transform: rotate(0deg);}to{ transform: rotate(30deg); }	
+}
+
+
+
 
 .jump-point-1 { left: 770px; }
 .flag-point-1 { left: 700px; }
