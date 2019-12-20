@@ -169,7 +169,7 @@ transform: translateZ(0);-webkit-transform: translateZ(0);width:99.999%;  }
 .dimension-holder .horizon-dimension-1 .ob {position: absolute;}
 
 .intro-title { left: 100px; bottom: 15%; }
-.intro-title .title-holder { position: relative; top:-180px; }
+.intro-title .title-holder { position: relative; top:-230px; }
 .intro-title .sub-title { }
 .intro-title .sub-title img { position: relative; left:-150px; opacity:0; }
 .intro-title .main-title-1 {}
@@ -184,7 +184,7 @@ transform: translateZ(0);-webkit-transform: translateZ(0);width:99.999%;  }
 
 
 
-.footer-logo { position: fixed; bottom: 10px; left: 15px; opacity:0.5; }
+.footer-logo { position: fixed; bottom: 10px; left: 15px; opacity:0.5; display:none;  }
 
 .intro-manual { position: fixed; bottom: 30px;width: 100%;  animation: blink 1.5s linear infinite; display:none; }
 .intro-manual .pc { display:block; }
@@ -709,6 +709,13 @@ font-weight: bold; color:#333; text-align: center; display:none}
 	50%{-webkit-transform:translateY(20px); transform:translateY(0)}to{-webkit-transform:translateY(20px);transform:translateY(20px)}	
 }
 
+
+.charcter-baloon { position: absolute; top: -110px; left: 105px; display:none;}
+.charcter-baloon .baloon-txt { width: 250px; background:#fff; box-sizing: border-box; padding: 20px; border-radius: 5px;
+ font-size: 15px; font-weight: 500; color: #44494e; text-align: center; }
+.charcter-baloon .tail { position: absolute; left: 10px;}
+.charcter-baloon .tail img { width: 25px; vertical-align: top;}
+
 /*** 네비게이션 ***/
 .stage-navi { }
 .navi-fixed {transition: right 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s; position: fixed; right: -100px; top:50%; margin-top: -280px; z-index: 20; }
@@ -1110,17 +1117,22 @@ body.scrollOff{position:fixed;overflow:hidden;height:100%;}
 p.loading-ment { font-size: 14px; letter-spacing: 1px;  margin-top: 0; }
 .road .grass { height: 25px;  background-size: auto 100%;}
 
-.intro-title {  left: 30px; }
+.intro-title {  left: 40px; }
 
-.intro-title .title-holder { top: -130px; }
-.intro-title .sub-title img {  width: 260px; left: -80px;}
-.intro-title .main-title-1 img {  width: 220px; top:-80px; }
+.intro-title .title-holder { top: -150px; }
+.intro-title .sub-title img {  width: 230px; left: -80px;}
+.intro-title .main-title-1 img {  width: 190px; top:-80px; }
 .intro-title .main-title-2 { top: -45px; left: 80px;}
-.intro-title .main-title-2 > img {  width: 230px; top: -80px; }
-.intro-title .bee-1  { right: 0px; bottom: 60px; }
-.intro-title .bee-1 img { width: 30px; }
-.intro-title .bee-2 { left: -50px; bottom: 0px; }
-.intro-title .bee-2 img { width: 40px; }
+.intro-title .main-title-2 > img {  width:180px; top: -80px; }
+.intro-title .bee-1  { right: 10px; bottom: 40px; }
+.intro-title .bee-1 img { width: 25px; }
+.intro-title .bee-2 { left: -35px; bottom: 0px; }
+.intro-title .bee-2 img { width: 30px; }
+
+.charcter-baloon { top: -80px; left: -10px;}
+.charcter-baloon .baloon-txt {   width: 200px; font-size: 13px; line-height:1.4; padding: 10px; text-align: center;}
+.charcter-baloon .tail img { width: 20px; }
+.charcter-baloon .tail { left: 70px;}
 
 .info-layer { right: auto;  top: 10px;  top:-100px; width: 100%; }
 .info-layer-box {width: 95%; box-sizing: border-box; margin: 0 auto; padding: 18px 15px; }
@@ -1176,17 +1188,16 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .background-building-2 { width: 80px; }
 
 
-
 .rainbow img { width: 400px; }
 .rainbow{left: 1800px;}
 
 
-.intro-manual { bottom: auto;  top: 60px; animation: none;  }
+.intro-manual { bottom: 15px; animation: none;  }
 .intro-manual .pc { display:none; }
 .intro-manual .mobile { display:block; }
-.intro-manual .text-holder img { width: 280px; }
+.intro-manual .text-holder img { width: 230px; }
 .intro-manual .manual-icon { margin-bottom: 5px; }
-.swipe-icon { width: 70px; position: relative; left: -20px;transform-origin: bottom right; animation: swipe 1.5s alternate ease-in-out infinite;}   
+.swipe-icon { width: 40px; position: relative; left: -20px;transform-origin: bottom right; animation: swipe 1.5s alternate ease-in-out infinite;}   
 @keyframes swipe{
 	0%{ transform: rotate(30deg); }
 	50%{  transform: rotate(30deg); transform: rotate(0deg);}to{ transform: rotate(30deg); }	

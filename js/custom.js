@@ -105,7 +105,8 @@ $(function(){
 
 	function showPagetitle(){
 		$(".intro-title .main-title-1 img").animate({"top":"0px", "opacity":"1"}, 500, "easeInOutBack");
-		$(".intro-title .main-title-2 img").delay(200).animate({"top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){			
+		$(".intro-title .main-title-2 img").delay(200).animate({"top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){	
+			$(".charcter-baloon").fadeIn(300);
 			$(".intro-title .sub-title img").animate({"left":"0px", "opacity":"1"}, 500, "swing");
 			$(".intro-title .bee").css({"opacity":"1"})
 			$(".intro-title .bee-1 img").animate({"top":"0px", "left":"0px"}, 600, "swing");
@@ -641,11 +642,12 @@ $(function(){
 	}*/
 
 	function animateObject(){
-		if( firstScroll== false && VP > screenWidth ){
+		if( firstScroll== false && VP > screenWidth*0.5 ){
 			firstScroll = true; 
 			$(".intro-manual").fadeOut(1000);
 			$(".stage-navi").addClass("navi-show");
 			$(".info-layer ").animate({"top":"0px"},500);
+			$(".charcter-baloon").fadeOut(300);
 		}
 		if (layersMovement == "horizontal"){
 			for(a = 0; a < $aniObs.length; a++){
@@ -1653,6 +1655,7 @@ $(function(){
 			var currentScrollPosition = window.pageYOffset;
 			window.scrollTo(0, currentScrollPosition - wheelDelta); 
 		});
+		/*
 		$("body").keydown(function(e){
 			e.preventDefault();
 			var currentScrollPosition = window.pageYOffset;
@@ -1666,7 +1669,7 @@ $(function(){
 				default: 
 					return;
 			} 
-		}); 
+		}); */
 	}
 
 	$(window).on("load", function(){
