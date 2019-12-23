@@ -3,7 +3,7 @@ $(function(){
 	var ieTest = false,
 		screenWidth = $(window).width(),
 		screenHeight = $(window).height(),
-		imgURL = "http://img.khan.co.kr/spko/storytelling/2019/labordeath/",
+		imgURL = "http://img.khan.co.kr/spko/storytelling/2019/running/",
 		isMobile = screenWidth <= 710 && true || false,
 		isNotebook = (screenWidth <= 1300 && screenHeight < 750) && true || false;
 
@@ -1407,9 +1407,9 @@ $(function(){
 			var policyStageKey = policyRepresent[s]["policyStage"];
 			if( policyData[p]["policyStage"] == policyStageKey && policyData[p]["represent"] == "no" ){
 				if(policyData[p].policyType==null){
-					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy policy-noType'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy policy-noType'><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='http://img.khan.co.kr/spko/storytelling/2019/running/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}else{
-					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='img/outlink-icon.png' alt=''></span></p></div></a></li>");
+					$(".policy-list ul").append("<li><a href='"+policyData[p].link+"' target='_blank' class='goPolicyOther'><div class='each-policy'><span class='type'>"+ policyData[p].policyType+ "</span><span class='name'>"+policyData[p].policy+ "</span><p class='see-more'><span class='text'>정책 자세히 보기</span><span class='more-icon'><img src='http://img.khan.co.kr/spko/storytelling/2019/running/outlink-icon.png' alt=''></span></p></div></a></li>");
 				}
 
 			}
