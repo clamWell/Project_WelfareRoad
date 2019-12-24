@@ -104,13 +104,10 @@ $(function(){
 	}
 
 	function showPagetitle(){
-		$(".intro-title .main-title-1 img").animate({"top":"0px", "opacity":"1"}, 500, "easeInOutBack");
-		$(".intro-title .main-title-2 img").delay(200).animate({"top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){	
-			$(".charcter-baloon").fadeIn(300);
+		$(".intro-title .main-title-1 img").animate({"left":"0", "top":"0px", "opacity":"1"}, 500, "easeInOutBack");
+		$(".intro-title .main-title-2 img").delay(200).animate({"left":"0", "top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){	
+			$(".charcter-baloon").fadeIn();
 			$(".intro-title .sub-title img").animate({"left":"0px", "opacity":"1"}, 500, "swing");
-			$(".intro-title .bee").css({"opacity":"1"})
-			$(".intro-title .bee-1 img").animate({"top":"0px", "left":"0px"}, 600, "swing");
-			$(".intro-title .bee-2 img").animate({"top":"0px", "right":"0px"}, 600, "swing");
 		});
 	};
 
@@ -166,7 +163,7 @@ $(function(){
 
 		if (chrJumping == true) return;
 
-		var chrWidth = nowChrStage == 5 ? $(".character-box-wedding").width() : defaultchrWidth;
+		var chrWidth = nowChrStage == 5 ? $(".character-box-wedding").width() : ( nowChrStage == 11 ? $(".character-box-family").width() : defaultchrWidth) ;
 		if (chrStatus == "run")	chrStart = chrRunStartFrame, chrEnd = chrRunEndFrame;
 
 		$chrSpreadDiv.css("left", (-1 * chrWidth * counter)  + "px");
@@ -642,12 +639,12 @@ $(function(){
 	}*/
 
 	function animateObject(){
-		if( firstScroll== false && VP > screenWidth*0.5 ){
+		if( firstScroll== false && VP > screenWidth*0.2 ){
 			firstScroll = true; 
-			$(".intro-manual").fadeOut(1000);
+			$(".intro-manual").hide();
 			$(".stage-navi").addClass("navi-show");
 			$(".info-layer ").animate({"top":"0px"},500);
-			$(".charcter-baloon").fadeOut(300);
+			$(".charcter-baloon").hide();
 		}
 		if (layersMovement == "horizontal"){
 			for(a = 0; a < $aniObs.length; a++){
@@ -989,11 +986,11 @@ $(function(){
 		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 700, "easeOutBounce", function(){
 			for(f=0; f<$(".flying-money").length; f++){
 				if(isMobile==true){
-					$(".flying-money").eq(f).delay(150*f).animate({"top":"-40%", "right":"-350px"}, 1200, "swing", function(){
+					$(".flying-money").eq(f).delay(200*f).animate({"top":"-40%", "right":"-350px"}, 1200, "swing", function(){
 						$(".flying-money").animate({"top":"150px"}, 500, "swing");
 					});
 				}else{
-					$(".flying-money").eq(f).delay(150*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){
+					$(".flying-money").eq(f).delay(200*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){
 						$(".flying-money").animate({"top":"-0%"}, 500, "swing");
 					});
 				}
@@ -1194,12 +1191,16 @@ $(function(){
 	function hideChrBoxforChange(){
 		$(".character-holder .character-box").hide();
 		$(".character-holder .character-spread").hide();
+		$(".intro-manual").hide();
 		$(".husbandBack-stand").hide();
 		$(".grandma-stand").hide();
 		$(".grandpa-stand").hide();
+		$(".husband").hide();
 		$(".dimension-bg").fadeOut();
 		$(".car-wheel").removeClass("car-wheel-rotate");
 		$(".passenger > div").hide();
+		$(".charcter-baloon").hide();
+		//$(".character-holder .character-box-normal-husband").removeClass("husband-nearby");
 		husbandCanJump = false;
 		neighboorCanHello = false;
 		grandpaCanMove = false;
@@ -1226,9 +1227,12 @@ $(function(){
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-c").show();
 				if(n==12){  $(".grandma-stand").show();}
+				else if(n==3){
+					$(".husband").show();
+				}
 			}else if(n==4){ // 비행기
 				$(".character-holder .character-box-plane").show();
-				$(".dimension-bg-wedding").fadeIn();
+				$(".dimension-bg-wedding").fadeIn();				
 			}else if(n==5){ // 신혼여행 끝
 				weddingPlaneComplete = true;
 				$(".character-holder .character-box-wedding").show();
@@ -1239,25 +1243,19 @@ $(function(){
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-f").show();
 				$(".character-holder .character-spread-g").show();
-			}else if(n==7){ // 출산 아이 함께
+			}else if(n==7){ // 출산 엄마가 아이 안고 
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-h").show();
 				$(".character-holder .character-spread-g").show();
-			}else if(n==8 || n==10){ // 출산 이후 남편 정장 & 집 앞에서 남편 만남
+			}else if(n==8 || n==9 || n==10){ // 출산 이후 
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-j").show();
-				$(".character-holder .character-spread-i").show();
-			}else if(n==9){ // 출산 이후 남편 출근, 아내 혼자 남음
-				$(".character-holder .character-box-normal").show();
-				$(".character-holder .character-spread-j").show();
-				$(".husbandBack-stand").show();
-				husbandCanJump = true;
-				makehusbandJump();
-			}else if(n==11){ // 아내와 남편 육아 바톤터치
-				$(".character-holder .character-box-normal-husband").show();
-				$(".character-holder .character-spread-k").show();
+				$(".character-holder .character-spread-m").show();
+			}else if(n==11){ // 아내와 남편 아이 성장
+				$(".character-holder .character-box-family").show();
+				$(".character-holder .character-spread-n").show();
 				neighboorCanHello = true;
 			    makeNeighboorHello();
 			}else if(n==13){ // 정장 아내 + 친정엄마
@@ -1396,9 +1394,9 @@ $(function(){
 
 	function makePolicyLayer(s){
 		var policyIndex =  getStageText() + "정책 "+ policyRepresent[s]["policyStage"].substr(policyRepresent[s]["policyStage"].length - 1); ;
-		$(".policy-name").html("<span class='type'>"+policyIndex+"</span>"+policyRepresent[s]["policy"]);
-		$(".policy-panel h3.policy-name > span").css({"background":getStageColor()});
-		$(".policy-desc-simple p").html(policyRepresent[s]["desSimple"]);
+		$(".policy-name").html(policyRepresent[s]["category"]);
+		$(".policy-panel .policy-desc-simple").css({"border-color":getStageColor()});
+		$(".policy-desc-simple p").html("<span class='type'>"+policyIndex+"</span>"+policyRepresent[s]["policy"]);
 		$(".policy-desc-specific p").html(policyRepresent[s]["desSpecific"]);
 		$("#goPolicyRep").attr("href", policyRepresent[s]["link"]);
 
