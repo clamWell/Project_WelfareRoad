@@ -144,7 +144,7 @@ $(function(){
 			}*/
 
 		}
-		console.log(topValue);
+		//console.log(topValue);
 		if (deltaVP > 0) $orientChr.css("top", "0px"); /// 눈 깜박임 추후 추가
 		if (deltaVP < 0) $orientChr.css("top", topValue + "px");
 	}
@@ -271,7 +271,7 @@ $(function(){
 	}
 
 	function moveLayers() {
-		console.log(layersMovement);
+		//console.log(layersMovement);
 		if (layersMovement == "vertical") VP = vertical_p;
 
 		if ( (nowLifeStage <= 2 && weddingPlaneGoDown == true) || goMartUp == true || outMartDown == true){
@@ -1226,8 +1226,11 @@ $(function(){
 			}else if(n==3 || n==12){ //정장
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-c").show();
-				if(n==12){  $(".grandma-stand").show();}
-				else if(n==3){
+				if(n==12){ 
+					$(".husbandBack-stand").show();
+					husbandCanJump = true; 
+					makehusbandJump();
+				}else if(n==3){
 					$(".husband").show();
 				}
 			}else if(n==4){ // 비행기
@@ -1243,11 +1246,11 @@ $(function(){
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-f").show();
 				$(".character-holder .character-spread-g").show();
-			}else if(n==7){ // 출산 엄마가 아이 안고 
+			}else if(n==7){ // 출산이후 남편이 아이 안고
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
-				$(".character-holder .character-spread-h").show();
-				$(".character-holder .character-spread-g").show();
+				$(".character-holder .character-spread-a").show();
+				$(".character-holder .character-spread-o").show();
 			}else if(n==8 || n==9 || n==10){ // 출산 이후 
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
@@ -1258,12 +1261,20 @@ $(function(){
 				$(".character-holder .character-spread-n").show();
 				neighboorCanHello = true;
 			    makeNeighboorHello();
-			}else if(n==13){ // 정장 아내 + 친정엄마
+			}else if(n==13){ // 정장 아내 + 남편
 				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-c").show();
+				$(".character-holder .character-spread-i").show();
+				$(".grandma-stand").show();			
+			}else if(n==14){ // 정장 아내 + 남편 + 친정엄마
+				$(".character-holder .character-box-normal").show();
+				$(".character-holder .character-box-normal-husband").show();
+				$(".character-holder .character-spread-c").show();
+				$(".character-holder .character-spread-i").show();
 				$(".character-holder .character-box-normal-grandma").show();
 				$(".character-holder .character-spread-l").show();
-			}else if(n==14){ // 아내 + 남편 + 친정엄마 차안에
+			}else if(n==15){ // 아내 + 남편 + 친정엄마 차안에
 				$(".character-holder .character-box-car").show();
 				$(".grandpa-stand").show();
 				$(".car-grandma").show();
@@ -1272,7 +1283,7 @@ $(function(){
 				$(".car-wheel").addClass("car-wheel-rotate");
 				grandpaCanMove= true;
 				//makeGrandpaMove();
-			}else if(n==15){ // 아내 + 남편 + 친정엄마 + 친정아빠 차안에
+			}else if(n==16){ // 아내 + 남편 + 친정엄마 + 친정아빠 차안에
 				$(".character-holder .character-box-car").show();
 				$(".car-grandpa").show();
 				$(".car-grandma").show();

@@ -324,9 +324,6 @@ display: none;}
 .healthcenter-area-second .baby-vaccine .baby-vaccine-2 {}
 .healthcenter-area-second .baby-vaccine-show { transform: scale(1);  opacity: 1;} 
 
-.husbandBack-stand { left: 37000px; bottom: 15%; } 
-.husbandBack-stand .husbandBack { width: 116px; height:204px; overflow:hidden;   } 
-.husbandBack-stand .husbandBack img { position: relative; left:0; }
 .husband-jump-bf { position: relative;}
 .husband-jump-aft { position: relative;}
 .husbandBack-house-area { left: 37500px; bottom: 15%; }
@@ -343,17 +340,18 @@ display: none;}
 .neighboor-family-holder .pa { position: relative;  width: 110px; height: 175px; overflow:hidden; }
 .neighboor-family-holder .pa img { position: relative; left:0;}
 .neighboor-family-holder .child { position: absolute; bottom: 0; right:-200px; }
-.neighboorhood-area .baloon { position: absolute; top: -130px; width: 200px; left: 50px; }
-.neighboorhood-area .baloon .baloon-text { box-sizing: border-box;  width:100%; padding: 20px; border-radius: 6px; background:#fff; }
-.neighboorhood-area .baloon .baloon-text p {font-size: 15px; color: #51525f; font-weight: 600; }
-.neighboorhood-area .baloon img { position: absolute; bottom: -25px; left: 30px; }
+.neighboorhood-area  .baloon { position: absolute; top: -130px; width: 200px; left: 50px; }
+.baloon .baloon-text { box-sizing: border-box;  width:100%; padding: 20px; border-radius: 6px; background:#fff; }
+.baloon .baloon-text p {font-size: 15px; color: #51525f; font-weight: 600; }
+.baloon img { position: absolute; bottom: -25px; left: 30px; }
 
-.toy-museum { position: absolute; left:500px; bottom:0;  }
-.toy-museum > img { }
-.toy-museum .big-toy { position: absolute; top: -69px; left: 220px; }
-.toy-museum .big-toy img {position: relative; left: 300px; }
-.toy-museum .move-fast { position: absolute; top: -15px; left: 380px;}
-.toy-museum .move-fast img {position: relative; left: 300px; }
+.school { position: absolute; left:500px; bottom:0;  }
+.school > img { }
+.school .big-toy { position: absolute; top: 30px; left: 100px; }
+.school .big-toy img {position: relative; left: 300px; }
+.school .move-fast { position: absolute; top: 100px; left: 180px;}
+.school .move-fast img {position: relative; left: 300px; }
+
 .play-ground { position: absolute; bottom: 0;left: 1500px;  }
 .play-ground > div {    position: absolute; bottom: 0;}
 .play-ground-2 { left: 500px; }
@@ -387,9 +385,15 @@ display: none;}
 .skill-card-area .skill-up-text { position: absolute; right:0px; top: -150px;}
 .skill-card-area .skill-up-text img { transform: rotate(-5deg); position: relative; width:1px; height:auto;  }
 
+.husbandBack-stand { left: 49000px; bottom: 15%; } 
+.husbandBack-stand .husbandBack { width: 116px; height:204px; overflow:hidden;   } 
+.husbandBack-stand .husbandBack img { position: relative; left:0; }
+
 .grandma-stand { bottom: 15%;  left: 50300px; }
 .grandma-stand .grandma {  }
 .grandma-stand .grandma img {}
+.grandma-stand .baloon { position: absolute; top: -70px; width: 100px; left: 50px;}
+.grandma-stand .baloon .baloon-text {  padding: 10px; text-align: center;}
 
 .grandma-house-area { bottom: 15%;  left: 51000px; }
 .grandma-house-area .grandma-house {}
@@ -458,7 +462,7 @@ transform-origin: bottom right;  -webkit-transform-origin: bottom right;  -ms-tr
 .jump-point-3 { left: 15500px; bottom: 15%;display:none;}
 .jump-point-4 { left: 19000px; bottom: 15%;}
 .jump-point-5 { left: 46000px; bottom: 15%;}
-.jump-point-6 { left: 48500px; bottom: 15%;}
+.jump-point-6 { left: 48000px; bottom: 15%;}
 .jump-point-7 { left: 50600px; bottom: 15%;}
 
 .jump-point .kone {  }
@@ -490,10 +494,11 @@ animation: warmMove 1.2s linear infinite; }
 .change-point-9 { left: 26650px; bottom: 15%;}
 .change-point-10 { left: 37000px; bottom: 15%;}
 .change-point-11 { left: 38500px; bottom: 15%;}
-.change-point-12 { left: 45000px; bottom: 15%;}
-.change-point-13 { left: 50300px; bottom: 15%;}
-.change-point-14 { left: 51900px; bottom: 15%;}
-.change-point-15 { left: 56900px; bottom: 15%;}
+.change-point-12 { left: 44800px; bottom: 15%;}
+.change-point-13 { left: 49000px; bottom: 15%;}
+.change-point-14 { left: 50300px; bottom: 15%;}
+.change-point-15 { left: 51900px; bottom: 15%;}
+.change-point-16 { left: 56900px; bottom: 15%;}
 /*** 캐릭터 전환지점 ***/
 
 
@@ -670,6 +675,9 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .character-spread-k {width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s8_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-l {width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s9_spread_grandma.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-m{width: 600px; height: 350px; background: url("../img/ch_s5_spread_man_small.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-n {width: 1000px; height: 350px; background: url("../img/ch_spread_family.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-o {width: 600px; height: 350px; background: url("../img/ch_s5_spread_man_baby.png") no-repeat; background-position: 0 0; position: relative;  }
+
 .character-box-normal-husband { left: 80px;position: absolute;top: 0px; z-index: -1;}
 .character-box-normal-husband-nearby { left:40px; }
 .character-box-normal-husband-nearbyReverse { left:-40px; }
@@ -677,7 +685,6 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .character-box-plane .plane-holder { width: 460px; height:337px; position: relative; left:0; top:0;}
 .character-box-plane .plane-holder img { width: 460px; height:674px;  }
 .character-box-family { width: 250px;height:175px; overflow:hidden; display:none;}
-.character-spread-n {width: 1000px; height: 350px; background: url("../img/ch_spread_family.png") no-repeat; background-position: 0 0; position: relative;  }
 .plane-rotate-up { transform: rotate(-15deg); }
 .plane-rotate-down { transform: rotate(15deg); }
 .character-box-wedding { width: 200px; height: 175px;overflow:hidden;   }
@@ -715,8 +722,9 @@ font-weight: bold; color:#333; text-align: center; display:none}
 
 
 .charcter-baloon { position: absolute; top: -110px; left: 105px; display:none;}
-.charcter-baloon .baloon-txt { width: 250px; background:#fff; box-sizing: border-box; padding: 20px; border-radius: 20px;
- font-size: 14px; color: #293038; font-weight: bold;}
+.charcter-baloon .baloon-txt { width:300px; background:#fff; box-sizing: border-box; padding: 20px; border-radius: 20px;
+ font-size: 14px; color: #293038; font-weight: bold;    letter-spacing: -0.05em;}
+.charcter-baloon .baloon-txt .jump { display:block; }
 .charcter-baloon .tail { position: absolute; left: 10px;}
 .charcter-baloon .tail img { width: 25px; vertical-align: top;}
 .charcter-baloon .pointing { position: relative;  left: 20px; top: -5px;}
@@ -762,7 +770,7 @@ background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radiu
 .policy-7{ width: 1100px; left: 38000px; }
 .policy-8{ width: 700px; left: 39800px; }
 
-.policy-8-2 { width: 1000px; left: 41500px; }
+.policy-8-2 { width: 1400px; left: 41500px; }
 
 .policy-9{ width: 2000px; left: 46300px; }
 .policy-10{ width: 1300px; left: 54200px; }
@@ -985,7 +993,9 @@ padding: 100px 0; }
 .husbandBack-stand .husbandBack { transform:scale(0.85); transform-origin: bottom; -webkit-transform:scale(0.85); -webkit-transform-origin: bottom; 
 -ms-transform:scale(0.85); -ms-transform-origin: bottom; }
 .husbandBack-house-area .husbandBack-house img { width:1350px; }
+
 .neighboorhood-area { left: 39400px; }
+
 .neighboor-family-holder {  transform:scale(0.85); transform-origin: bottom; -webkit-transform:scale(0.85); -webkit-transform-origin: bottom; 
 -ms-transform:scale(0.85); -ms-transform-origin: bottom;}
 .workingmom-house img { width:1350px; }
@@ -996,8 +1006,10 @@ padding: 100px 0; }
 .grandma-house-area .grandma-house img {  width:1350px; }
 .grandma-hospital-area .hospital img {  width: 550px; }
 .grandma-vaccine { top: 100px; right: -100px;}
+
 .grandpa-stand { transform:scale(0.85); transform-origin: bottom; -webkit-transform:scale(0.85); -webkit-transform-origin: bottom; 
 -ms-transform:scale(0.85); -ms-transform-origin: bottom;  }
+.grandma-stand .baloon { top: -40px;}
 .support-money-holder {  top: 100px; left: -40px;}
 .hospice-area .hospice-building img { width: 900px; }
 .video-board-area { left: 62000px; }
@@ -1008,8 +1020,6 @@ padding: 100px 0; }
 .ending-harbor .sea-gull-1  { top:-400px; }
 .ending-harbor .sea-gull-2 { top:-200px; }
 .ending-harbor .sea-gull-3 { top: -350px; }
-
-
 
 .unversity-building-shade {  width: 345px; left: 3405px;}
 .joc-center-building-shade { width: 567px; left: 5483px; }
@@ -1057,10 +1067,14 @@ padding: 100px 0; }
 .character-spread-k {width: 520px;height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s8_spread_man.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-l {width: 520px;height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s9_spread_grandma.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-m  {width: 520px;height: 304px; background: url("../img/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-n { width: 869px; height: 304px; background: url("../img/ch_spread_family.png") no-repeat; background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-o {width: 520px;height: 304px;background: url("../img/ch_s5_spread_man_baby.png") no-repeat; background-size: 100% auto;  background-position: 0 0; position: relative;  }
+
+
 .character-box-plane { width: 400px; height: 293px; }
 
 .character-box-family { width: 217.25px; height: 152px; }
-.character-spread-n { width: 869px; height: 304px; background: url("../img/ch_spread_family.png") no-repeat; background-size: 100% auto; background-position: 0 0; position: relative;  }
+
 
 .character-box-plane .plane-holder { width: 400px; height: 293px;}
 .character-box-plane .plane-holder img { width: 400px; height: auto; }
@@ -1160,14 +1174,15 @@ p.loading-ment { font-size: 14px; letter-spacing: 1px;  margin-top: 0; }
 .charcter-baloon .tail img { width: 20px; }
 .charcter-baloon .tail { left: 70px;}
 .charcter-baloon .pointing { left: 50px; }
- 
+.charcter-baloon .baloon-txt .jump { display:inline; } 
+
 .info-layer { right: auto;  top: 10px;  top:-100px; width: 100%; }
 .info-layer-box {width: 95%; box-sizing: border-box; margin: 0 auto; padding: 18px 15px; }
 .policy-panel h3.policy-name { font-size: 17px; }
-.policy-panel span.type {font-size: 13px;font-weight: normal;}
+.policy-panel span.type {font-size: 13px; font-weight: normal;}
 .policy-panel .policy-desc-simple p { font-size: 16px; }
-.policy-panel .policy-desc-specific { margin-top: 5px; padding-bottom: 30px; }
-.policy-panel .policy-desc-specific p {  padding: 0; font-size: 14px; line-height: 1.5; padding-left: 15px; }
+.policy-panel .policy-desc-specific { margin-top: 5px; padding-bottom: 25px; }
+.policy-panel .policy-desc-specific p {  padding: 0; font-size: 14px; line-height: 1.5; }
 .policy-panel .see-more-btn { font-size: 13px; padding: 4px 12px;  border: 1px solid #607aff; color: #607aff; border: none;
 padding: 5px 0px; right: 0; bottom: 0;}
 .policy-panel .see-more-btn:hover {  border: none; box-shadow:none; }
@@ -1201,10 +1216,19 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .horizon-dimension-4 .cloud-5 { left: 1030px; }
 .horizon-dimension-4 .cloud-6 { left: 1280px; }
 .horizon-dimension-4 .cloud-7 { left: 1530px; }
-
 .horizon-dimension-4 .cloud-8 {left: 500px;top: -40%; }
 .horizon-dimension-4 .cloud-9 { left: 680px;top: -60%;}
 .horizon-dimension-4 .cloud-10 { left: 850px; top: -30%; }
+
+.horizon-dimension-4 .cloud-11 {  left: 1780px; }
+.horizon-dimension-4 .cloud-12 { left: 2030px; }
+.horizon-dimension-4 .cloud-13 { left: 2280px; top: 25%;}
+.horizon-dimension-4 .cloud-14 { left: 2530px; top: 10%;}
+.horizon-dimension-4 .cloud-15 { left: 2880px; }
+.horizon-dimension-4 .cloud-16 { left: 3030px; }
+.horizon-dimension-4 .cloud-17 { left: 3280px; }
+
+
 
 .tree { transform: scale(0.35); transform-origin: left bottom;}
 .tree-1 { left: 10px; }
@@ -1212,7 +1236,8 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .tree-3 { left: 400px; }
 .background-building-1 { width: 250px; left: 500px;  }
 .background-building img { width:100%; }
-.background-building-2 { width: 80px; }
+.background-building-2 { width: 70px; left: 4000px; }
+.background-building-3 { width: 250px; left: 4250px; }
 
 
 .rainbow img { width: 400px; }
@@ -1333,18 +1358,20 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .neighboor-family-holder { transform:scale(0.45);transform-origin: bottom;
 -webkit-transform: scale(0.45);-webkit-transform-origin: bottom;
 -ms-transform:scale(0.45);-ms-transform-origin: bottom;}
-.neighboorhood-area .baloon { top: -20px; left: 30px; }
-.neighboorhood-area .baloon .baloon-text { padding: 15px; }
+.neighboorhood-area .baloon { top: -10px; left: 40px; }
+.baloon .baloon-text { padding: 15px; }
+.baloon .baloon-text  p { font-size: 13px;}
+.baloon .tail { width: 25px; bottom: -18px; }
 .park-area { left: 17800px; }
 .park-pigeon img { width: 30px; }
 .park-pigeon-1 img { width: 70px; }
 .park-bench img { width: 200px; }
-.toy-museum { left: 250px; }
-.toy-museum > img { width: 350px; }
-.toy-museum .big-toy { left:60px; }
-.toy-museum .big-toy img { width: 100px; }
-.toy-museum .move-fast { left: 160px; }
-.toy-museum .move-fast img { width:130px; }
+.school { left: 250px; }
+.school > img { width: 400px; }
+.school .big-toy { left: 35px; top: 2px;}
+.school .big-toy img { width: 70px; }
+.school .move-fast {  left: 90px;  top: 40px; }
+.school .move-fast img { width:90px; }
 .play-ground {  left: 650px; }
 .play-ground-1 img { width: 230px; }
 .play-ground-2 { left: 220px; }
@@ -1361,10 +1388,16 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .skill-card-area .skill-up-text { top: -90px; right:-40px; }
 .business-zone-area { left: 21100px; }
 .business-zone-buildings img {  width: 1400px;}
+
+.husbandBack-stand { left: 22000px; }
+
 .grandma-stand  { left: 22850px;}
 .grandma-stand .grandma {  transform:scale(0.45);transform-origin: bottom;
 -webkit-transform: scale(0.45);-webkit-transform-origin: bottom;
 -ms-transform:scale(0.45);-ms-transform-origin: bottom;}
+.grandma-stand .baloon {  left: 20px; top: 30px;}
+
+
 .grandma-house-area { left: 23050px;}
 .grandma-house-area .grandma-house img { width: 800px; }
 .grandma-house-area .cat img { width: 40px; }
@@ -1481,9 +1514,10 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .change-point-10 { left: 16100px;}
 .change-point-11 { left: 16600px; }
 .change-point-12 { left: 19700px; }
-.change-point-13 { left: 22860px; }
-.change-point-14 {  left: 23450px; }
-.change-point-15 {  left: 25220px; }
+.change-point-13 { left: 22000px; }
+.change-point-14 { left: 22860px; }
+.change-point-15 {  left: 23450px; }
+.change-point-16 {  left: 25220px; }
 
 
 @keyframes warmMove {
@@ -1521,10 +1555,10 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .character-spread-j {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s7_spread_woman_change_2.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-k {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s8_spread_man.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-l {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s9_spread_grandma.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
-.character-spread-m {width: 280px;height: 164px; background: url("../img/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
-
-.character-box-family { width: 117.25px; height: 82px; }
+.character-spread-m { width: 280px;height: 164px; background: url("../img/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
 .character-spread-n { width: 469px; height: 164px; background: url("../img/ch_spread_family.png") no-repeat;   background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-o {width: 280px;height: 164px; background: url("../img/ch_s5_spread_man_baby.png") no-repeat;  background-size: 100% auto;   background-position: 0 0; position: relative;  }
+.character-box-family { width: 117.25px; height: 82px; }
 
 
 .character-box-plane { width: 200px; height: 146px; }
