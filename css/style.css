@@ -183,7 +183,7 @@ transform: translateZ(0);-webkit-transform: translateZ(0);width:99.999%;  }
 
 
 
-.footer-logo { position: fixed; bottom: 10px; left: 15px; opacity:0.5; display:none;  }
+.footer-logo { position: fixed; bottom: 10px; left: 15px; opacity:0.5;  }
 
 .intro-manual { position: fixed; bottom: 30px;width: 100%;  animation: blink 1.5s linear infinite; display:none; }
 .intro-manual .pc { display:block; }
@@ -217,6 +217,18 @@ background:#333; border-radius: 50%;}
 .university-area .universe-building .door-shade { position: absolute; bottom: 0; right:0; width: 400px; z-index:11; height: 200px; background:#221e1f;
 display: none;}
 .university-area .universe-building-sub { position: absolute; bottom: 0; right:-400px; z-index:1; }
+.university-area .flag { width: 160px; height: 214px; position: absolute; top: -200px; left: 420px; overflow:hidden; }
+.university-area .flag img { position: relative; animation: flag 0.5s linear infinite; }
+
+@keyframes flag {
+	0%{  position: relative; left: -0px;  }
+	49%{  position: relative; left: -0px;  }
+	50%{  position: relative; left: -160px;  }
+	99%{ position: relative; left: -160px; }
+	100%{  position: relative; left: -0px;  }
+}
+
+
 .jobcenter-area {left: 5300px; bottom: 15%; width: 934px;}
 .jobcenter-area .center-building {position: relative; width: 100%;}
 .jobcenter-area .center-building img { width:100%;}
@@ -228,7 +240,7 @@ display: none;}
 .academy-area .level-up-icon .up {margin: 0 auto; display: block; position: relative; top:30px;}
 .academy-area .level-up-icon .level-body { width: 105px; height: 30px; margin: 15px auto; background:#fff; position: relative; top:30px;}
 .academy-area .level-up-icon .skillup { position: absolute; top: 110px; right: -190px; }
-.academy-area .level-up-icon .skillup img { width: 10px;  position: relative; top:40px; }
+.academy-area .level-up-icon .skillup img {  position: relative; top:40px; opacity:0;}
 .level-aniOb { opacity:0;}
 .workbuilding-area { left: 8400px; bottom: 15%;}
 .workbuilding-area .workbuilding {}
@@ -674,9 +686,9 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .character-spread-j {width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s7_spread_woman_change_2.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-k {width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s8_spread_man.png") no-repeat; background-position: 0 0; position: relative;  }
 .character-spread-l {width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s9_spread_grandma.png") no-repeat; background-position: 0 0; position: relative;  }
-.character-spread-m{width: 600px; height: 350px; background: url("../img/ch_s5_spread_man_small.png") no-repeat; background-position: 0 0; position: relative;  }
-.character-spread-n {width: 1000px; height: 350px; background: url("../img/ch_spread_family.png") no-repeat; background-position: 0 0; position: relative;  }
-.character-spread-o {width: 600px; height: 350px; background: url("../img/ch_s5_spread_man_baby.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-m{width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s5_spread_man_small.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-n {width: 1000px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_spread_family.png") no-repeat; background-position: 0 0; position: relative;  }
+.character-spread-o {width: 600px; height: 350px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s5_spread_man_baby.png") no-repeat; background-position: 0 0; position: relative;  }
 
 .character-box-normal-husband { left: 80px;position: absolute;top: 0px; z-index: -1;}
 .character-box-normal-husband-nearby { left:40px; }
@@ -958,6 +970,7 @@ padding: 100px 0; }
 .university-area .universe-building img { width:100%; }
 .university-area .universe-building-sub { width: 600px; right:-500px; }
 .university-area .universe-building-sub img { width:100%; }
+.university-area .flag {left: 350px; }
 .jobcenter-area { width: 750px; }
 .academy-area .academy-building img { width: 580px; }
 .academy-area .level-up { width: 150px;top: 0; right:-30px;}  
@@ -1066,9 +1079,9 @@ padding: 100px 0; }
 .character-spread-j {width: 520px;height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s7_spread_woman_change_2.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-k {width: 520px;height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s8_spread_man.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-l {width: 520px;height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s9_spread_grandma.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
-.character-spread-m  {width: 520px;height: 304px; background: url("../img/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
-.character-spread-n { width: 869px; height: 304px; background: url("../img/ch_spread_family.png") no-repeat; background-size: 100% auto; background-position: 0 0; position: relative;  }
-.character-spread-o {width: 520px;height: 304px;background: url("../img/ch_s5_spread_man_baby.png") no-repeat; background-size: 100% auto;  background-position: 0 0; position: relative;  }
+.character-spread-m  {width: 520px;height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-n { width: 869px; height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_spread_family.png") no-repeat; background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-o {width: 520px;height: 304px;background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s5_spread_man_baby.png") no-repeat; background-size: 100% auto;  background-position: 0 0; position: relative;  }
 
 
 .character-box-plane { width: 400px; height: 293px; }
@@ -1169,11 +1182,11 @@ p.loading-ment { font-size: 14px; letter-spacing: 1px;  margin-top: 0; }
 .intro-title .bee-2 { left: -35px; bottom: 0px; }
 .intro-title .bee-2 img { width: 30px; }
 
-.charcter-baloon { top: -110px; left: 10px;}
-.charcter-baloon .baloon-txt {   width: 200px; font-size: 12.5px; line-height:1.4; padding: 14px; }
+.charcter-baloon { top: -90px; left: -20px;}
+.charcter-baloon .baloon-txt {   width: 220px; font-size: 12.5px; line-height:1.4; padding: 14px; }
 .charcter-baloon .tail img { width: 20px; }
 .charcter-baloon .tail { left: 70px;}
-.charcter-baloon .pointing { left: 50px; }
+.charcter-baloon .pointing { left: 80px; }
 .charcter-baloon .baloon-txt .jump { display:inline; } 
 
 .info-layer { right: auto;  top: 10px;  top:-100px; width: 100%; }
@@ -1271,6 +1284,18 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .bank-sign-front { width: 100px; height: 100px; margin-left: -50px; bottom: 20px;}
 .university-area { width: 400px; left: 1300px;}
 .university-area .universe-building-sub {   width: 350px; right: -350px; }
+.university-area .flag { width: 80px; height: 107px; position: absolute; top: -100px; left: 190px; overflow:hidden; }
+.university-area .flag img { width: 160px; position: relative; animation: flag 0.5s linear infinite; }
+
+@keyframes flag {
+	0%{  position: relative; left: -0px;  }
+	49%{  position: relative; left: -0px;  }
+	50%{  position: relative; left: -80px;  }
+	99%{ position: relative; left: -80px; }
+	100%{  position: relative; left: -0px;  }
+}
+
+
 .flying-money { width: 100px; height: 52px;  top: 25px; right: 0px; }
 .flying-money-slider { width: 200px; height: 52px; background-size: 100% auto; }
 .jobcenter-area { width: 400px; left: 2400px; }
@@ -1278,7 +1303,7 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .academy-area .academy-building img {width: 350px; }
 .academy-area .level-up { width: 80px;right: -10px; }
 .academy-area .level-up-icon .level-body {  width: 46px;height: 18px; margin: 10px auto; }
-.academy-area .level-up-icon .skillup {top: 180px; right: -100px; }
+.academy-area .level-up-icon .skillup {top: 170px; right: -130px; }
 .workbuilding-area { left: 3800px; }
 .workbuilding-area .workbuilding img {width: 850px; }
 .husband { left: 4500px; }
@@ -1449,19 +1474,22 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .mount-2{  left: 8400px; }
 .mount-2 img {width: 500px; }
 
+
 .ending-layer { top: 10px; right:0; width: 100%; box-sizing: border-box;  padding: 0px 10px;} 
-.ending-layer .ending-box { width: 100%; box-sizing: border-box;  padding: 15px 15px;}
+.ending-layer .ending-box { width: 100%; box-sizing: border-box;  padding: 20px 15px;     box-shadow: 2px 2px 5px rgba(226, 96, 0, 0.5);    border-radius: 3px;}
 .ending-layer .ending-box .prize { margin-top:0; }
-.ending-layer .ending-box .prize img { width: 60px; }
-.ending-layer .ending-box .ending-ment { margin-top:20px; }
+.ending-layer .ending-box .prize img { width: 50px; }
+.ending-layer .ending-box .ending-ment { margin-top:10px; }
 .ending-layer .ending-box .ending-ment img { width: 250px; } 
-.ending-layer .ending-box .srch-btn-holder .srch-btn { margin-top: 20px;font-size: 16px; width: 250px; padding: 10px 0; color:#fff; }
+.ending-layer .ending-box .srch-btn-holder .srch-btn { margin-top: 15px;font-size: 15px; font-weight:bold; width: 250px; padding: 10px 0; color:#fff; }
+.srch-btn .srch-icon { vertical-align: top;}
 .ending-layer .ending-box-bottom { margin-top: 10px; }
-.ending-layer .ending-box-bottom > a > div {  width: 48%;  margin-right:0 1%;   padding: 10px 0px;font-size: 13px;}
+.ending-layer .ending-box-bottom > a > div {  width: 100%;  margin:2px; padding: 10px 0px;font-size: 13px;box-shadow: 2px 2px 5px rgba(226, 96, 0, 0.5);    border-radius: 3px;
+ color: #555a65;font-weight: bold;}
 .ending-layer .ending-box-bottom > a > div .link { opacity:1;  top: 8px; right: 8px;}
 .ending-layer .ending-box-bottom > a > div .link img { width: 14px;}
 .ending-layer .ending-box .srch-btn-holder { margin-bottom: 0px; }
-
+.ending-layer .ending-box-bottom .link-1{ background: #e60e64; color: #ffffff;}
 .unversity-building-shade { left: 1515px; width: 185px;}
 .joc-center-building-shade { width: 302px; left: 2498px;}
 .academy-building-shade { left: 3157px; width: 192px;}
@@ -1555,9 +1583,9 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .character-spread-j {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s7_spread_woman_change_2.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-k {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s8_spread_man.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
 .character-spread-l {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s9_spread_grandma.png") no-repeat;     background-size: 100% auto;background-position: 0 0; position: relative;  }
-.character-spread-m { width: 280px;height: 164px; background: url("../img/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
-.character-spread-n { width: 469px; height: 164px; background: url("../img/ch_spread_family.png") no-repeat;   background-size: 100% auto; background-position: 0 0; position: relative;  }
-.character-spread-o {width: 280px;height: 164px; background: url("../img/ch_s5_spread_man_baby.png") no-repeat;  background-size: 100% auto;   background-position: 0 0; position: relative;  }
+.character-spread-m { width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s5_spread_man_small.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-n { width: 469px; height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_spread_family.png") no-repeat;   background-size: 100% auto; background-position: 0 0; position: relative;  }
+.character-spread-o {width: 280px;height: 164px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s5_spread_man_baby.png") no-repeat;  background-size: 100% auto;   background-position: 0 0; position: relative;  }
 .character-box-family { width: 117.25px; height: 82px; }
 
 

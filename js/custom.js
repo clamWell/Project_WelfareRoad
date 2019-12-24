@@ -105,7 +105,7 @@ $(function(){
 
 	function showPagetitle(){
 		$(".intro-title .main-title-1 img").animate({"left":"0", "top":"0px", "opacity":"1"}, 500, "easeInOutBack");
-		$(".intro-title .main-title-2 img").delay(200).animate({"left":"0", "top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){	
+		$(".intro-title .main-title-2 img").delay(200).animate({"left":"0", "top":"0px", "opacity":"1"}, 400, "easeInOutBack", function(){
 			$(".charcter-baloon").fadeIn();
 			$(".intro-title .sub-title img").animate({"left":"0px", "opacity":"1"}, 500, "swing");
 		});
@@ -114,7 +114,7 @@ $(function(){
 	// 시작하면 캐릭터 하늘에서 떨어짐
 	function ShowCharacterBox(){
 		$(".character-holder").stop().animate({"bottom":"15%"}, 800, "swing", function(){
-			defaultCharcterFrame();		
+			defaultCharcterFrame();
 			showPagetitle();
 			window.setTimeout(function(){
 				canScroll = true;
@@ -271,7 +271,7 @@ $(function(){
 	}
 
 	function moveLayers() {
-		//console.log(layersMovement);
+		console.log(layersMovement);
 		if (layersMovement == "vertical") VP = vertical_p;
 
 		if ( (nowLifeStage <= 2 && weddingPlaneGoDown == true) || goMartUp == true || outMartDown == true){
@@ -316,7 +316,7 @@ $(function(){
 			if (deltaVP > 0){
 				if ((updownSwitcher * verticalUpdown.p > 0 && vEndP < verticalUpdown.m) || (updownSwitcher * verticalUpdown.p < 0 && vEndP > verticalUpdown.m)){
 					console.log("change status");
-					console.log(updownSwitcher);
+					console.log("updownSwitcher : "+updownSwitcher);
 					layersMovement = verticalUpdown.call;
 					$(".horizon-dimension").css("top", vEndP + "px");
 					return;
@@ -345,306 +345,13 @@ $(function(){
 	}
 	////// 화면 이동 (E)  //////
 
-	///// 애니메이션 처리 /////
-	/*
-	function animateObjectS1(){
-		for(a = 0; a < $aniObs.length; a++){
-			var aniObsStartPos = $aniObs.eq(a).position().left;
-				aniObsEndPos = $aniObs.eq(a).position().left + $aniObs.eq(a).width();
-			//뱅크 애니메이션
-			if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("bank-sign") ) && (bankAniDone == false) ){
-				  animateBank(),
-				  bankAniDone = true;
-			}
-			//학원
-			if( ( $aniObs.eq(a).hasClass("academy-area") ) && (VP + screenWidth*0.5 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && (levelUpDone == false) ){
-				  animateLevelUp();
-			}
-
-			//일하는 건물 도착하면 엘리베이터 타고 올라가게
-			if( ( VP + $(".character-holder").position().left >  $(".workbuilding-area").position().left-50 ) && workBuildingArrive == false && nowElevator == false){
-				layersMovement = "vertical";
-				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
-				workBuildingArrive = true;
-				console.log("빌딩도착");
-				$("body").addClass("fixed");
-				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoUpBuilding() );
-			}
-			//일하는 건물에서 다시 엘리베이터 타고 내려가게
-			if(  ( VP + $(".character-holder").position().left < $(".workbuilding-area").position().left+50 ) && workBuildingArrive == true && nowElevator == false){
-				layersMovement = "vertical";
-				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
-				workBuildingArrive = false;
-				console.log("빌딩다시내려가야함");
-				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoDownBuilding() );
-				$("body").addClass("fixed");
-			}
-
-			//남편 만나면 하트
-			if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("meet-husband")) && nowSendingHeart == false ){
-				sendHeart();
-			}
-			//남편이 여자캐릭터 방향으로 방향전환
-			if( (VP + $(".character-holder").position().left  > aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband") ){
-				$(".husband .husband-holder img").css({"left":"-90px"});
-			}else if( (VP + $(".character-holder").position().left <= aniObsEndPos) && $aniObs.eq(a).hasClass("meet-husband")){
-				$(".husband .husband-holder img").css({"left":"0px"});
-			}
-			// 뱅기 모드 시작
-			if ( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left  > aniObsEndPos) && weddingPlaneGoUp == false && weddingPlaneComplete == false){
-
-				weddingPlaneGoUp = true;
-				upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
-				console.log("허니문떠남");
-
-				objectUpdown = [];
-				objectUpdown.push({
-					start: "horizontal",
-					o: $(".character-box-plane"),
-					s: 0,
-					e: -350,
-					m: 0,
-					p: -1 * (350 / upDownWidth),
-					call: "objectUpdown"
-				});
-				objectUpdown.push({
-					start: "objectUpdown",
-					o: $(".character-box-plane"),
-					s: -350,
-					e: 0,
-					m: -350,
-					p: 350 / upDownWidth,
-					call: "verticalUpdown"
-				});
-
-				verticalUpdown.start = "objectUpdown";
-				verticalUpdown.s = 1140;
-				verticalUpdown.e = 0;
-				verticalUpdown.m = 1140;
-				verticalUpdown.p = -1 * (1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2));
-				verticalUpdown.call = "horizontal";
-
-				layersMovement = "objectUpdown";
-
-			} else if ( $aniObs.eq(a).hasClass("workbuilding-area") && (VP + $(".character-holder").position().left <= aniObsEndPos) && ( weddingPlaneGoUp == true || weddingPlaneGoDown == true || weddingPlaneComplete == true) ){
-				weddingPlaneGoUp = false;
-				weddingPlaneComplete = false;
-				weddingPlaneGoDown = false;
-			}
-
-			if ($aniObs.eq(a).hasClass("workbuilding-area") && VP + $(".character-holder").position().left <= $changePoint.eq(4).position().left && weddingPlaneGoDown == false && weddingPlaneGoUp == true && weddingPlaneComplete == true) {
-
-				weddingPlaneGoDown = true;
-				upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
-				console.log("허니문돌아옴")
-
-				objectUpdown = [];
-				objectUpdown.push({
-					start: "horizontal",
-					o: $(".character-box-plane"),
-					s: -350,
-					e: 0,
-					m: -350,
-					p: 350 / upDownWidth,
-					call: "objectUpdown"
-				});
-				objectUpdown.push({
-					start: "objectUpdown",
-					o: $(".character-box-plane"),
-					s: 0,
-					e: -350,
-					m: 0,
-					p: -1 * (350 / upDownWidth),
-					call: "verticalUpdown"
-				});
-
-				verticalUpdown.start = "objectUpdown";
-				verticalUpdown.s = 0;
-				verticalUpdown.e = 1140;
-				verticalUpdown.m = 0;
-				verticalUpdown.p = 1140 / ($changePoint.eq(4).position().left - 500 - aniObsEndPos - upDownWidth * 2);
-				verticalUpdown.call = "horizontal";
-				layersMovement = "verticalUpdown";
-
-			} else if ($aniObs.eq(a).hasClass("workbuilding-area") && VP + $(".character-holder").position().left <= $changePoint.eq(4).position().left && weddingPlaneGoDown == true && weddingPlaneGoUp == true && weddingPlaneComplete == true){
-				layersMovement = "verticalUpdown";
-			}
-
-			//신혼 앨범 만나면 하트, 폭죽
-			if( $aniObs.eq(a).hasClass("wedding-photo-area") && ( VP + $(".character-holder").position().left  > aniObsStartPos- 1000 ) && honeymoonPops == false ){
-				AnimateHoneymoonPops();
-			}
-		}
-	}
-
-	function animateObjectS2(){
-		if(  VP + $(".character-holder").position().left > $(".honeymoon-house-area").position().left +400 && houseHeartDone == false ){
-			houseHeart();
-		}
-	}
-
-	function animateObjectS3(){
-		// 보건소 지나갈 때 약 지원
-		if( VP + $(".character-holder").position().left > $(".healthcenter-area").position().left + $(".healthcenter-area").width() -700 && drugGiven == false ){
-			drugGiven = true;
-			var $drug = $(".drug-aniOb");
-			for(d=0; d<$drug.length;d++){
-				$drug.eq(d).find("img").delay(300*d).animate({"top":"0px","opacity":"1"}, 800, "easeOutElastic");
-			}
-		}
-		// 산부인과 병동 지나면서 아기출산
-		if(  VP + $(".character-holder").position().left > $(".hospital-area").position().left + $(".hospital-area").width() -300 && babyCry == false ){
-			babyCry = true;
-			$(".babycry img").animate({"width":"230px","opacity":"1"}, 800, "easeOutElastic");
-
-		}
-	}
-
-	function  animateObjectS4(){
-		//육아휴직중 멘트
-		if(  VP + screenWidth*0.7 > $(".parental-leave-text-holder").position().left && parentalLeaveShow == false ){
-			showParentalLeaveText();
-		}
-		// 마트 진입 에스컬레이터
-		var escalWidth = $(".mart-escalator-shade").width();
-
-		if ( VP + $(".character-holder").position().left  > $(".mart-area").position().left + escalWidth * 0.1 && goMartDown == false && goMartComplete == false){
-
-			goMartDown = true;
-
-			verticalUpdown.start = "horizontal";
-			verticalUpdown.s = 0;
-			verticalUpdown.m = 0;
-			verticalUpdown.e = -(screenHeight * 0.8);
-			verticalUpdown.p = -1 * ((screenHeight * 0.8) / (escalWidth * 0.6));
-			verticalUpdown.call = "horizontal";
-
-			layersMovement = "verticalUpdown";
-
-		} else if ( VP + $(".character-holder").position().left <= $(".mart-area").position().left + escalWidth * 0.75  && goMartDown == true && goMartComplete == true && goMartUp == false ){
-
-			goMartUp = true;
-
-			verticalUpdown.start = "horizontal";
-			verticalUpdown.s = -(screenHeight * 0.8);
-			verticalUpdown.e = 0;
-			verticalUpdown.m = -(screenHeight * 0.8);
-			verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
-			verticalUpdown.call = "horizontal";
-
-			layersMovement = "verticalUpdown";
-
-		} else if ( VP + $(".character-holder").position().left <= $(".mart-area").position().left + escalWidth * 0.1){
-			goMartUp = false;
-			goMartDown = false;
-			goMartComplete = false;
-		} else if ( VP + $(".character-holder").position().left > $(".mart-area").position().left + escalWidth * 0.75 && goMartDown == true){
-			goMartComplete = true;
-		} else if (VP + $(".character-holder").position().left < $(".mart-area").position().left + escalWidth * 0.75 && goMartUp == true && goMartDown == true && goMartComplete == true){
-			layersMovement = "verticalUpdown";
-		}
-
-		// 마트 출구 에스컬레이터
-		if (  VP + $(".character-holder").position().left > $(".mart-area").position().left + escalWidth * 0.1 && outMartUp == false && outMartComplete == false){
-
-			outMartUp = true;
-
-			verticalUpdown.start = "horizontal";
-			verticalUpdown.s = -(screenHeight * 0.8);
-			verticalUpdown.m = -(screenHeight * 0.8);
-			verticalUpdown.e = 0;
-			verticalUpdown.p = (screenHeight * 0.8) / (escalWidth * 0.6);
-			verticalUpdown.call = "horizontal";
-
-			layersMovement = "verticalUpdown";
-
-		} else if ( VP + $(".character-holder").position().left <= $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.75 && outMartUp == true && outMartComplete == true && outMartDown == false ){
-
-			outMartDown = true;
-
-			verticalUpdown.start = "horizontal";
-			verticalUpdown.s = 0;
-			verticalUpdown.e = -(screenHeight * 0.8);
-			verticalUpdown.m = 0;
-			verticalUpdown.p = -1 *((screenHeight * 0.8) / (escalWidth * 0.6));
-			verticalUpdown.call = "horizontal";
-
-			layersMovement = "verticalUpdown";
-
-		} else if (VP + $(".character-holder").position().left <=  $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.1){
-			outMartUp = false;
-			outMartDown = false;
-			outMartComplete = false;
-		} else if ( VP + $(".character-holder").position().left > $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.75  && outMartUp == true){
-			outMartComplete = true;
-		} else if ( VP + $(".character-holder").position().left <  $(".mart-escalator-reverse-shade").position().left + escalWidth * 0.75 && outMartUp == true && outMartDown == true && outMartComplete == true){
-			layersMovement = "verticalUpdown";
-		}
-
-		//마트에서 선반 지나면 영유아 제품 차례대로 나오게
-		if(martItemshow.indexOf(false) !== -1){
-			for(m=0; m<$(".mart-shelves").length; m++){
-				if( VP + screenWidth*0.4 > $(".mart-area").position().left + $(".mart-shelves").eq(m).position().left-200 && martItemshow[m] == false ){
-					martItemshow[m] = true;
-					$(".mart-shelves").eq(m).find(".mart-item img").addClass("show");
-				}
-			}
-		}
-
-		//보건소 영유아 예방접종
-		if( VP + $(".character-holder").position().left > $(".healthcenter-area-second").position().left +200 && VP + $(".character-holder").position().left < $(".healthcenter-area-second").position().left + $(".healthcenter-area-second").width() && babyVaccineDone == false ){
-			babyVaccineDone = true;
-			$(".baby-vaccine").addClass("baby-vaccine-show");
-		}
-
-		//장난감
-		if( VP + screenWidth*0.5> $(".park-area").position().left  && VP < $(".park-area").position().left + $(".park-area").width() && isToyRun == false ){
-			makeToyRun();
-		}
-
-	}
-
-	function animateObjectS5(){
-		//자격증
-		if( VP + screenWidth*0.5 > $(".skill-card-area").position().left  && VP + $(".character-holder").position().left <   $(".skill-card-area").position().left + $(".skill-card-area").width() && skillCardShow == false ){
-			skillCardShow = true;
-			$(".skill-card img").animate({"width":"289px", "top":"0"}, 500, "easeOutBounce");
-			$(".skill-up-text img").delay(200).animate({"width":"182px"}, 500, "easeOutBounce");
-		}
-	}
-
-	function animateObjectS6(){
-		//동사무소 지날때 기초연금 수령
-		if( VP + screenWidth*0.7 > $(".community-center-area").position().left && VP + screenWidth*0.7 < $(".community-center-area").position().left+ $(".community-center-area").width() && annuityGiven == false ){
-			annuitySupport();
-		}
-
-	}
-	*/
-
-	/*
-	function animateObject(s){
-		var stage = s;
-		if(stage !== 0 &&  (layersMovement == "horizontal")){
-			eval("animateObjectS"+stage+"();");
-		}
-		if(flagUp.indexOf(false) !== -1){//깃발
-			for(f=0; f<$(".flag-point").length; f++){
-				if( VP + screenWidth*0.7 > $(".flag-point").eq(f).position().left-200 && flagUp[f] == false ){
-					flagUp[f] = true;
-					$(".flag-point").eq(f).find(".flag-color").animate({"top":"30px"}, 1000, "easeOutElastic");
-				}
-			}
-		}
-	}*/
 
 	function animateObject(){
 		if( firstScroll== false && VP > screenWidth*0.2 ){
-			firstScroll = true; 
+			firstScroll = true;
 			$(".intro-manual").hide();
 			$(".stage-navi").addClass("navi-show");
 			$(".info-layer ").animate({"top":"0px"},500);
-			$(".charcter-baloon").hide();
 		}
 		if (layersMovement == "horizontal"){
 			for(a = 0; a < $aniObs.length; a++){
@@ -867,11 +574,11 @@ $(function(){
 					layersMovement = "verticalUpdown";
 				}
 
-				//바톤터치 
+				//바톤터치
 				if( $aniObs.eq(a).hasClass("player-change") && ( VP + $(".character-holder").position().left +screenWidth*0.2 > aniObsStartPos ) && VP + $(".character-holder").position().left < aniObsEndPos && changeImgShow == false ){
 					changeImgShow = true;
 					$(".change-img-holder").addClass("change-img-holder-show");
-				}				
+				}
 
 
 				//보건소 영유아 예방접종
@@ -938,11 +645,11 @@ $(function(){
 					}
 				}
 			}
-			//차량 마지막에 멈추게 
+			//차량 마지막에 멈추게
 			if( VP + $(".character-holder").position().left > $(".ending-harbor-area").position().left ){
 				var overDriveValue = VP + $(".character-holder").position().left-$(".ending-harbor-area").position().left;
 				console.log(overDriveValue+"만큼 오버해서 이동");
-				$(".character-box-car").css({"left":(-1*overDriveValue)+"px"});	
+				$(".character-box-car").css({"left":(-1*overDriveValue)+"px"});
 				$(".info-layer").hide();
 				//$(".ending-layer").stop().slideDown(800, "easeInOutCubic");
 				$(".ending-layer").slideDown(800, "easeInOutCubic");
@@ -951,7 +658,7 @@ $(function(){
 				$(".info-layer").show();
 				$(".ending-layer").hide();
 			}
-			
+
 
 		}
 	}
@@ -1026,12 +733,25 @@ $(function(){
 
 
 	//학원 레벨업
+	function resetLevelup(){
+		$(".level-aniOb").css({"top":"30px","opacity":"0"});
+		$(".skillup img").css({"opacity": "0","top":"-40px"});
+		setTimeout(function(){
+			animateLevelUp();
+		}, 500); 
+
+	}
 	function animateLevelUp(){
 		levelUpDone = true;
 		for(l=0; l<$(".level-aniOb").length; l++){
 			if(l==$(".level-aniOb").length-1){
-				$(".level-aniOb").eq(0).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");
-				$(".skillup img").animate({"width": (isMobile==true)? "150px" : "211px","top":"0"}, 500, "easeOutBounce");
+				$(".level-aniOb").eq(0).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce", function(){
+					$(".skillup img").animate({"opacity":"1","top":"0"}, 500, "easeOutBounce", function(){
+						setTimeout(function(){
+							resetLevelup();
+						}, 1000); 
+					});
+				});								
 			}else{
 				$(".level-aniOb").eq($(".level-aniOb").length-l-1).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");
 			}
@@ -1226,16 +946,16 @@ $(function(){
 			}else if(n==3 || n==12){ //정장
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-spread-c").show();
-				if(n==12){ 
+				if(n==12){
 					$(".husbandBack-stand").show();
-					husbandCanJump = true; 
+					husbandCanJump = true;
 					makehusbandJump();
 				}else if(n==3){
 					$(".husband").show();
 				}
 			}else if(n==4){ // 비행기
 				$(".character-holder .character-box-plane").show();
-				$(".dimension-bg-wedding").fadeIn();				
+				$(".dimension-bg-wedding").fadeIn();
 			}else if(n==5){ // 신혼여행 끝
 				weddingPlaneComplete = true;
 				$(".character-holder .character-box-wedding").show();
@@ -1251,7 +971,7 @@ $(function(){
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-a").show();
 				$(".character-holder .character-spread-o").show();
-			}else if(n==8 || n==9 || n==10){ // 출산 이후 
+			}else if(n==8 || n==9 || n==10){ // 출산 이후
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-j").show();
@@ -1266,7 +986,7 @@ $(function(){
 				$(".character-holder .character-box-normal-husband").show();
 				$(".character-holder .character-spread-c").show();
 				$(".character-holder .character-spread-i").show();
-				$(".grandma-stand").show();			
+				$(".grandma-stand").show();
 			}else if(n==14){ // 정장 아내 + 남편 + 친정엄마
 				$(".character-holder .character-box-normal").show();
 				$(".character-holder .character-box-normal-husband").show();
@@ -1349,7 +1069,7 @@ $(function(){
 	var policyRepresent = policyData.filter(function(e,i,a){
 		return a[i]["represent"] == "yes";
 	});
-	console.log(policyRepresent);
+	console.log("정책스테이지 : " + policyRepresent);
 
 	function getStageText(){
 		switch (nowLifeStage){
@@ -1502,12 +1222,11 @@ $(function(){
 	function resetVariables(n){
 		switch (n) {
 			case 0:
-				objectUpdown = [], oc = 0, verticalUpdown = { v: 0, m: 0, p: 0, call:"" };
+				oc = 0, verticalUpdown = { v: 0, m: 0, p: 0, call:"" };
 				canMoneyFly = true, moneyCounter = 0, bankAniDone = false;
 				honeymoonPops = false;
 			case 1:
 				houseHeartDone = false;
-				oc = 1;
 			case 2:
 				drugGiven = babyCry = false;
 			case 3:
@@ -1527,8 +1246,8 @@ $(function(){
 		if (n >= 1){
 			weddingPlaneComplete = weddingPlaneGoUp = true;
 			weddingPlaneGoDown = false;
+			oc = 1;
 		} else {
-			objectUpdown = [];
 			weddingPlaneGoUp = weddingPlaneGoDown = weddingPlaneComplete = false;
 		}
 
@@ -1574,18 +1293,20 @@ $(function(){
 	//// 네비게이션 클릭 ////
 	$(".stage-navi .navi-wrap ul li").on("click", function(){
 		var nav_index = $(this).index();
-		console.log(nav_index);
+		console.log("navi : " + nav_index);
 		movePos = $stagePoint.eq(nav_index).position().left;
 
 		$(".character-holder").stop().fadeOut(100, function(){
 			resetVariables(nav_index);
 			if (deviceName == "computer"){
 				window.scrollTo(0, movePos);
+				layersMovement = "horizontal";
 			} else {
 				VP = movePos;
 				layersMovement = "horizontal";
 				scrollAct();
 			}
+
 
 			$(".horizon-dimension").css("top", "0px");
 
@@ -1639,14 +1360,14 @@ $(function(){
 		});
 	}
 
-	var firstScroll = false; 
+	var firstScroll = false;
 
 	function scrollAct(){
+		$(".charcter-baloon").hide();
 		checkChrBoxState();
 		checkStage();
 		makeChrRun();
 		moveLayers();
-		//animateObject(nowLifeStage);
 		animateObject();
 		orientChr();
 		chrJumpCheck();
@@ -1658,26 +1379,26 @@ $(function(){
 	setLayerSpeed();
 
 	if( ieTest == true) {
-		$("body").on("mousewheel", function(){ 
+		$("body").on("mousewheel", function(){
 			event.preventDefault()
 			var wheelDelta = event.wheelDelta;
 			var currentScrollPosition = window.pageYOffset;
-			window.scrollTo(0, currentScrollPosition - wheelDelta); 
+			window.scrollTo(0, currentScrollPosition - wheelDelta);
 		});
 		/*
 		$("body").keydown(function(e){
 			e.preventDefault();
 			var currentScrollPosition = window.pageYOffset;
 			switch (e.which) {
-				case 38: // up 
-					window.scrollTo(0, currentScrollPosition - 120); 
+				case 38: // up
+					window.scrollTo(0, currentScrollPosition - 120);
 					break;
 				case 40: // down
 					window.scrollTo(0, currentScrollPosition + 120);
 					break;
-				default: 
+				default:
 					return;
-			} 
+			}
 		}); */
 	}
 
