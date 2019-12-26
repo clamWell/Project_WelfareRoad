@@ -85,7 +85,7 @@ var policyData = [
     "represent": "yes",
     "category": "졸업은 했는데… 스펙 쌓기 난감할 때 ",
     "policy": "취업성공패키지",
-    "desSpecific": "최대 25만원의 참여수당과 직업훈련비를 지원하고, 이후 집중적으로 취업을 도와 드립니다.",
+    "desSpecific": "최대 25만원의 참여수당과 직업훈련비를 지원하고, 이후 집중적으로 취업을 도와드립니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=154",
     "policyType": null
   },
@@ -655,7 +655,7 @@ var policyData = [
     "represent": "yes",
     "category": "어린이집이나 유치원을 보내야 할 때",
     "policy": "아이돌봄서비스",
-    "desSpecific": "원하는 시간대에 필요한 만큼 아이돌보미가 직접 찾아가 아이들을 돌봐 드립니다.",
+    "desSpecific": "원하는 시간대에 필요한 만큼 아이돌보미가 직접 찾아가 아이들을 돌봐드립니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=164",
     "policyType": null
   },
@@ -684,7 +684,7 @@ var policyData = [
     "policyStage": "parent5",
     "represent": "no",
     "category": null,
-    "policy": "가정양육수당 지급",
+    "policy": "가정양육수당 지원",
     "desSpecific": null,
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=295",
     "policyType": null
@@ -725,7 +725,7 @@ var policyData = [
     "represent": "yes",
     "category": "학교에 간 아이들에게는",
     "policy": "초등돌봄교실",
-    "desSpecific": "맞벌이가정 등의 자녀가 방과후에도 안심하고 생활할 수 있도록 학교가 자녀를 돌봅니다.",
+    "desSpecific": "맞벌이가정 등의 자녀가 방과 후에도 안심하고 생활할 수 있도록 학교가 자녀를 돌봅니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=200",
     "policyType": null
   },
@@ -765,7 +765,7 @@ var policyData = [
     "represent": "yes",
     "category": "재취업이 그렇게 힘들다는데...",
     "policy": "여성경제활동 촉진지원",
-    "desSpecific": "경력이 단절됐거나 경제활동 경험이 없는 여성들은 '여성 새로 일하기 센터'에서 취업을 도와드립니다.",
+    "desSpecific": "경력이 단절됐거나 경제활동 경험이 없는 여성들은 '여성 새로 일하기센터'에서 취업을 도와드립니다.",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=170",
     "policyType": null
   },
@@ -824,7 +824,7 @@ var policyData = [
     "policyStage": "grandparent1",
     "represent": "yes",
     "category": "건강 100세의 시작!",
-    "policy": "노인 폐렴구균 예방접종 지원",
+    "policy": "어르신 폐렴구균 예방접종 지원",
     "desSpecific": "만 65세 이상 어르신은 폐렴구균 감염병 예방을 위해 무료 예방 접종을 받을 수 있습니다.",
     "link": "http://www.gov.kr/portal/service/serviceInfo/SD0000016141",
     "policyType": null
@@ -995,7 +995,7 @@ var policyData = [
     "represent": "yes",
     "category": "기초연금은 누가 받나요?",
     "policy": "기초연금 지급",
-    "desSpecific": "만 65세 이상의 어르신 중, 소득인정액이 일정 이하인 분들은 기초연금을 드립니다.",
+    "desSpecific": "만 65세 이상의 어르신 중 소득인정액이 일정 이하인 분들은 기초연금을 드립니다.",
     "link": "http://www.gov.kr/portal/service/serviceInfo/SSE000000170",
     "policyType": null
   },
@@ -1089,4 +1089,4 @@ var policyData = [
     "link": "http://www.gov.kr/portal/service/serviceInfo/PTR000050950",
     "policyType": null
   }
-]
+];

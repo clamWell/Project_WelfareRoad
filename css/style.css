@@ -206,7 +206,7 @@ transform: translateZ(0);-webkit-transform: translateZ(0);width:99.999%;  }
 .bank-sign { width: 470px; left: 2000px; top: -40%; }
 .bank-sign-front { position: absolute; width: 200px; height:200px;bottom:60px;left:50%; margin-left:-100px;
 background:#333; border-radius: 50%;}
-.bank-sign-front img { width:100%; transform-origin: top; transform: none; transition:all 0.5s ease 0s;}
+.bank-sign-front img { width:100%; transform-origin: top; transform: none; transition:all 0.3s ease 0s;position: relative;}
 .bank-sign-front img.rotate { transform: rotate(-40deg); }
 .flying-money { width: 150px; height: 78px; position: absolute; top: 100px; right: 30px; }
 .flying-money .flying-money-wing { width:100%; height:100%; overflow:hidden; }
@@ -232,7 +232,18 @@ display: none;}
 .jobcenter-area {left: 5300px; bottom: 15%; width: 934px;}
 .jobcenter-area .center-building {position: relative; width: 100%;}
 .jobcenter-area .center-building img { width:100%;}
-.academy-area { left: 6500px; bottom: 15%;}
+.flying-resume { width: 250px; height:160px; overflow:hidden; position: absolute; bottom: 250px; right:-150px; }
+.flying-resume img {  position: relative; animation: resume 0.5s ease infinite; }
+@keyframes resume {
+	0%{  position: relative; left: -0px; top: 0;  }
+	49%{  position: relative; left: -0px;top: 0;}
+	50%{  position: relative; left: -250px; top: 5px;  }
+	99%{ position: relative; left: -250px; top: 5px; }
+	100%{  position: relative; left: -0px; top: 0; }
+}
+
+
+.academy-area { left: 6800px; bottom: 15%;}
 .academy-area .academy-building {position: relative; }
 .academy-area .academy-building img { width:100%;}
 .academy-area .level-up { position: absolute; right: -50px; top: 50px; width: 200px;  }
@@ -277,7 +288,7 @@ display: none;}
 .healthcenter-area {left: 20000px; bottom: 15%;}
 .healthcenter-area .healthcenter {}
 .healthcenter-area .healthcenter img {}
-.drug-aniOb { position: absolute; top: 120px; right: 300px;  }
+.drug-aniOb { position: absolute; top: 120px; right: 300px; animation: cloud 1s cubic-bezier(.36,.07,.19,.97) infinite;}
 .drug-aniOb img { opacity:0; position: relative; top: -100px;}
 .drug-1 { right: 150px;}
 .drug-2 { right: 30px; }
@@ -285,8 +296,15 @@ display: none;}
 .hospital-area { left: 22800px; bottom: 15%; }
 .hospital-area .hospital {}
 .hospital-area .hospital img {}
-.babycry { position: absolute; top:300px; right:-100px; }
+.babycry { position: absolute; top:300px; right:-100px; animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) infinite;}
 .babycry img { width: 20px; opacity: 0; }
+
+@keyframes shake {
+10%, 90% { transform: translate3d(-2px, 0, 0); -webkit-transform: translate3d(-2px, 0, 0);-ms-transform: translate3d(-2px, 0, 0);}
+20%, 80% {  transform: translate3d(4px, 0, 0); -webkit-transform: translate3d(4px, 0, 0);  -ms-transform: translate3d(4px, 0, 0);}
+30%, 50%, 70% { transform: translate3d(-8px, 0, 0); -webkit-transform: translate3d(-8px, 0, 0); -ms-transform: translate3d(-8px, 0, 0);}
+40%, 60% { transform: translate3d(8px, 0, 0);-webkit-transform: translate3d(8px, 0, 0); -ms-transform: translate3d(8px, 0, 0);}
+}
 
 .baby-house-area { left: 24000px; }
 
@@ -324,10 +342,13 @@ display: none;}
 .mart-shelves-1 { left: 1600px; }
 .mart-shelves-2 { left:2100px; }
 .mart-shelves-3 { left: 2600px; }
-.mart-shelves .mart-item { position: absolute; top:-150px; width:100%;  }
+.mart-shelves .mart-item { position: absolute; top:-150px; width:100%; }
 .mart-shelves .mart-item > img { display:block; margin: 0 auto; opacity:0; position: relative; top: 150px; transform: scale(0.3);transition:all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s;}
 .mart-shelves .mart-item > img.show { opacity: 1; top:0;transform: scale(1); }
 .mart-cashier { right: 1100px; bottom: 0px;  }
+.mart-shelves-1 .mart-item { animation: 1s cloud linear infinite; }
+.mart-shelves-2 .mart-item {top: -170px; animation: 1s cloud 0.3s linear infinite; }
+.mart-shelves-3 .mart-item { animation: 1s cloud 0.5s linear infinite; }
 
 .healthcenter-area-second { left: 34500px; bottom: 15%; }
 .healthcenter-area-second .heathcenter{ }
@@ -335,6 +356,22 @@ display: none;}
 .healthcenter-area-second .baby-vaccine .baby-vaccine-1 { }
 .healthcenter-area-second .baby-vaccine .baby-vaccine-2 {}
 .healthcenter-area-second .baby-vaccine-show { transform: scale(1);  opacity: 1;} 
+
+.fountain-area { position: absolute; left: 36500px; bottom: 15%;}
+.fountain-area .fountain { width: 400px; height: 257px; overflow: hidden; }
+.fountain-area .fountain img { width: 1600px; position: relative; left:0; animation: fountain 1.5s linear infinite; }
+@keyframes fountain {
+	0%{  position: relative; left: 0px;  }
+	24.99%{  position: relative; left: -0px;  }
+	25%{  position: relative; left: -400px;  }
+	49.99%{ position: relative; left: -400px; }
+	50%{ position: relative; left: -800px; }
+	74.99%{ position: relative; left: -800px; }
+	75%{ position: relative; left: -1200px; }
+	99.99%  { position: relative; left: -1200px; }
+	100%{  position: relative; left: 0px;  }
+}
+.fountain-bench {position: absolute; bottom:0; left: -300px; }
 
 .husband-jump-bf { position: relative;}
 .husband-jump-aft { position: relative;}
@@ -359,10 +396,19 @@ display: none;}
 
 .school { position: absolute; left:500px; bottom:0;  }
 .school > img { }
-.school .big-toy { position: absolute; top: 30px; left: 100px; }
-.school .big-toy img {position: relative; left: 300px; }
+.school .big-toy { position: absolute; top: 30px; left: 120px; }
+.school .big-toy .toy-holder {position: relative; left: 200px; }
+.school .big-toy .toy-holder .toy-arm { position: absolute;left: -35px;top: 10px; animation: toyArm 2.5s linear infinite; transform-origin: bottom right;}
+.school .big-toy .toy-holder .toy-body {position: relative; }  
 .school .move-fast { position: absolute; top: 100px; left: 180px;}
 .school .move-fast img {position: relative; left: 300px; }
+@keyframes toyArm {
+	0%{  transform: rotate(0deg); }
+	40%{  transform: rotate(-100deg); }
+	60% { transform: rotate(-100deg); }
+	100%{  transform: rotate(0deg); }
+}
+
 
 .play-ground { position: absolute; bottom: 0;left: 1500px;  }
 .play-ground > div {    position: absolute; bottom: 0;}
@@ -404,8 +450,9 @@ display: none;}
 .grandma-stand { bottom: 15%;  left: 50300px; }
 .grandma-stand .grandma {  }
 .grandma-stand .grandma img {}
-.grandma-stand .baloon { position: absolute; top: -70px; width: 100px; left: 50px;}
-.grandma-stand .baloon .baloon-text {  padding: 10px; text-align: center;}
+
+.person-stand .baloon { position: absolute; top: -70px; width: 120px; left: 50px;}
+.person-stand .baloon .baloon-text {  padding: 10px 5px; text-align: center;}
 
 .grandma-house-area { bottom: 15%;  left: 51000px; }
 .grandma-house-area .grandma-house {}
@@ -415,7 +462,7 @@ display: none;}
 
 .grandma-hospital-area {bottom: 15%;  left: 54500px;  }
 .grandma-hospital-area .hospital {}
-.grandma-vaccine {  position: absolute;top: 100px;  right: -50px;}
+.grandma-vaccine {  position: absolute;top: 100px;  right: -50px;animation: 1.5s cloud linear infinite;}
 .grandma-hospital-area .grandma-vaccine-1 { }
 .grandma-hospital-area .grandma-vaccine-2 { position: absolute; top: 30px; right:-80px; }
 
@@ -544,8 +591,8 @@ font-weight: bold; color:#333; text-align: center; display:none}
 
 /*** dimension 요소들: horizon-2 **/
 .tree { position: absolute; bottom: 15%; }
-.tree-1 { left: 650px; }
-.tree-2 { left: 850px; }
+.tree-1 { left: 730px;  width: 150px; }
+.tree-2 { left: 850px;  width: 170px;}
 .tree-3 { left: 1400px; }
 .tree-4 { left: 1500px; }
 .tree-5 { left: 1650px; }
@@ -607,10 +654,39 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .light-19 { left: 19000px; }
 .rainbow { position: absolute; bottom: 15%;  left: 4200px; }
 .rainbow-2 { position: absolute; bottom: 15%;  left: 12300px; display:none; }
-
+.background-building-4 { z-index:-2; left: 70px; }
+.background-building-4 img {width: 100px;}
 .mount { position: absolute; bottom: 15%;  }
 .mount-1 {left: 17000px;}
 .mount-2 {left: 18000px;}
+.mount-3 { left: 0px;z-index: -1; }
+.sky-baloon { width: 215px; height: 300px; overflow:hidden; position: absolute; bottom: 60%; }
+.sky-baloon img { width: 645px; height: 300px; position: relative; left:0; animation: baloon 1s linear infinite; }
+@keyframes baloon {
+	0%{  position: relative; left: 0px;  }
+	32.99%{  position: relative; left: 0px;  }
+	33%{  position: relative; left: -215px;  }
+	65.99%{ position: relative; left: -215px; }
+	66%{ position: relative; left: -430px; }
+	99.99%{ position: relative; left: -430px; }
+	100%{  position: relative; left: 0px;  }
+}
+.baloon-1 { left: 2000px;}
+.baloon-2 { left: 5200px;}
+.baloon-3 { left: 8000px;}
+.baloon-4 { left: 12000px;}
+
+.windmill { position: absolute; bottom: 15%; }
+.windmill .rotate-wing { position: absolute; bottom: 100px; left: -40px}
+.windmill .rotate-wing img { animation: rotate 1.2s linear infinite; }
+.windmill .windmill-pole { width: 5px; height: 150px; background:#46413c; position: relative;  }
+.windmill-1 {left: 6500px; }
+.windmill-2 {left: 6600px; ; }
+.windmill-3 {left: 6700px;  }
+.windmill-4 {left: 16000px; }
+.windmill-5 {left: 16150px; }
+.windmill-6 {left: 16300px; }
+
 
 
 /*** dimension 요소들: horizon-2 **/
@@ -643,12 +719,20 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .horizon-dimension-4 .cloud-16 { left: 5150px; top: 3%;}
 .horizon-dimension-4 .cloud-17 { left: 5650px;top: 30%;opacity: 0.3;}
 
+.cloud > img { animation: cloud 2s linear infinite; }
+
+@keyframes cloud {
+	0%{-webkit-transform:translateY(-8px);transform:translateY(-8px)}
+	50%{-webkit-transform:translateY(-8px); transform:translateY(0)}to{-webkit-transform:translateY(-8px); transform:translateY(-8px)}	
+}
+
+
 /*** dimension 요소들: horizon-5 **/
 .horizen-dimension-chr-over { z-index:11;  }
 .horizen-dimension-chr-over .ob {position: absolute; }
 .unversity-building-shade { bottom: 15%;  left: 3483px;}
 .joc-center-building-shade { bottom: 15%; left: 5528px; }
-.academy-building-shade { bottom: 15%; left: 6804px;}
+.academy-building-shade { bottom: 15%; left: 7104px;}
 .work-building-shade { left: 8400px; bottom: 15%; }
 .work-building-shade img { position: relative;top: -180px;}
 .honeymoon-house-shade { bottom: 15%;left: 17642px;}
@@ -704,7 +788,7 @@ font-weight: bold; color:#333; text-align: center; display:none}
 .character-box-normal-grandma {right: 85px;position: absolute;top: 0px; z-index: -1;}
 
 .character-box-car { width: 494px;height: 258px; overflow: visible;  position: relative;}
-.car-holder { width:100%; height:100%;  position: relative; bottom:88px; left: -270px;animation: engine 1s linear infinite; }
+.car-holder { width:100%; height:100%;  position: relative; bottom:88px; left: -270px; animation: engine 1s linear infinite; }
 .car-holder .car-body { width: 100%;  position: relative;} 
 .car-holder .car-body img{  } 
 .car-holder .car-body .body { width: 100%; } 
@@ -770,7 +854,7 @@ background:#fff; box-shadow: 3px 2px 10px rgba(153, 154, 160, 0.3); border-radiu
 
 /***** 정책 레이어 ******/
 .policy-layer-point { position: absolute; bottom: 15%; height: 10px; background:rgba(255,255,255,0.2);background:none; z-index: 20; }
-.policy-1{ width: 1000px; left: 3500px; }
+.policy-1{ width: 1000px; left: 2500px; }
 .policy-2{ width: 1500px; left: 6000px; }
 .policy-3{ width: 2000px; left: 16500px; }
 .policy-4{ width: 1700px; left: 20000px; }
@@ -938,7 +1022,7 @@ padding: 100px 0; }
 .stage-navi .navi-wrap ul li > p { line-height: 50px;  font-size: 15px;width: 110px; padding-left: 15px;padding-right: 20px;}
 .bank-sign { top:-40%;}
 .info-layer { right: 90px; }
-.info-layer-box { width: 500px; }
+.info-layer-box { width: 450px; }
 .policy-panel span.type { font-size: 14px;line-height: 1;}
 .policy-panel h3.policy-name { font-size: 20px; }
 .policy-panel .policy-desc-simple p { font-size: 17px; }
@@ -970,8 +1054,11 @@ padding: 100px 0; }
 .university-area .universe-building img { width:100%; }
 .university-area .universe-building-sub { width: 600px; right:-500px; }
 .university-area .universe-building-sub img { width:100%; }
-.university-area .flag {left: 350px; }
+.university-area .flag {left: 330px; transform: scale(0.7);transform-origin: bottom center; 
+-webkit-transform: scale(0.7);-webkit-transform-origin: bottom center; 
+-ms-transform: scale(0.7);-ms-transform-origin: bottom center; }
 .jobcenter-area { width: 750px; }
+.academy-area { left: 6700px;}
 .academy-area .academy-building img { width: 580px; }
 .academy-area .level-up { width: 150px;top: 0; right:-30px;}  
 .academy-area .level-up-icon .level-body { width: 85px; }
@@ -1020,9 +1107,11 @@ padding: 100px 0; }
 .grandma-hospital-area .hospital img {  width: 550px; }
 .grandma-vaccine { top: 100px; right: -100px;}
 
-.grandpa-stand { transform:scale(0.85); transform-origin: bottom; -webkit-transform:scale(0.85); -webkit-transform-origin: bottom; 
--ms-transform:scale(0.85); -ms-transform-origin: bottom;  }
-.grandma-stand .baloon { top: -40px;}
+.grandpa-stand {  }
+.grandpa-stand .grandpa {transform:scale(0.85); transform-origin: bottom; -webkit-transform:scale(0.85); -webkit-transform-origin: bottom; 
+-ms-transform:scale(0.85); -ms-transform-origin: bottom; }
+
+.person-stand .baloon { top: -40px;}
 .support-money-holder {  top: 100px; left: -40px;}
 .hospice-area .hospice-building img { width: 900px; }
 .video-board-area { left: 62000px; }
@@ -1033,10 +1122,11 @@ padding: 100px 0; }
 .ending-harbor .sea-gull-1  { top:-400px; }
 .ending-harbor .sea-gull-2 { top:-200px; }
 .ending-harbor .sea-gull-3 { top: -350px; }
+.ending-layer .ending-box-bottom > a > div { font-size: 14px; }
 
 .unversity-building-shade {  width: 345px; left: 3405px;}
 .joc-center-building-shade { width: 567px; left: 5483px; }
-.academy-building-shade { width: 317px; left: 6761px; }
+.academy-building-shade { width: 317px;  left: 6961px;}
 .honeymoon-house-shade { width: 486px; left: 17506px;}
 .healthcenter-shade { width: 604px; left: 20185px; }
 .healthcenter-second-shade { width: 604px; left: 34686px; }
@@ -1063,8 +1153,15 @@ padding: 100px 0; }
 .policy-11 { width: 1000px; left: 56400px; }
 .policy-12 { width: 900px; left: 58600px; }
 
+.change-point-3 { left: 7000px; }
 .change-point-11 { left: 38320px; }
 .change-point-12 { left: 44600px; }
+.change-point-15 { left: 51700px;}
+
+
+.background-building-4 { z-index:-2; left: 40px; }
+.background-building-4 img {width: 80px;}
+.mount-3 { width: 800px; }
 
 .character-holder { width: 130px; height: 152px; left: 250px; }
 .character-spread-a {width: 520px; height: 304px; background: url("http://img.khan.co.kr/spko/storytelling/2019/running/ch_s1_spread.png") no-repeat;    background-size: 100% auto; background-position: 0 0; position: relative;  }
@@ -1245,14 +1342,43 @@ padding: 5px 0px; right: 0; bottom: 0;}
 
 .tree { transform: scale(0.35); transform-origin: left bottom;}
 .tree-1 { left: 10px; }
-.tree-2 { left: 60px; }
+.tree-2 { left: 50px; }
 .tree-3 { left: 400px; }
+.tree-4 { left: 550px; }
+.tree-5 { left: 650px; }
+.tree-6 { left: 1000px; }
+.tree-7 { left: 1250px; }
+.tree-8 { left: 1400px; }
+.tree-9 { left: 1800px; }
+.tree-10 { left: 1900px; }
+.tree-11 { left: 2050px; }
+.tree-12 { left: 2200px; }
+.tree-13 { left: 2500px; }
+.tree-14 { left: 2650px; }
+.tree-15 { left: 3000px; }
+.tree-16 { left: 3150px; }
+.tree-17 { left: 3500px; }
+.tree-18 { left: 3650px; }
+.tree-19 { left: 4000px; }
+.tree-20 { left: 4050px; }
+.tree-21 { left: 5900px; }
+.tree-22 { left: 5950px;}
+.tree-23 { left: 6200px;} 
+.tree-24 { left: 6230px;}
+.tree-25 {left: 6800px;}
+.tree-26 { left: 7240px;}
+.tree-27 {left: 7250px;}
+.tree-28 {  left: 7450px;}
+.tree-29 {  left: 7500px;}
+
+
 .background-building-1 { width: 250px; left: 500px;  }
 .background-building img { width:100%; }
 .background-building-2 { width: 70px; left: 4000px; }
 .background-building-3 { width: 250px; left: 4250px; }
-
-
+.background-building-4 { width: 60px; left: 10px; }
+.mount-3 { width: 400px; left: -60px; }
+.mount-3 img { width: 100%; }
 .rainbow img { width: 400px; }
 .rainbow{left: 1800px;}
 
@@ -1299,6 +1425,17 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .flying-money { width: 100px; height: 52px;  top: 25px; right: 0px; }
 .flying-money-slider { width: 200px; height: 52px; background-size: 100% auto; }
 .jobcenter-area { width: 400px; left: 2400px; }
+.flying-resume { width: 125px; height: 80px; bottom: 80px; right: -70px; }
+@keyframes resume {
+	0%{  position: relative; left: -0px; top: 0;  }
+	49%{  position: relative; left: -0px;top: 0;}
+	50%{  position: relative; left: -125px; top: 5px;  }
+	99%{ position: relative; left: -125px; top: 5px; }
+	100%{  position: relative; left: -0px; top: 0; }
+}
+.flying-resume img { width: 250px; animation: resume 0.5s ease infinite;}
+
+
 .academy-area { left: 3000px; }
 .academy-area .academy-building img {width: 350px; }
 .academy-area .level-up { width: 80px;right: -10px; }
@@ -1371,6 +1508,14 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .healthcenter-area-second { left: 15400px;}
 .healthcenter-area-second .healthcenter img { width: 450px; }
 .healthcenter-area-second .baby-vaccine { top: -100px;left: 350px;}
+.healthcenter-area-second .baby-vaccine img { width: 120px; }
+
+.fountain-area { left: 15900px; transform: scale(0.4);
+transform-origin: bottom;}
+
+
+
+
 .husbandBack-stand {left:16100px;}
 .husbandBack-stand .husbandBack {transform:scale(0.45);transform-origin: bottom;
 -webkit-transform: scale(0.45);-webkit-transform-origin: bottom;
@@ -1391,12 +1536,15 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .park-pigeon img { width: 30px; }
 .park-pigeon-1 img { width: 70px; }
 .park-bench img { width: 200px; }
+
 .school { left: 250px; }
 .school > img { width: 400px; }
-.school .big-toy { left: 35px; top: 2px;}
-.school .big-toy img { width: 70px; }
+.school .big-toy { left: 35px; top: -20px;}
 .school .move-fast {  left: 90px;  top: 40px; }
 .school .move-fast img { width:90px; }
+.school .big-toy .toy-holder .toy-body { width: 60px;}
+.school .big-toy .toy-holder .toy-arm { width: 40px; top: 5px; left:-20px; }
+
 .play-ground {  left: 650px; }
 .play-ground-1 img { width: 230px; }
 .play-ground-2 { left: 220px; }
@@ -1420,8 +1568,9 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .grandma-stand .grandma {  transform:scale(0.45);transform-origin: bottom;
 -webkit-transform: scale(0.45);-webkit-transform-origin: bottom;
 -ms-transform:scale(0.45);-ms-transform-origin: bottom;}
-.grandma-stand .baloon {  left: 20px; top: 30px;}
-
+.person-stand .baloon {  left: 20px; top: 30px;}
+.husbandBack-stand .baloon { left: 40px; top: 55px;}
+.grandpa-stand .baloon { left: 50px;}
 
 .grandma-house-area { left: 23050px;}
 .grandma-house-area .grandma-house img { width: 800px; }
@@ -1430,7 +1579,8 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .grandma-hospital-area .hospital img {width: 350px; }
 .grandma-hospital-area .grandma-vaccine {width: 80px; top: 50px;right: -30px;} 
 .grandma-hospital-area .grandma-vaccine-2  { width: 130px; top: 20px;right: 0;}
-.grandpa-stand { left: 25200px;  transform:scale(0.45);transform-origin: bottom;
+.grandpa-stand { left: 25170px; }
+.grandpa-stand .grandpa { transform:scale(0.45);transform-origin: bottom;
 -webkit-transform: scale(0.45);-webkit-transform-origin: bottom;
 -ms-transform:scale(0.45);-ms-transform-origin: bottom;}
 .hospice-area {  left: 25350px;}
@@ -1451,6 +1601,7 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .ending-harbor .sea-gull-3 { top: -180px; left:250px; }
 .ending-harbor .sea-gull img { width: 100px; auto; }
 
+.park-pigeon-2 img {width: 20px;}
 
 .video-board-area { left: 27500px; }
 .video-board-area a { width: 100%; display: block; height: 100%; }
@@ -1473,6 +1624,19 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .mount-1 img {width: 500px; }
 .mount-2{  left: 8400px; }
 .mount-2 img {width: 500px; }
+
+.sky-baloon { transform: scale(0.4);transform-origin: bottom center;bottom: 50%;}
+.baloon-1 { left: 650px; }
+.baloon-2 {left: 2000px;}
+.baloon-3 {left: 2900px;   bottom: 60%;}
+.baloon-4 { left: 5200px;}
+.windmill { transform: scale(0.4);transform-origin: bottom center;}
+.windmill-1{ left: 2650px; }
+.windmill-2{ left: 2700px;}
+.windmill-3{ left: 2750px;}
+.windmill-4{left: 7100px; }
+.windmill-5{left: 7150px;}
+.windmill-6{left: 7200px; }
 
 
 .ending-layer { top: 10px; right:0; width: 100%; box-sizing: border-box;  padding: 0px 10px;} 
@@ -1609,6 +1773,7 @@ padding: 5px 0px; right: 0; bottom: 0;}
 .stage-navi .navi-wrap ul { width: 100%; }
 .stage-navi .navi-wrap ul li {   margin: 0 2px;  display: inline-block;}
 .stage-navi .navi-wrap ul li:hover > p { display:none; }
+.stage-navi .navi-wrap ul li:hover > .each-navi .thumb {border: 2px solid #354950;}
 
 .footer-logo { display: none; }
 .footer-logo .logo-img img { width: 200px; }

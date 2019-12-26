@@ -359,8 +359,7 @@ $(function(){
 					aniObsEndPos = $aniObs.eq(a).position().left + $aniObs.eq(a).width();
 				//뱅크 애니메이션
 				if( (VP + screenWidth*0.7 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && ( $aniObs.eq(a).hasClass("bank-sign") ) && (bankAniDone == false) ){
-					  animateBank(),
-					  bankAniDone = true;
+					bankAniDone = true, animateBank();
 				}
 				//학원
 				if( ( $aniObs.eq(a).hasClass("academy-area") ) && (VP + screenWidth*0.5 > aniObsStartPos) && (VP + screenWidth*0.7 < aniObsEndPos) && (levelUpDone == false) ){
@@ -687,26 +686,51 @@ $(function(){
 		});
 	}
 
+	function resetBankMoney(){		
+		if(isMobile==true){
+			$(".flying-money").css({"top":"25px", "right":"0px"});		
+		}else{
+			$(".flying-money").css({"top":"40px", "right":"5px"});
+		}
+		setTimeout(function(){
+			animateBank();
+		}, 2000);
+		
+	}
+	makeMoneyfly();
 	// 은행 애니메이션
 	function animateBank(){
-		makeMoneyfly();
-		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 700, "easeOutBounce", function(){
+		$(".bank-sign-front img").addClass("rotate");
+		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 500, "easeOutBounce", function(){
 			for(f=0; f<$(".flying-money").length; f++){
 				if(isMobile==true){
-					$(".flying-money").eq(f).delay(200*f).animate({"top":"-40%", "right":"-350px"}, 1200, "swing", function(){
-						$(".flying-money").animate({"top":"150px"}, 500, "swing");
-					});
+					if( f == $(".flying-money").length-1 ){ 
+						$(".flying-money").eq(f).delay(200*f).animate({"top":"100%", "right":"-350px"}, 1200, "swing", function(){
+							$(".bank-sign-front img").removeClass("rotate");
+							setTimeout(function(){
+								resetBankMoney();
+							}, 500);	
+						});										
+					}else{
+						$(".flying-money").eq(f).delay(200*f).animate({"top":"100%", "right":"-350px"}, 1200, "swing");
+					}
 				}else{
-					$(".flying-money").eq(f).delay(200*f).animate({"top":"-110%", "right":"-1200px"}, 1200, "swing", function(){
-						$(".flying-money").animate({"top":"-0%"}, 500, "swing");
-					});
+					if( f == $(".flying-money").length-1 ){ 
+						$(".flying-money").eq(f).delay(200*f).animate({"top":"-10%", "right":"-1200px"}, 1200, "swing", function(){
+							$(".bank-sign-front img").removeClass("rotate");
+							setTimeout(function(){
+								resetBankMoney();
+							}, 1000);	
+						});	
+					}else{
+						$(".flying-money").eq(f).delay(200*f).animate({"top":"-10%", "right":"-1200px"}, 1200, "swing");
+					}
+					
 				}
-
-				if( f == $(".flying-money").length-1 ){canMoneyFly = false;}
+				
 			}
 
-		});
-		$(".bank-sign-front img").addClass("rotate");
+		});		
 	}
 
 
@@ -770,12 +794,30 @@ $(function(){
 		}
 	}
 
+
+	//학원 레벨업
+	function resetPops(){
+		$(".honeymoon-aniOb").css({"width":"0px","opacity":"0"});
+		setTimeout(function(){
+			AnimateHoneymoonPops();
+		}, 500); 
+
+	}
 	// 신혼 폭죽, 하트
 	function AnimateHoneymoonPops(){
 		honeymoonPops = true;
 		var $honeyPopItem = $(".honeymoon-aniOb");
 		for(h=0; h<$honeyPopItem.length;h++){
-			$honeyPopItem.eq(h).delay(100*h).animate({"width": (isMobile==true)? "120px" : "200px","opacity":"1"}, 800, "easeOutElastic");
+			if(h==$honeyPopItem.length-1){
+				$honeyPopItem.eq(h).delay(150*h).animate({"width": (isMobile==true)? "120px" : "200px","opacity":"1"}, 800, "easeOutElastic", function(){
+					setTimeout(function(){
+						resetPops();
+					}, 500); 
+				});
+			}else{
+				$honeyPopItem.eq(h).delay(150*h).animate({"width": (isMobile==true)? "120px" : "200px","opacity":"1"}, 800, "easeOutElastic");
+			}
+			
 		}
 	}
 
@@ -867,10 +909,19 @@ $(function(){
 	function makeToyRun(){
 		 isToyRun = true;
 		$(".move-fast img").animate({"left":"0"}, 400, "swing", function(){
-			$(".big-toy img").animate({"left":"0"}, 800, "easeOutBounce");
+			$(".big-toy .toy-holder").animate({"left":"0"}, 800, "easeOutBounce");
 		});
 	};
 	// 장난감 뛰어오는 액션
+
+	function resetAnnuity(){
+		$(".support-money img").css({"width":"0px","opacity":"0"});
+		$(".surplus img").css({"width":"0px", "opacity":"0"});
+		setTimeout(function(){
+			annuitySupport();
+		}, 500); 
+
+	};
 
 	// 동사무소 기초연금 지원
 	function annuitySupport(){
@@ -878,7 +929,12 @@ $(function(){
 		var $annuityItem = $(".support-money");
 		for(a=0; a<$annuityItem.length;a++){
 			$annuityItem.eq(a).find("img").delay(200*a).animate({"width":  (isMobile==true)? "90px" : "150px","opacity":"1", "left":"0"}, 800, "easeOutBounce");
-			if(a==2){ $(".surplus img").animate({"width": (isMobile==true)? "30px" : "59px","opacity":"1", "top":"0"}, 800, "easeOutBounce");}
+			if(a==2){ $(".surplus img").delay(200*a).animate({"width": (isMobile==true)? "30px" : "59px","opacity":"1", "top":"0"}, 800, "easeOutBounce", function(){
+					setTimeout(function(){
+						resetAnnuity();
+					}, 500); 
+				});
+			}
 		}
 	}
 	// 동사무소 기초연금 지원
@@ -1069,7 +1125,7 @@ $(function(){
 	var policyRepresent = policyData.filter(function(e,i,a){
 		return a[i]["represent"] == "yes";
 	});
-	console.log("정책스테이지 : " + policyRepresent);
+	//console.log("정책스테이지 : " + policyRepresent);
 
 	function getStageText(){
 		switch (nowLifeStage){
