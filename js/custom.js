@@ -4,8 +4,9 @@ $(function(){
 		screenWidth = $(window).width(),
 		screenHeight = $(window).height(),
 		imgURL = "http://img.khan.co.kr/spko/storytelling/2019/running/",
-		isMobile = screenWidth <= 710 && true || false,
-		isNotebook = (screenWidth <= 1300 && screenHeight < 750) && true || false;
+		isMobile = screenWidth <= 800 && true || false,
+		isNotebook = (screenWidth <= 1300 && screenHeight < 750) && true || false,
+		isMobileLandscape = ( screenWidth > 400 && screenWidth <= 800 && screenHeight < 450 ) && true || false; 
 
 	var agent = navigator.userAgent.toLowerCase();
 	if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
@@ -24,8 +25,6 @@ $(function(){
 		$changePoint = $(".change-point"),
 		$stagePoint = $(".flag-point"),
 		$aniObs = $(".aniOb");
-
-	if(isMobile == true){ $(".character-holder").css({"left": (screenWidth - $(".character-holder").width())/2 +"px" }); }
 
 	var oStartP, oEndP, vStartP, vEndP, updownSwitcher, upDownWidth;
 	var chrStatus = "run";
@@ -110,6 +109,21 @@ $(function(){
 			$(".intro-title .sub-title img").animate({"left":"0px", "opacity":"1"}, 500, "swing");
 		});
 	};
+
+	if(isMobileLandscape==true){
+		$(".character-holder").css({"left":"120px"}); 
+	}else if(isMobile == true){
+		$(".character-holder").css({"left": (screenWidth - $(".character-holder").width())/2 +"px" }); 
+		var vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty("--vh", vh+"px");
+		//$(".dimension-holder").css({ height: screenHeight });			
+	}
+	$(window).resize(function(){
+		if(isMobile == true){ 
+			var vh = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty("--vh", vh+"px");
+		}		
+	});
 
 	// 시작하면 캐릭터 하늘에서 떨어짐
 	function ShowCharacterBox(){
@@ -352,6 +366,12 @@ $(function(){
 			$(".intro-manual").hide();
 			$(".stage-navi").addClass("navi-show");
 			$(".info-layer ").animate({"top":"0px"},500);
+			if(isMobile==true){
+				setTimeout(function(){
+					$(".stage-navi .des").hide();
+				}, 3000);
+			}
+			
 		}
 		if (layersMovement == "horizontal"){
 			for(a = 0; a < $aniObs.length; a++){
@@ -688,7 +708,7 @@ $(function(){
 
 	function resetBankMoney(){		
 		if(isMobile==true){
-			$(".flying-money").css({"top":"25px", "right":"0px"});		
+			$(".flying-money").css({"top":"25px", "right":"0px","opacity":"1"});		
 		}else{
 			$(".flying-money").css({"top":"40px", "right":"5px"});
 		}
@@ -701,18 +721,18 @@ $(function(){
 	// 은행 애니메이션
 	function animateBank(){
 		$(".bank-sign-front img").addClass("rotate");
-		$(".bank-sign").animate({"top": (isMobile==true)? "-5%" : "-25%" }, 500, "easeOutBounce", function(){
+		$(".bank-sign").animate({"top": (isMobile==true)? "0%" : "-25%" }, 500, "easeOutBounce", function(){
 			for(f=0; f<$(".flying-money").length; f++){
 				if(isMobile==true){
 					if( f == $(".flying-money").length-1 ){ 
-						$(".flying-money").eq(f).delay(200*f).animate({"top":"100%", "right":"-350px"}, 1200, "swing", function(){
+						$(".flying-money").eq(f).delay(200*f).animate({"top":"140%", "right":"-350px","opacity":"0"}, 1200, "swing", function(){
 							$(".bank-sign-front img").removeClass("rotate");
 							setTimeout(function(){
 								resetBankMoney();
 							}, 500);	
 						});										
 					}else{
-						$(".flying-money").eq(f).delay(200*f).animate({"top":"100%", "right":"-350px"}, 1200, "swing");
+						$(".flying-money").eq(f).delay(200*f).animate({"top":"140%", "right":"-350px","opacity":"0"}, 1200, "swing");
 					}
 				}else{
 					if( f == $(".flying-money").length-1 ){ 
@@ -754,6 +774,51 @@ $(function(){
 			moneyFlyTimer = setInterval(function() { moneyfly() }, 200);
 		}
 	}
+
+
+	// 2 cut frame Animation 
+	function makeFrameAni(ob, time){
+		var $itemDiv = ob; 
+		var moveValue = $itemDiv.width() / 2;
+		function itemBlinking(){
+			$itemDiv.css({"left": -moveValue + "px"});
+			setTimeout(function(){
+				$itemDiv.css({"left": 0});
+				itemBlinkingReverse()
+			}, time); 	
+		}
+		function itemBlinkingReverse(){
+			setTimeout(function(){
+				$itemDiv.css({"left": -moveValue + "px"});
+			}, time);		
+		}
+		var itemBlinkingRepeat = setInterval( function(){ itemBlinking() }, time*2);
+	};
+	
+	 makeFrameAni($(".flag img"), 300);
+	 makeFrameAni($(".flying-resume img"), 300);
+	 makeFrameAni($(".warm-holder img"), 500);
+	// 2 cut frame Animation 
+
+	// 3 cut frmae Animation 
+	function makeMultipleFrameAni(ob, frameNum, time){
+		var $itemDiv = ob; 
+		var moveValue = $itemDiv.width() / frameNum;
+		var roopCounter = 0;
+		function itemBlinking(){
+			$itemDiv.css({"left": -moveValue * roopCounter + "px"});
+			if( roopCounter >= (frameNum-1) ){
+				roopCounter = 0;
+			}else{
+				roopCounter ++;
+			}			
+		};
+		var itemBlinkingRepeat = setInterval( function(){ itemBlinking() }, time);
+	};
+	makeMultipleFrameAni($(".sky-baloon img"), 3, 400);
+	makeMultipleFrameAni($(".fountain-area .fountain img"), 4, 300);
+
+	// 3 cut frmae Animation 
 
 
 	//학원 레벨업
@@ -1204,7 +1269,7 @@ $(function(){
 	}
 	function hidePolicyLayer(){
 		$(".hide-btn").hide();
-		$(".info-layer").stop().animate({"top":"0"}, 300);
+		$(".info-layer").stop().animate({"top":"10px"}, 300);
 		$(".toggle-box").stop().slideUp(200, "swing", function(){
 			$(".show-btn").fadeIn();
 		});
@@ -1508,9 +1573,9 @@ $(function(){
 
 
 	function autocomplete(inp, arr) {
-	  
+	
 		  var currentFocus;
-		  /*execute a function when someone writes in the text field:*/
+		  
 		  inp.addEventListener("input", function(e) {
 			  var a, b, i, val = this.value;
 			  /*close any already open lists of autocompleted values*/
