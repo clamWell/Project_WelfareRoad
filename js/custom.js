@@ -365,7 +365,11 @@ $(function(){
 			firstScroll = true;
 			$(".intro-manual").hide();
 			$(".stage-navi").addClass("navi-show");
-			$(".info-layer ").animate({"top":"0px"},500);
+			if(isMobile==true){
+				$(".info-layer ").animate({"top":"35px"},500);
+			}else{
+				$(".info-layer ").animate({"top":"0px"},500);
+			}		
 			if(isMobile==true){
 				setTimeout(function(){
 					$(".stage-navi .des").hide();
@@ -1269,7 +1273,12 @@ $(function(){
 	}
 	function hidePolicyLayer(){
 		$(".hide-btn").hide();
-		$(".info-layer").stop().animate({"top":"10px"}, 300);
+		if(isMobile==true){
+			$(".info-layer").stop().animate({"top":"35px"}, 500);
+		}else{ 	
+			$(".info-layer").stop().animate({"top":"0px"}, 500);
+		}
+		$(".info-layer").addClass("info-layer-box-close");			
 		$(".toggle-box").stop().slideUp(200, "swing", function(){
 			$(".show-btn").fadeIn();
 		});
@@ -1278,7 +1287,10 @@ $(function(){
 		$(".show-btn").hide();
 		if(isMobile==true){
 			$(".info-layer").stop().animate({"top":"10px"}, 500);
-		}else{ 	$(".info-layer").stop().animate({"top":"20px"}, 500);}
+		}else{ 	
+			$(".info-layer").stop().animate({"top":"20px"}, 500);
+		}
+		$(".info-layer").removeClass("info-layer-box-close");
 		$(".toggle-box").stop().slideDown(400, "easeInOutCubic", function(){
 			$(".hide-btn").fadeIn();
 		});
@@ -1330,10 +1342,12 @@ $(function(){
 		}
 
 	}
-	$(".hide-btn").on("click", function(){
+	$(".hide-btn").on("click", function(e){
+		e.preventDefault()
 		hidePolicyLayer();
 	});
-	$(".show-btn").on("click", function(){
+	$(".show-btn").on("click", function(e){
+		e.preventDefault()
 		ShowPolicyLayer();
 	});
 	//// 정책 스테이지 구분 ////
@@ -1453,7 +1467,8 @@ $(function(){
 
 	//// 네비게이션 클릭 ////
 
-	$(".video-board-area").on("click", function(){
+	$(".video-board-area").on("click", function(e){
+		e.preventDefault();
 		 window.open("https://www.youtube.com/channel/UCHXvjavEtkPFJCfGlm0wTXw");
 		 console.log("t");
 	});
