@@ -3,6 +3,7 @@
 	$css = "css/style.css?" . filemtime("css/style.css");
 	$js = "js/custom.js?" . filemtime("js/custom.js");
 	$policyData = "js/policyData.js?" . filemtime("js/policyData.js");
+	$policyDataforSearch = "js/policyDataforSearch.js?" . filemtime("js/policyDataforSearch.js");
 ?>
 <!doctype html>
 <html>
@@ -936,7 +937,10 @@
 					</div>	
 					
 					<div class="ending-layer">
+						
 						<div class="ending-box">
+							<div class="hangger hang-right"><img src="img/hangger.png" alt=""></div>
+							<div class="hangger hang-left"><img src="img/hangger.png" alt=""></div>
 							<!--
 							<div class="wrap-psrelative">
 								<div class="prize"><img src="http://img.khan.co.kr/spko/storytelling/2019/running/prize.png" alt=""></div>
@@ -1030,8 +1034,10 @@
 				</div>
 				<div class="search-list-area">
 					<div class="search-list-layer">
-						<div class="close-icon"></div>
 						<div class="wrap-psrelative">
+							<div class="close-btn serach-layer-close-btn">
+								<div class="icon">×</div>
+							</div>
 							<div class="top-wave">
 								<div class="wave-deco wave-deco-1"><img src="http://img.khan.co.kr/spko/storytelling/2019/running/wave-deco-1.png" alt=""></div>
 								<div class="wave-deco wave-deco-2"><img src="http://img.khan.co.kr/spko/storytelling/2019/running/wave-deco-2.png" alt=""></div>
@@ -1108,16 +1114,15 @@
 
 								<div class="search-result-area">
 									<div class="result-area-wrap">
-
 										<div class="search-bf">
 											<p>정책명을 검색하거나 해당하는 생애주기를 선택해주세요.</p>
 										</div>
-										<div class="serach-aft">
-											<div class="show-total-number"><span class="category-name">육아</span> 관련 복지 정책 <span class="number">19</span>개가 있습니다</div>	
+										<div class="search-aft">
+											<div class="show-total-number"><span class="category-name"></span> 관련 복지 정책 <span class="number"></span>개가 있습니다</div>	
 											
 											<div class="category-detail">	
 												<p class="title">세분류</p>
-												<div class="category-detail-list">
+												<div class="category-detail-list" id="detail-list-baby">
 													<ul>
 														<li>영유아</li>
 														<li>어린이</li>
@@ -1126,6 +1131,16 @@
 														<li>다자녀가정</li>
 														<li>한부모가정</li>
 														<li>다부모가정</li>
+													</ul>
+												</div>
+												<div class="category-detail-list" id="detail-list-oldyear">
+													<ul>
+														<li>생활지원</li>
+														<li>주거지원</li>
+														<li>건강지원</li>
+														<li>일자리</li>
+														<li>돌봄 서비스</li>
+														<li>문화활동</li>
 													</ul>
 												</div>
 											</div>
@@ -1213,7 +1228,7 @@
     <!-- //전체 wrap (E)-->
 	<script type="text/javascript" src="<?php echo $js; ?>"></script>
 	<script type="text/javascript" src="<?php echo $policyData; ?>"></script>	
-
+	<script type="text/javascript" src="<?php echo $policyDataforSearch; ?>"></script>		
 	<!-- imp 2019.12 YJ 추가-->
 	<SCRIPT type="text/javaSCRIPT">
 	 document.write('<img src="//ad.khan.co.kr/imp/khan_imp.php?dp=015111" width="0" height="0" style="display: none;" alt="img" />');
