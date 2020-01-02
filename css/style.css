@@ -926,9 +926,10 @@ box-sizing: border-box; border: 3px solid #d2d2d2;transition: all 0.2s ease 0s;}
 /*******검색 영역 ******/ 
 .search-list-area { position: fixed; top: 0; left:0; width: 100%; height: 100vh; z-index: 100; background:#fff; display:none;   }
 .search-list-area .search-list-layer { width: 100%; height: 100%; overflow-y: scroll;overflow-x: hidden;}
+/*
 .search-list-layer::-webkit-scrollbar {  width: 12px;}
 .search-list-layer::-webkit-scrollbar-track { background:#fff; -webkit-box-shadow: inset 0 0 6px #adb9cf;}
-.search-list-layer::-webkit-scrollbar-thumb { background:#9ca5b8; border-radius: 2px; }
+.search-list-layer::-webkit-scrollbar-thumb { background:#9ca5b8; border-radius: 2px; }*/
 
 .search-list-layer .close-btn {transition:all 0.2s ease 0s;  position: absolute; top: 30px; right: 30px; background:#fff; border-radius: 50%; box-sizing:border-box; 
 width: 60px; height: 60px; cursor: pointer;background: #fff; color:#696969;z-index: 2; }
@@ -946,7 +947,7 @@ width: 60px; height: 60px; cursor: pointer;background: #fff; color:#696969;z-ind
 .search-list-layer .layer-boxing h3 { text-align: center; font-size: 0px; font-weight:bold; text-indent: -999999; }
 .search-list-layer .layer-boxing .title-img { margin: 30px auto; }
 .search-list-layer .layer-boxing .title-img img { display: block; margin: 0 auto; width: 380px; position: relative; }
-.search-bar-holder { margin: 30px auto; }
+.search-bar-holder { margin: 30px auto;z-index: 5; position: relative; }
 .search-bar-holder .search-bar { max-width: 600px; margin: 0 auto; position: relative;border-radius: 5px; transition:all 0.5s ease 0s; }
 .search-bar-holder .search-bar .input_txt {  width: 600px; height: 50px;background: #2b303b;border: none;font-size: 10pt;color: #63717f; padding: 0px 20px; border-radius: 5px;
 font-family: 'Noto Sans KR', 'notokr-regular', 'Apple SD Gothic Neo','맑은 고딕', Malgun Gothic, '돋움', Dotum, Helvetica, AppleGothic, Sans-serif; 
@@ -1179,7 +1180,7 @@ border-radius: 3px;font-size: 14px;color: #464646;font-weight: 500;cursor: point
 .video-board-area { left: 62000px; }
 .light-house-area { left: 62600px;}
 .ending-harbor-area { left: 62800px; }
-.ending-layer .ending-box { width: 450px; }
+.ending-layer .ending-box { width: 550px; }
 .ending-layer .ending-box .ending-ment img { width: 320px; }
 .ending-harbor .sea-gull-1  { top:-400px; }
 .ending-harbor .sea-gull-2 { top:-200px; }
@@ -1686,7 +1687,8 @@ transform-origin: bottom;}
 
 
 .ending-layer { top: 10px; right:0; width: 100%; box-sizing: border-box;  padding: 0px 10px;} 
-.ending-layer .ending-box { width: 100%; box-sizing: border-box;  padding: 20px 15px;     box-shadow: 2px 2px 5px rgba(226, 96, 0, 0.5);    border-radius: 3px;}
+.ending-layer .ending-box { width: 100%; box-sizing: border-box;  padding: 20px 15px; box-shadow: 2px 2px 5px rgba(226, 96, 0, 0.5);    border-radius: 3px;padding: 0;}
+.ending-layer .ending-box .hangger { width: 15px; }
 .ending-layer .ending-box .prize { margin-top:0;display:none; }
 .ending-layer .ending-box .prize img { width: 50px; }
 .ending-layer .ending-box .ending-ment { margin-top:10px; }
@@ -1694,8 +1696,8 @@ transform-origin: bottom;}
 .ending-layer .ending-box .srch-btn-holder .srch-btn { margin-top: 15px;font-size: 15px; font-weight:bold; width: 250px; padding: 10px 0; color:#fff; }
 .srch-btn .srch-icon { vertical-align: top;}
 .ending-layer .ending-box-bottom { margin-top: 10px; }
-.ending-layer .ending-box-bottom > a > div {  width: 100%;  margin:2px; padding: 10px 0px;font-size: 13px;box-shadow: 2px 2px 5px rgba(226, 96, 0, 0.5);    border-radius: 3px;
- color: #555a65;font-weight: bold;}
+.ending-layer .ending-box-bottom > a > div {  width: 100%; padding: 10px 0px;font-size: 13px; box-shadow: 2px 2px 5px rgba(226, 96, 0, 0.5);    border-radius: 3px;
+ color: #555a65;font-weight: bold; margin:5px 0;  border: 2px solid #d2d2d2;}
 .ending-layer .ending-box-bottom > a > div .link { opacity:1;  top: 8px; right: 8px;}
 .ending-layer .ending-box-bottom > a > div .link img { width: 14px;}
 .ending-layer .ending-box .srch-btn-holder { margin-bottom: 0px; }
@@ -1833,9 +1835,11 @@ animation: blink 1.5s linear infinite;  }
 .search-bar-holder .search-bar { width: 90%; }
 .search-bar-holder .search-bar .input_txt { width: 100%; font-size: 15px;}
 .autocomplete-items { width: 100%; }
+.search-list-layer .close-btn { top: 5px; right: 5px; width: 40px; height: 40px;} 
+.search-list-layer .close-btn .icon {     line-height: 36px;}
 
 .search-category-holder { margin-top: 40px; }
-.search-category-holder .category-list { width:100%;overflow-y: scroll; }
+.search-category-holder .category-list { width:100%; overflow-y: hidden; overflow-x: scroll; }
 .search-category-holder .category-list ul { width: 680px;box-sizing: border-box; padding: 0px 10px;}
 .search-category-holder .category-list ul li { width: 100px; margin: 0px 5px; }
 .search-category-holder .category-list .list-item .thumb { padding: 10px; }
@@ -1849,24 +1853,26 @@ animation: blink 1.5s linear infinite;  }
 .category-detail .title { font-size: 12px; margin-bottom: 2px; }
 
 .category-detail .category-detail-list { box-sizing: border-box; padding: 0px 10px;}
-.category-detail .category-detail-list ul { border-radius: 3px;}
+.category-detail .category-detail-list ul { border-radius: 3px; background:none; }
 .category-detail .category-detail-list ul li { padding: 10px 5px; font-size: 13px;width: 24%; padding: 10px 5px;font-size: 13px; margin: 2px 0.5%; border-radius: 3px;border:none;}
-
+.category-detail #detail-list-oldyear ul li {   width: 32.2%; }
 
 
 .show-total-number { margin-bottom: 20px; }
 .search-result-area .result-area-wrap { padding: 50px 0; }
 .search-bf { padding: 50px 0; }
 .search-bf p {font-size: 16px;width: 100%;padding: 0px 40px; box-sizing: border-box;}
-.show-total-number { font-size: 18px; }
+.show-total-number { font-size: 16px; box-sizing: border-box; padding: 0px 15px;}
 .result-list { box-sizing: border-box; padding: 0px 10px; }
 .result-list .each-result-item .policy-name {  font-size: 15px;}
-.result-list .each-result-item a { padding: 12px 10px;}
+.result-list .each-result-item a { padding: 12px 10px;    padding-right: 18px;}
 .search-result-area .result-area-wrap { padding-bottom: 0px; }
 .each-result-item .see-more-btn { top: 15px; font-size:0; }
 .each-result-item .see-more-btn .more-icon { display: block; }
 .result-list .item-last {border-bottom:0; }
 
+.ending-layer .ending-box .banner-img:hover { transform: none; }
+.ending-layer .ending-box-bottom > a > div:hover { transform: none; }
 
 }
 

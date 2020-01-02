@@ -6,7 +6,7 @@ $(function(){
 		imgURL = "http://img.khan.co.kr/spko/storytelling/2019/running/",
 		isMobile = screenWidth <= 800 && true || false,
 		isNotebook = (screenWidth <= 1300 && screenHeight < 750) && true || false,
-		isMobileLandscape = ( screenWidth > 400 && screenWidth <= 800 && screenHeight < 450 ) && true || false; 
+		isMobileLandscape = ( screenWidth > 400 && screenWidth <= 800 && screenHeight < 450 ) && true || false;
 
 	var agent = navigator.userAgent.toLowerCase();
 	if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
@@ -111,18 +111,18 @@ $(function(){
 	};
 
 	if(isMobileLandscape==true){
-		$(".character-holder").css({"left":"120px"}); 
+		$(".character-holder").css({"left":"120px"});
 	}else if(isMobile == true){
-		$(".character-holder").css({"left": (screenWidth - $(".character-holder").width())/2 +"px" }); 
+		$(".character-holder").css({"left": (screenWidth - $(".character-holder").width())/2 +"px" });
 		var vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty("--vh", vh+"px");
-		//$(".dimension-holder").css({ height: screenHeight });			
+		//$(".dimension-holder").css({ height: screenHeight });
 	}
 	$(window).resize(function(){
-		if(isMobile == true){ 
+		if(isMobile == true){
 			var vh = window.innerHeight * 0.01;
 			document.documentElement.style.setProperty("--vh", vh+"px");
-		}		
+		}
 	});
 
 	// 시작하면 캐릭터 하늘에서 떨어짐
@@ -369,13 +369,13 @@ $(function(){
 				$(".info-layer ").animate({"top":"35px"},500);
 			}else{
 				$(".info-layer ").animate({"top":"0px"},500);
-			}		
+			}
 			if(isMobile==true){
 				setTimeout(function(){
 					$(".stage-navi .des").hide();
 				}, 3000);
 			}
-			
+
 		}
 		if (layersMovement == "horizontal"){
 			for(a = 0; a < $aniObs.length; a++){
@@ -712,16 +712,16 @@ $(function(){
 		});
 	}
 
-	function resetBankMoney(){		
+	function resetBankMoney(){
 		if(isMobile==true){
-			$(".flying-money").css({"top":"25px", "right":"0px","opacity":"1"});		
+			$(".flying-money").css({"top":"25px", "right":"0px","opacity":"1"});
 		}else{
 			$(".flying-money").css({"top":"40px", "right":"5px"});
 		}
 		setTimeout(function(){
 			animateBank();
 		}, 2000);
-		
+
 	}
 	makeMoneyfly();
 	// 은행 애니메이션
@@ -730,33 +730,33 @@ $(function(){
 		$(".bank-sign").animate({"top": (isMobile==true)? "0%" : "-25%" }, 500, "easeOutBounce", function(){
 			for(f=0; f<$(".flying-money").length; f++){
 				if(isMobile==true){
-					if( f == $(".flying-money").length-1 ){ 
+					if( f == $(".flying-money").length-1 ){
 						$(".flying-money").eq(f).delay(200*f).animate({"top":"140%", "right":"-350px","opacity":"0"}, 1200, "swing", function(){
 							$(".bank-sign-front img").removeClass("rotate");
 							setTimeout(function(){
 								resetBankMoney();
-							}, 500);	
-						});										
+							}, 500);
+						});
 					}else{
 						$(".flying-money").eq(f).delay(200*f).animate({"top":"140%", "right":"-350px","opacity":"0"}, 1200, "swing");
 					}
 				}else{
-					if( f == $(".flying-money").length-1 ){ 
+					if( f == $(".flying-money").length-1 ){
 						$(".flying-money").eq(f).delay(200*f).animate({"top":"-10%", "right":"-1200px"}, 1200, "swing", function(){
 							$(".bank-sign-front img").removeClass("rotate");
 							setTimeout(function(){
 								resetBankMoney();
-							}, 1000);	
-						});	
+							}, 1000);
+						});
 					}else{
 						$(".flying-money").eq(f).delay(200*f).animate({"top":"-10%", "right":"-1200px"}, 1200, "swing");
 					}
-					
+
 				}
-				
+
 			}
 
-		});		
+		});
 	}
 
 
@@ -782,33 +782,33 @@ $(function(){
 	}
 
 
-	// 2 cut frame Animation 
+	// 2 cut frame Animation
 	function makeFrameAni(ob, time){
-		var $itemDiv = ob; 
+		var $itemDiv = ob;
 		var moveValue = $itemDiv.width() / 2;
 		function itemBlinking(){
 			$itemDiv.css({"left": -moveValue + "px"});
 			setTimeout(function(){
 				$itemDiv.css({"left": 0});
 				itemBlinkingReverse()
-			}, time); 	
+			}, time);
 		}
 		function itemBlinkingReverse(){
 			setTimeout(function(){
 				$itemDiv.css({"left": -moveValue + "px"});
-			}, time);		
+			}, time);
 		}
 		var itemBlinkingRepeat = setInterval( function(){ itemBlinking() }, time*2);
 	};
-	
+
 	 makeFrameAni($(".flag img"), 300);
 	 makeFrameAni($(".flying-resume img"), 300);
 	 makeFrameAni($(".warm-holder img"), 500);
-	// 2 cut frame Animation 
+	// 2 cut frame Animation
 
-	// 3 cut frmae Animation 
+	// 3 cut frmae Animation
 	function makeMultipleFrameAni(ob, frameNum, time){
-		var $itemDiv = ob; 
+		var $itemDiv = ob;
 		var moveValue = $itemDiv.width() / frameNum;
 		var roopCounter = 0;
 		function itemBlinking(){
@@ -817,14 +817,14 @@ $(function(){
 				roopCounter = 0;
 			}else{
 				roopCounter ++;
-			}			
+			}
 		};
 		var itemBlinkingRepeat = setInterval( function(){ itemBlinking() }, time);
 	};
 	makeMultipleFrameAni($(".sky-baloon img"), 3, 400);
 	makeMultipleFrameAni($(".fountain-area .fountain img"), 4, 300);
 
-	// 3 cut frmae Animation 
+	// 3 cut frmae Animation
 
 
 	//학원 레벨업
@@ -833,7 +833,7 @@ $(function(){
 		$(".skillup img").css({"opacity": "0","top":"-40px"});
 		setTimeout(function(){
 			animateLevelUp();
-		}, 500); 
+		}, 500);
 
 	}
 	function animateLevelUp(){
@@ -844,9 +844,9 @@ $(function(){
 					$(".skillup img").animate({"opacity":"1","top":"0"}, 500, "easeOutBounce", function(){
 						setTimeout(function(){
 							resetLevelup();
-						}, 1000); 
+						}, 1000);
 					});
-				});								
+				});
 			}else{
 				$(".level-aniOb").eq($(".level-aniOb").length-l-1).delay(l*100).animate({"top":"0","opacity":"1"}, 700, "easeOutBounce");
 			}
@@ -871,7 +871,7 @@ $(function(){
 		$(".honeymoon-aniOb").css({"width":"0px","opacity":"0"});
 		setTimeout(function(){
 			AnimateHoneymoonPops();
-		}, 500); 
+		}, 500);
 
 	}
 	// 신혼 폭죽, 하트
@@ -883,12 +883,12 @@ $(function(){
 				$honeyPopItem.eq(h).delay(150*h).animate({"width": (isMobile==true)? "120px" : "200px","opacity":"1"}, 800, "easeOutElastic", function(){
 					setTimeout(function(){
 						resetPops();
-					}, 500); 
+					}, 500);
 				});
 			}else{
 				$honeyPopItem.eq(h).delay(150*h).animate({"width": (isMobile==true)? "120px" : "200px","opacity":"1"}, 800, "easeOutElastic");
 			}
-			
+
 		}
 	}
 
@@ -990,7 +990,7 @@ $(function(){
 		$(".surplus img").css({"width":"0px", "opacity":"0"});
 		setTimeout(function(){
 			annuitySupport();
-		}, 500); 
+		}, 500);
 
 	};
 
@@ -1003,7 +1003,7 @@ $(function(){
 			if(a==2){ $(".surplus img").delay(200*a).animate({"width": (isMobile==true)? "30px" : "59px","opacity":"1", "top":"0"}, 800, "easeOutBounce", function(){
 					setTimeout(function(){
 						resetAnnuity();
-					}, 500); 
+					}, 500);
 				});
 			}
 		}
@@ -1277,10 +1277,10 @@ $(function(){
 		$(".hide-btn").hide();
 		if(isMobile==true){
 			$(".info-layer").stop().animate({"top":"35px"}, 500);
-		}else{ 	
+		}else{
 			$(".info-layer").stop().animate({"top":"0px"}, 500);
 		}
-		$(".info-layer").addClass("info-layer-box-close");			
+		$(".info-layer").addClass("info-layer-box-close");
 		$(".toggle-box").stop().slideUp(200, "swing", function(){
 			$(".show-btn").fadeIn();
 		});
@@ -1289,7 +1289,7 @@ $(function(){
 		$(".show-btn").hide();
 		if(isMobile==true){
 			$(".info-layer").stop().animate({"top":"10px"}, 500);
-		}else{ 	
+		}else{
 			$(".info-layer").stop().animate({"top":"20px"}, 500);
 		}
 		$(".info-layer").removeClass("info-layer-box-close");
@@ -1468,12 +1468,12 @@ $(function(){
 	});
 
 	//// 네비게이션 클릭 ////
-
+/*
 	$(".video-board-area").on("click", function(e){
 		e.preventDefault();
-		 window.open("https://www.youtube.com/channel/UCHXvjavEtkPFJCfGlm0wTXw");
+		 window.open("https://www.youtube.com/watch?v=nfr-Ox9cz3A");
 		 console.log("t");
-	});
+	});*/
 
 
 	/// 모바일 터치 ///
@@ -1569,18 +1569,24 @@ $(function(){
 		window.scrollTo(0, 0);
 	});
 
-	
+
 
 	////// 정책 검색 ///////
-	
+
 	// input 포커스 인, 아웃
-
-
-	$("input.input_txt").focus(function(){ 
+	$("input.input_txt").focus(function(){
 		$(this).parents(".search-bar").addClass("search-bar-focus");
 	});
 	$("input.input_txt").blur(function(){
 		$(this).parents(".search-bar").removeClass("search-bar-focus");
+	});
+
+	$(".search-icon").click(function(e){
+		$(".autocomplete-items").remove();
+		makeSearchResultByCate(document.getElementById("searchPolicy").value);
+
+		$(".search-bf").hide();
+		$(".search-aft").slideDown()
 	});
 
 	if(isMobile==true){
@@ -1601,8 +1607,8 @@ $(function(){
 	function closeSearchLayer(){
 		$("body").removeClass("fixed");
 		$(".search-list-area").hide();
-		$(".top-wave .wave-deco-1").css({"left":"-100px", "top":"-100px", "opacity":"0"}); 
-		$(".top-wave .wave-deco-2").css({"bottom":"-100px", "right":"-100px", "opacity":"0"}); 
+		$(".top-wave .wave-deco-1").css({"left":"-100px", "top":"-100px", "opacity":"0"});
+		$(".top-wave .wave-deco-2").css({"bottom":"-100px", "right":"-100px", "opacity":"0"});
 		$(".search-list-layer .layer-boxing .title-img img").css({"top":"70px", "opacity":"0"});
 	}
 	closeSearchLayer();
@@ -1610,14 +1616,14 @@ $(function(){
 		$("body").addClass("fixed");
 		$(".search-list-area").show();
 		$(".search-list-layer .layer-boxing .title-img img").animate({"opacity":"1", "top":"0px"}, 600, "easeInCubic");
-		$(".top-wave .wave-deco-1").delay(200).animate({"left":"0", "top":"0", "opacity":"1"},1000,"easeInCubic"); 
+		$(".top-wave .wave-deco-1").delay(200).animate({"left":"0", "top":"0", "opacity":"1"},1000,"easeInCubic");
 		$(".top-wave .wave-deco-2").delay(200).animate({"right":"0", "bottom":"0", "opacity":"1"},1000,"easeInCubic");
-		
+
 	}
 
 	$(".banner-img").on("click", function(e){
 		e.preventDefault();
-		showSearchLayer();		
+		showSearchLayer();
 	});
 
 	$(".serach-layer-close-btn").on("click", function(e){
@@ -1631,34 +1637,42 @@ $(function(){
 		$(".search-bf").show();
 		$(".search-aft").hide();
 		$(".show-total-number .category-name").html("");
-		$(".show-total-number span.number").html("");		
+		$(".show-total-number span.number").html("");
 		$(".result-list").html("");
 	};
 
 	//policyDataforSearch
 	function makeSearchResultByCate(c){
-		var categoryName = getStageText(c);
+
+		var categoryName;
+		isNaN(c) ? categoryName = c : categoryName = getStageText(c);
+
 		var totalPolicyCount = 0;
 		$(".result-list").html("");
+
 		for(p=0; p<policyDataforSearch.length;p++){
-			if(policyDataforSearch[p].onedepth == categoryName){
+			if((isNaN(c) == false && policyDataforSearch[p].onedepth == categoryName) || (isNaN(c) == true && policyDataforSearch[p].policy.indexOf(c) != -1)){
 				totalPolicyCount++;
 				$(".result-list").append("<div class='each-result-item'><a href='"+policyDataforSearch[p].link+"' target='_blank'><p class='policy-name'>"+policyDataforSearch[p].policy+"</p><div class='see-more-btn'>정책 자세히 보기 <span class='more-icon'><img src='http://img.khan.co.kr/spko/storytelling/2019/running/outlink-icon-purple.png' alt=''></span></div></a></div>");
-			}		
-		}
-		$(".show-total-number .category-name").html(categoryName);
-		$(".show-total-number span.number").html(totalPolicyCount);		
-		$(".category-detail").hide();
-		$(".category-detail-list").hide();
-		if(categoryName=="육아"||categoryName=="노년"){
-			$(".category-detail").show();
-			if(categoryName=="육아"){
-				$("#detail-list-baby").show();
-			
-			}else if(categoryName=="노년"){
-				$("#detail-list-oldyear").show();	
 			}
 		}
+		$(".show-total-number .category-name").html(categoryName);
+		$(".show-total-number span.number").html(totalPolicyCount);
+		$(".category-detail").hide();
+		$(".category-detail-list").hide();
+
+		/*
+		if (isNaN(c) == false){
+			if(categoryName=="육아"||categoryName=="노년"){
+				$(".category-detail").show();
+				if(categoryName=="육아"){
+					$("#detail-list-baby").show();
+
+				}else if(categoryName=="노년"){
+					$("#detail-list-oldyear").show();
+				}
+			}
+		}*/
 	};
 
 
@@ -1666,117 +1680,122 @@ $(function(){
 		$(".search-category-holder .category-list ul li").removeClass("on");
 		$(this).addClass("on");
 		e.preventDefault();
-		var cateIndex = $(this).index();			
+		var cateIndex = $(this).index();
 		 makeSearchResultByCate(cateIndex+1);
 		$(".search-bf").hide();
 		$(".search-aft").slideDown();
 	});
-	
-
-	var policies = ["다자녀 가구 국가장학금지원","대학생 신용회복 지원","취업 후 상환 학자금 대출(ICL)","대학생 전월세 주택 검색 지원","행복기숙사","희망하우징 대학생 임대 주택(다가구형, 기숙사형)","청년, 대학생 전환대출 보증 지원 제도","행복주택 공급","공공주택 공급(공공분양 및 공공임대)","주거안정 월세 대출","청년 우대형 청약통장","버팀목 전세자금 대출","청년내일채움공제","청년희망키움통장","취업성공패키지(참여수당, 훈련참여지원수당, 취업성공수당)","중소기업 취업연계 장학금(희망사다리)","신혼부부 공공주택 공급","신혼부부 행복주택 공급","기존주택 공공 매입 후 임대 사업(신혼부부)","기존주택 공공 전세 계약 후 재임대 사업(신혼부부)","버팀목 전세자금 대출","내집마련 디딤돌 대출","버팀목 전세자금 대출보증","임신∙출산 의료비 지원(국민행복카드)","고용보험 미가입자 출산급여 지원","청소년 산모 임신∙출산 의료비 지원","여성장애인 출산비용지원","임신기 근로시간 단축, 태아 검진시간 허용","고위험 임신부 의료비 지원","난임부부 시술비 지원","임신부 철분제∙엽산제 지원","저소득층 기저귀∙분유 지원*","산모∙신생아 건강관리서비스*","배우자 출산휴가, 아빠 육아휴직 보너스제","출산(유·사산) 전후 휴가·급여, 육아휴직/육아기 단축근로 급여","선천성대사 이상 검사 및 환아관리 지원","미숙아∙선천성이상아 등 영유아 의료비지원","신생아 난청진단 의료비지원*","의료급여수급권자 영유아건강검진비 지원*","어린이 예방접종비 지원","가정양육수당 지급","만 0-5세 보육료(어린이집) 지원","만 3~5세 누리과정(유치원) 지원","시간연장형 보육료 지원","한부모가족 아동양육비지원*","아이돌봄서비스","아동수당","공동육아나눔터 운영","유급 수유시간 허용","자녀 돌봄 휴가제도","가족 돌봄 휴직제도","육아기 근로시간 단축","교육급여","초등돌봄교실","지역아동센터 지원","고교학비 지원(2021년까지 고교 무상교육 전학년 확대)","청소년 한부모 고교생 교육비 지원","청소년 한부모 자립 지원","이주배경 청소년 지원","청소년 활동지원","다자녀 가정 주택 특별공급","다자녀 가정 전세자금 대출지원","다자녀 가구 전기요금복지할인","다자녀 가구 국가장학금지원","다자녀 가구 코레일요금 할인","다자녀 가구 자동차 취득세 감면","장애아 보육료 지원","장애아동수당*","장애아 가족 양육지원","장애인 공공요금 감면","언어발달 지원","발달장애인 부모상담 지원","다문화 보육료 지원","다문화가족 방문교육 서비스","다문화가족 지원사업","다문화가족 자녀 언어발달 지원서비스","미혼모·부 초기지원(권역별 미혼모·부자 거점기관 운영)","한부모가족 아동양육비 지원","한부모가족 자녀 교육비 지원","한부모가족 임대주택 특별공급","청소년 한부모고교생 교육비 지원","청소년한부모자립지원","여성창업지원","여성기업종합지원센터 운영","여성경제활동 촉진지원 (여성새로일하기 지원센터 사업)","결혼이민여성 취업지원","여성 인재 데이터베이스 등록 서비스 제공","육아기 근로시간 단축 및 급여","경력단절여성 고용 관련 세제혜택","근로시간 단축 청구권","기초연금 지급","긴급복지 지원","노후 긴급자금 대부사업*","노후 준비서비스","농지연금","퇴직연금제도 무료교육 지원","주택연금 지원(주택담보노후연금보증)","집주인 임대주택 융자","행복주택공급","신축 다세대 매입 임대주택","의료급여 요양비 지원","고혈압∙당뇨병 등록관리 서비스 제공","노인 안검진 및 개안수술","노인치과지원 (의료급여 틀니·치과임플란트)","독거노인∙중증장애인 응급안전 알림 서비스*","노인 폐렴구균 예방접종 지원","치매 치료관리비 지원사업","치매안심센터 운영","노인 무릎관절 수술 지원","노인일자리 및 사회활동 지원사업","독거노인종합지원센터 운영","생애경력설계서비스","중장년 기술창업센터 지원","고령자 인재은행","고령자 고용환경개선 자금 융자","시니어인턴십 사업","임금피크제 지원금","노인돌봄 기본 서비스","노인돌봄 종합 서비스*","노인보호 전문기관 이용","노인 장기요양 - 시설급여","노인 장기요양 - 재가급여","노인장기요양 - 특별 현금급여(가족요양비)","노인보호전문기관 및 학대피해노인 전용쉼터 운영 지원","고령층 정보화교육","어르신 문화프로그램 운영"];
 
 
 
 	function autocomplete(inp, arr) {
-	
-		  var currentFocus;
-		  
-		  inp.addEventListener("input", function(e) {
-			  var a, b, i, val = this.value;
-			  /*close any already open lists of autocompleted values*/
-			  closeAllLists();
-			  if (!val) { return false;}
-			  currentFocus = -1;
-			  /*create a DIV element that will contain the items (values):*/
-			  a = document.createElement("DIV");
-			  a.setAttribute("id", this.id + "autocomplete-list");
-			  a.setAttribute("class", "autocomplete-items");
-			  /*append the DIV element as a child of the autocomplete container:*/
-			  this.parentNode.appendChild(a);
-			  /*for each item in the array...*/
-			  for (i = 0; i < arr.length; i++) {
-				/*check if the item starts with the same letters as the text field value:*/
-				if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-				  /*create a DIV element for each matching element:*/
-				  b = document.createElement("DIV");
-				  /*make the matching letters bold:*/
-				  b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-				  b.innerHTML += arr[i].substr(val.length);
-				  /*insert a input field that will hold the current array item's value:*/
-				  b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-				  /*execute a function when someone clicks on the item value (DIV element):*/
-					  b.addEventListener("click", function(e) {
-					  /*insert the value for the autocomplete text field:*/
-					  inp.value = this.getElementsByTagName("input")[0].value;
-					  /*close the list of autocompleted values,
-					  (or any other open lists of autocompleted values:*/
-					  closeAllLists();
-				  });
-				  a.appendChild(b);
+
+	    var currentFocus;
+
+	    inp.addEventListener("input", function(e) {
+
+	        var a, b, i, val = this.value;
+
+	        closeAllLists();
+
+	        if (!val) {
+	            return false;
+	        }
+	        currentFocus = -1;
+
+	        a = document.createElement("DIV");
+	        a.setAttribute("id", this.id + "autocomplete-list");
+	        a.setAttribute("class", "autocomplete-items");
+
+	        this.parentNode.appendChild(a);
+
+	        for (i = 0; i < arr.length; i++) {
+
+	            var seIndex = arr[i].indexOf(val);
+
+	            if (seIndex != -1) {
+
+	                b = document.createElement("DIV");
+
+	                var examString = "";
+	                for (var si = 0; si < arr[i].length; si++) {
+	                    if (si == seIndex) examString += "<strong>";
+	                    examString += arr[i][si];
+	                    if (si == seIndex + val.length - 1) examString += "</strong>";
+	                }
+
+	                b.innerHTML = examString;
+	                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+	                b.addEventListener("click", function(e) {
+	                    inp.value = this.getElementsByTagName("input")[0].value;
+						closeAllLists();
+	                    makeSearchResultByCate(inp.value);
+	                    $(".search-bf").hide();
+	                    $(".search-aft").slideDown()
+	                });
+	                a.appendChild(b);
+	            }
+	        }
+	    });
+
+	    inp.addEventListener("keydown", function(e) {
+	        var x = document.getElementById(this.id + "autocomplete-list");
+	        if (x) x = x.getElementsByTagName("div");
+	        if (e.keyCode == 40) {
+	            currentFocus++;
+	            addActive(x);
+	        } else if (e.keyCode == 38) {
+	            currentFocus--;
+	            addActive(x);
+	        } else if (e.keyCode == 13) {
+	            e.preventDefault();
+	             if (currentFocus > -1) {
+                   if (x) x[currentFocus].click();
+				   } else {
+				   closeAllLists();
+				   makeSearchResultByCate(inp.value);
+				   $(".search-bf").hide();
+				   $(".search-aft").slideDown()
 				}
-			  }
-		  });
-		  /*execute a function presses a key on the keyboard:*/
-		  inp.addEventListener("keydown", function(e) {
-			  var x = document.getElementById(this.id + "autocomplete-list");
-			  if (x) x = x.getElementsByTagName("div");
-			  if (e.keyCode == 40) {
-				/*If the arrow DOWN key is pressed,
-				increase the currentFocus variable:*/
-				currentFocus++;
-				/*and and make the current item more visible:*/
-				addActive(x);
-			  } else if (e.keyCode == 38) { //up
-				/*If the arrow UP key is pressed,
-				decrease the currentFocus variable:*/
-				currentFocus--;
-				/*and and make the current item more visible:*/
-				addActive(x);
-			  } else if (e.keyCode == 13) {
-				/*If the ENTER key is pressed, prevent the form from being submitted,*/
-				e.preventDefault();
-				if (currentFocus > -1) {
-				  /*and simulate a click on the "active" item:*/
-				  if (x) x[currentFocus].click();
-				}
-			  }
-		  });
-		  function addActive(x) {
-			/*a function to classify an item as "active":*/
-			if (!x) return false;
-			/*start by removing the "active" class on all items:*/
-			removeActive(x);
-			if (currentFocus >= x.length) currentFocus = 0;
-			if (currentFocus < 0) currentFocus = (x.length - 1);
-			/*add class "autocomplete-active":*/
-			x[currentFocus].classList.add("autocomplete-active");
-		  }
-		  function removeActive(x) {
-			/*a function to remove the "active" class from all autocomplete items:*/
-			for (var i = 0; i < x.length; i++) {
-			  x[i].classList.remove("autocomplete-active");
-			}
-		  }
-		  function closeAllLists(elmnt) {
-			/*close all autocomplete lists in the document,
-			except the one passed as an argument:*/
-			var x = document.getElementsByClassName("autocomplete-items");
-			for (var i = 0; i < x.length; i++) {
-			  if (elmnt != x[i] && elmnt != inp) {
-			  x[i].parentNode.removeChild(x[i]);
-			}
-		  }
+	        }
+	    });
+
+	    function addActive(x) {
+	        if (!x) return false;
+	        removeActive(x);
+	        if (currentFocus >= x.length) currentFocus = 0;
+	        if (currentFocus < 0) currentFocus = (x.length - 1);
+	        x[currentFocus].classList.add("autocomplete-active");
+	    }
+
+	    function removeActive(x) {
+	        for (var i = 0; i < x.length; i++) {
+	            x[i].classList.remove("autocomplete-active");
+	        }
+	    }
+
+	    function closeAllLists(elmnt) {
+	        var x = document.getElementsByClassName("autocomplete-items");
+	        for (var i = 0; i < x.length; i++) {
+	            if (elmnt != x[i] && elmnt != inp) {
+	                x[i].parentNode.removeChild(x[i]);
+	            }
+	        }
+	    }
+
+		document.addEventListener("click", function (e) {
+			closeAllLists(e.target);
+		});
+
 	}
-	
-	/*execute a function when someone clicks in the document:*/
-	document.addEventListener("click", function (e) {
-		closeAllLists(e.target);
+
+	var policies = policyDataforSearch.map(function(v, i, a){
+		return v.policy;
 	});
-	
-	}
-	autocomplete( document.getElementById("searchPolicy"), policies);
-	
-	
+
+	autocomplete(document.getElementById("searchPolicy"), policies);
+
+
 	////// 정책 검색 ///////
 
 

@@ -44,8 +44,8 @@ var policyDataforSearch = [
   {
     "onedepth": "청년",
     "twodepth": null,
-    "policy": "청년, 대학생 전환대출 보증 지원 제도",
-    "link": "http://www.gov.kr/portal/service/serviceInfo/PTR000051019"
+    "policy": "저소득, 저신용 청년/대학생 대출 지원(햇살론)",
+    "link": "http://www.ccfs.or.kr/support033.do"
   },
   {
     "onedepth": "청년",
@@ -302,12 +302,6 @@ var policyDataforSearch = [
   {
     "onedepth": "육아",
     "twodepth": "영·유아",
-    "policy": "자녀 돌봄 휴가제도",
-    "link": "소개 사이트 없음 / 연간 10일"
-  },
-  {
-    "onedepth": "육아",
-    "twodepth": "영·유아",
     "policy": "가족 돌봄 휴직제도",
     "link": "http://www.worklife.kr/website/index/m4/worker_pay.asp"
   },
@@ -543,7 +537,7 @@ var policyDataforSearch = [
     "onedepth": "재취업",
     "twodepth": null,
     "policy": "근로시간 단축 청구권",
-    "link": "링크 없음 / 가족돌봄, 질병, 은퇴준비, 학업등으로 1년 2년 범위내 연장 가능하지만 학업은 연장 없음 "
+    "link": "http://www.worklife.kr/website/index/m6/data_view.asp?GUID={37CAF7DF-9F88-40F9-B1E1-AC5234377ECD}"
   },
   {
     "onedepth": "노년",
@@ -709,43 +703,43 @@ var policyDataforSearch = [
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인돌봄 기본 서비스",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=347"
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인돌봄 종합 서비스",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=354"
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인보호 전문기관 이용",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=29"
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인 장기요양 - 시설급여",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=345"
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인 장기요양 - 재가급여",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=344"
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인장기요양 - 특별 현금급여(가족요양비)",
     "link": "http://www.bokjiro.go.kr/welInfo/retrieveGvmtWelInfo.do?welInfSno=343"
   },
   {
     "onedepth": "노년",
-    "twodepth": "돌봄 서비스",
+    "twodepth": "돌봄서비스",
     "policy": "노인보호전문기관 및 학대피해노인 전용쉼터 운영 지원",
     "link": "http://www.gov.kr/portal/service/serviceInfo/WII000000290"
   },
