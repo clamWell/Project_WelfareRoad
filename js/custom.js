@@ -285,7 +285,7 @@ $(function(){
 	}
 
 	function moveLayers() {
-		console.log(layersMovement);
+		//console.log(layersMovement);
 		if (layersMovement == "vertical") VP = vertical_p;
 
 		if ( (nowLifeStage <= 2 && weddingPlaneGoDown == true) || goMartUp == true || outMartDown == true){
@@ -299,7 +299,7 @@ $(function(){
 		}
 
 		if (layersMovement == "objectUpdown"){
-			console.log("oc : " + oc);
+			//console.log("oc : " + oc);
 			if (weddingPlaneGoDown == true){
 				oStartP = objectUpdown[oc].e;
 				oEndP = objectUpdown[oc].s;
@@ -329,8 +329,8 @@ $(function(){
 		if (layersMovement == "verticalUpdown"){
 			if (deltaVP > 0){
 				if ((updownSwitcher * verticalUpdown.p > 0 && vEndP < verticalUpdown.m) || (updownSwitcher * verticalUpdown.p < 0 && vEndP > verticalUpdown.m)){
-					console.log("change status");
-					console.log("updownSwitcher : "+updownSwitcher);
+					//console.log("change status");
+					//console.log("updownSwitcher : "+updownSwitcher);
 					layersMovement = verticalUpdown.call;
 					$(".horizon-dimension").css("top", vEndP + "px");
 					return;
@@ -343,10 +343,10 @@ $(function(){
 				}
 			}
 
-			console.log("vm : " + verticalUpdown.m);
-			console.log("vs : " + verticalUpdown.s);
-			console.log("ve : " + verticalUpdown.e);
-			console.log("vp : " + verticalUpdown.p);
+			//console.log("vm : " + verticalUpdown.m);
+			//console.log("vs : " + verticalUpdown.s);
+			//console.log("ve : " + verticalUpdown.e);
+			//console.log("vp : " + verticalUpdown.p);
 
 			verticalUpdown.m += verticalUpdown.p * updownSwitcher * deltaVP;
 			$(".horizon-dimension").css("top", verticalUpdown.m + "px");
@@ -405,7 +405,7 @@ $(function(){
 
 					weddingPlaneGoUp = true;
 					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
-					console.log("허니문떠남");
+					//console.log("허니문떠남");
 
 					var updownValue = (isMobile==true)? 180 : 350;
 					objectUpdown = [];
@@ -449,7 +449,7 @@ $(function(){
 
 					weddingPlaneGoDown = true;
 					upDownWidth = ($(".wedding-photo-area").position().left + ($(".wedding-photo-area").width() / 2)) - aniObsEndPos;
-					console.log("허니문돌아옴")
+					//console.log("허니문돌아옴")
 
 					var updownValue = (isMobile==true)? 180 : 350;
 					objectUpdown = [];
@@ -645,7 +645,7 @@ $(function(){
 				layersMovement = "vertical";
 				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
 				workBuildingArrive = true;
-				console.log("빌딩도착");
+				//console.log("빌딩도착");
 				$("body").addClass("fixed");
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoUpBuilding() );
 			}
@@ -654,7 +654,7 @@ $(function(){
 				layersMovement = "vertical";
 				vertical_p = $(".workbuilding-area").position().left - $(".character-holder").position().left;
 				workBuildingArrive = false;
-				console.log("빌딩다시내려가야함");
+				//console.log("빌딩다시내려가야함");
 				$("html, body").css({ scrollTop: $(".workbuilding-area").position().left-$(".character-holder").position().left }, chrGoDownBuilding() );
 				$("body").addClass("fixed");
 			}
@@ -671,7 +671,7 @@ $(function(){
 			//차량 마지막에 멈추게
 			if( VP + $(".character-holder").position().left > $(".ending-harbor-area").position().left ){
 				var overDriveValue = VP + $(".character-holder").position().left-$(".ending-harbor-area").position().left;
-				console.log(overDriveValue+"만큼 오버해서 이동");
+				//console.log(overDriveValue+"만큼 오버해서 이동");
 				$(".character-box-car").css({"left":(-1*overDriveValue)+"px"});
 				$(".info-layer").hide();
 				//$(".ending-layer").stop().slideDown(800, "easeInOutCubic");
@@ -692,7 +692,7 @@ $(function(){
 	var correctValueAfterMove = (isMobile==true) ? 100 : 200;
 	function chrGoUpBuilding(){
 		nowElevator = true;
-		console.log("빌딩올라가기");
+		//console.log("빌딩올라가기");
 		$(".horizon-dimension").stop().animate({"top": (isMobile==true)? "520px": "1140px"}, 1200, "swing",function(){
 			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left+correctValueAfterMove);
 			$("body").removeClass("fixed");
@@ -703,7 +703,7 @@ $(function(){
 
 	function chrGoDownBuilding(){
 		nowElevator = true;
-		console.log("빌딩내려가기");
+		//console.log("빌딩내려가기");
 		$(".horizon-dimension").stop().animate({"top":"0%"}, 1200, "swing",function(){
 			$("html, body").scrollTop($(".workbuilding-area").position().left-$(".character-holder").position().left-correctValueAfterMove);
 			$("body").removeClass("fixed");
@@ -1059,7 +1059,7 @@ $(function(){
 		if( nowChrStage == n){ // 스테이지 같음 아무런 액션 하지 않음
 		}else if( nowChrStage !== n ){ //스테이지 바뀜
 			nowChrStage = n;
-			console.log("캐릭터 "+n+"번째 스테이지");
+			//console.log("캐릭터 "+n+"번째 스테이지");
 			hideChrBoxforChange();
 			if(n>=12){
 				$(".dimension-bg-oldYear").fadeIn();
@@ -1166,10 +1166,10 @@ $(function(){
 			nowLifeStage = s;
 			$(".stage-navi .navi-wrap ul li").removeClass("on");
 			if(s==0){
-				console.log("스테이지 진입 전 입니다");
+				//console.log("스테이지 진입 전 입니다");
 			}else{
 				$(".stage-navi .navi-wrap ul li").eq(s-1).addClass("on");
-				console.log("지금은 "+s+"번째 스테이지 입니다");
+				//console.log("지금은 "+s+"번째 스테이지 입니다");
 			}
 
 		}
@@ -1308,12 +1308,12 @@ $(function(){
 			if( s == 0){
 				//$(".tempo-box").show();
 				//$(".real-box").hide();
-				console.log("레이어 밖");
+				//console.log("레이어 밖");
 				hidePolicyLayer();
 			}else{
 				$(".tempo-box").hide();
 				$(".real-box").show();
-				console.log(nowPolicyStage+"번째 정책 레이어");
+				//console.log(nowPolicyStage+"번째 정책 레이어");
 				makePolicyLayer(s-1)
 			}
 		}
@@ -1443,7 +1443,7 @@ $(function(){
 
 	$(".stage-navi .navi-wrap ul li").on("click", function(){
 		var nav_index = $(this).index();
-		console.log("navi : " + nav_index);
+		//console.log("navi : " + nav_index);
 		movePos = $stagePoint.eq(nav_index).position().left;
 
 		$(".character-holder").stop().fadeOut(100, function(){
@@ -1468,12 +1468,7 @@ $(function(){
 	});
 
 	//// 네비게이션 클릭 ////
-/*
-	$(".video-board-area").on("click", function(e){
-		e.preventDefault();
-		 window.open("https://www.youtube.com/watch?v=nfr-Ox9cz3A");
-		 console.log("t");
-	});*/
+
 
 
 	/// 모바일 터치 ///
@@ -1632,6 +1627,12 @@ $(function(){
 		resetSearchResult();
 	});
 
+	$(".go-search-direct").on("click", function(e){
+		e.preventDefault();
+		showSearchLayer();
+	});
+
+
 	function resetSearchResult(){
 		$(".search-category-holder .category-list ul li").removeClass("on");
 		$(".search-bf").show();
@@ -1656,12 +1657,16 @@ $(function(){
 				$(".result-list").append("<div class='each-result-item'><a href='"+policyDataforSearch[p].link+"' target='_blank'><p class='policy-name'>"+policyDataforSearch[p].policy+"</p><div class='see-more-btn'>정책 자세히 보기 <span class='more-icon'><img src='http://img.khan.co.kr/spko/storytelling/2019/running/outlink-icon-purple.png' alt=''></span></div></a></div>");
 			}
 		}
-		$(".show-total-number .category-name").html(categoryName);
+		if( categoryName == "재취업" && c == 5){
+			$(".show-total-number .category-name").html("재취업·워라밸");
+		}else{
+			$(".show-total-number .category-name").html(categoryName);
+		}		
 		$(".show-total-number span.number").html(totalPolicyCount);
 		$(".category-detail").hide();
 		$(".category-detail-list").hide();
 
-		/*
+		
 		if (isNaN(c) == false){
 			if(categoryName=="육아"||categoryName=="노년"){
 				$(".category-detail").show();
@@ -1672,11 +1677,35 @@ $(function(){
 					$("#detail-list-oldyear").show();
 				}
 			}
-		}*/
+		}
 	};
-
+	
+	$(".category-detail .category-detail-list ul li").on("click", function(e){
+		var type = $(this).parents("ul").parents(".category-detail-list").attr("data-detail");
+		console.log(type);
+		if( $(this).hasClass("on")==true ){
+			$(".category-detail .category-detail-list ul li").removeClass("on");
+			$(".result-list").html("");
+			for(p=0; p<policyDataforSearch.length;p++){
+				if(  policyDataforSearch[p].onedepth == type ){
+					$(".result-list").append("<div class='each-result-item'><a href='"+policyDataforSearch[p].link+"' target='_blank'><p class='policy-name'>"+policyDataforSearch[p].policy+"</p><div class='see-more-btn'>정책 자세히 보기 <span class='more-icon'><img src='http://img.khan.co.kr/spko/storytelling/2019/running/outlink-icon-purple.png' alt=''></span></div></a></div>");
+				}
+			}
+		}else{
+			$(".category-detail .category-detail-list ul li").removeClass("on");
+			$(this).addClass("on");
+			$(".result-list").html("");
+			var depthValue = $(this).html();
+			for(p=0; p<policyDataforSearch.length;p++){
+				if(  policyDataforSearch[p].onedepth == type && policyDataforSearch[p].twodepth == depthValue ){
+					$(".result-list").append("<div class='each-result-item'><a href='"+policyDataforSearch[p].link+"' target='_blank'><p class='policy-name'>"+policyDataforSearch[p].policy+"</p><div class='see-more-btn'>정책 자세히 보기 <span class='more-icon'><img src='http://img.khan.co.kr/spko/storytelling/2019/running/outlink-icon-purple.png' alt=''></span></div></a></div>");
+				}
+			}
+		}		
+	});
 
 	$(".search-category-holder .category-list ul li").on("click", function(e){
+		$(".category-detail .category-detail-list ul li").removeClass("on");
 		$(".search-category-holder .category-list ul li").removeClass("on");
 		$(this).addClass("on");
 		e.preventDefault();
@@ -1691,18 +1720,13 @@ $(function(){
 	function autocomplete(inp, arr) {
 
 	    var currentFocus;
-
 	    inp.addEventListener("input", function(e) {
-
 	        var a, b, i, val = this.value;
-
 	        closeAllLists();
-
 	        if (!val) {
 	            return false;
 	        }
 	        currentFocus = -1;
-
 	        a = document.createElement("DIV");
 	        a.setAttribute("id", this.id + "autocomplete-list");
 	        a.setAttribute("class", "autocomplete-items");
@@ -1710,20 +1734,15 @@ $(function(){
 	        this.parentNode.appendChild(a);
 
 	        for (i = 0; i < arr.length; i++) {
-
 	            var seIndex = arr[i].indexOf(val);
-
 	            if (seIndex != -1) {
-
 	                b = document.createElement("DIV");
-
 	                var examString = "";
 	                for (var si = 0; si < arr[i].length; si++) {
 	                    if (si == seIndex) examString += "<strong>";
 	                    examString += arr[i][si];
 	                    if (si == seIndex + val.length - 1) examString += "</strong>";
 	                }
-
 	                b.innerHTML = examString;
 	                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
 	                b.addEventListener("click", function(e) {
@@ -1792,10 +1811,7 @@ $(function(){
 	var policies = policyDataforSearch.map(function(v, i, a){
 		return v.policy;
 	});
-
 	autocomplete(document.getElementById("searchPolicy"), policies);
-
-
 	////// 정책 검색 ///////
 
 
